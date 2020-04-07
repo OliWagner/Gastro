@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e3a3d5332aad4935bfd6a6b27bdae89f" Name="Diagram1">
+        <EntityTypeShape EntityType="GastroModel.Benutzer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GastroModel.Getränke" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GastroModel.Speisen" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GastroModel.Tischbelegungen" Width="2" PointX="8.375" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GastroModel.Tische" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GastroModel.Veranstaltungen" Width="1.5" PointX="8.625" PointY="0.75" />
+        <EntityTypeShape EntityType="GastroModel.VeranstaltungenGetränke" Width="2.125" PointX="3.75" PointY="6.125" />
+        <EntityTypeShape EntityType="GastroModel.VeranstaltungenSpeisen" Width="2.25" PointX="1.125" PointY="6.125" />
+        <EntityTypeShape EntityType="GastroModel.VeranstaltungsGetränke" Width="2.125" PointX="8.125" PointY="6.125" />
+        <EntityTypeShape EntityType="GastroModel.VeranstaltungsSpeisen" Width="2.25" PointX="10.375" PointY="6.125" />
+        <EntityTypeShape EntityType="GastroModel.LogInLog" Width="1.5" PointX="5" PointY="3.625" />
+        <EntityTypeShape EntityType="GastroModel.Räume" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GastroModel.Kategorien" Width="1.5" PointX="1" PointY="3.5" />
+        <EntityTypeShape EntityType="GastroModel.Mittagstisch" Width="1.5" PointX="3" PointY="3.75" />
+        <EntityTypeShape EntityType="GastroModel.Allergene" Width="1.5" PointX="6.25" PointY="5.875" />
+        <EntityTypeShape EntityType="GastroModel.AllergeneMittagstischIdSpeiseId" Width="1.5" PointX="10.625" PointY="3.875" />
+        <EntityTypeShape EntityType="GastroModel.AllergeneSpeiseIdSpeiseId" Width="1.5" PointX="12.625" PointY="3.875" />
+        <EntityTypeShape EntityType="GastroModel.I18n" Width="1.5" PointX="10.75" PointY="0.5" />
+        <EntityTypeShape EntityType="GastroModel.AllergeneGetränkeIdSpeiseId" Width="1.5" PointX="12.75" PointY="5.625" />
+        <EntityTypeShape EntityType="GastroModel.AllergeneVeranstaltungsGetränkeIdSpeiseId" Width="1.5" PointX="12.625" PointY="0.5" />
+        <EntityTypeShape EntityType="GastroModel.AllergeneVeranstaltungsSpeisenIdSpeiseId" Width="1.5" PointX="12.625" PointY="2.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

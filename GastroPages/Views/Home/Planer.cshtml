@@ -1,0 +1,386 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeVeranstaltungsModel
+<script>
+    var summeGesamtOverall = 0;
+    function Berechnen() {
+        var checker = true;
+        var counterSpeise = 0;
+        var counterKategorie = 0;
+        var summeGesamtSpeisen = 0;
+        summeGesamtOverall = 0;
+        var summePersonenKategorie = 0;
+        var summeGeldKategorie = 0;
+
+        while (checker == true) {
+            var summeKategorie = 0;
+
+            var txt = "itemsSpeisen_".concat(counterKategorie).concat("_").concat(counterSpeise);
+            var txtGeld = "itemsPreis_".concat(counterKategorie).concat("_").concat(counterSpeise);
+
+            var feld = document.getElementById(txt);
+            var feldGeld = document.getElementById(txtGeld);
+            if (feld == null) {
+                //Nächste Iteration checken, wenn leer dann raus
+                var txt2 = "itemsSpeisen_".concat(counterKategorie + 1).concat("_").concat("0");
+                var feld2 = document.getElementById(txt2);
+                if (feld2 == null) {
+                    //Für diese Kategorie gint es keine Einträge mehr
+                    //--> Die nächsten möglichen Kategorien testen
+                    //Es gibt nichts mehr --> raus
+                    checker = false;
+                    //Falls doch, wieder rein
+                    for (var i = 0; i < 4; i++) {
+                        var t = "itemsSpeisen_".concat(counterKategorie + 1 + i).concat("_").concat("0");
+                        var f = document.getElementById(t);
+                        if (f != null) {
+                            counterSpeise = -1;
+                            checker = true;
+                            counterKategorie = counterKategorie + i;
+                            break;
+                        }
+                    }
+                    
+                    
+                } else {
+                    //Eine Kategorie ist beendet, Werte in die entsprechenden Felder schreiben
+                    counterSpeise = -1;
+                    summeGeldKategorie = 0;
+                    summePersonenKategorie = 0;
+                    counterKategorie++;
+                }
+            } else {
+                //Feld existiert
+                var wertAnzahlPersonenSpeise = feld.value != "" ? parseInt(feld.value) : 0;
+                var wertGeldSpeise = feldGeld.value != "" ? parseFloat(feldGeld.value.replace(',','.')) : 0;
+                var aK = "anzahlKategorie".concat(counterKategorie);
+                var sK = "summeKategorie".concat(counterKategorie);
+                //Preis zu Summe Kategorie addieren
+                summeGeldKategorie = summeGeldKategorie + (wertGeldSpeise * wertAnzahlPersonenSpeise);
+                document.getElementById(sK).innerHTML = summeGeldKategorie.toFixed(2);
+                
+                summePersonenKategorie = summePersonenKategorie + wertAnzahlPersonenSpeise;
+                document.getElementById(aK).innerHTML = summePersonenKategorie;
+
+                //Preis zur Gesamtsumme Speisen addieren
+                var feldWertGesamtSpeisen = document.getElementById("summarySummeSpeisen");
+                //var feldWertGesamtSpeisenValue = feldWertGesamtSpeisen.innerHTML != "0,00" ? parseFloat(feldWertGesamtSpeisen.innerHTML.replace(',', '.')) : 0;
+                summeGesamtSpeisen = summeGesamtSpeisen + (wertGeldSpeise * wertAnzahlPersonenSpeise);
+                document.getElementById("summarySummeSpeisen").innerHTML = summeGesamtSpeisen.toFixed(2);
+
+
+                //Preis zur Gesamtsumme Insgesamt addieren
+                //var feldWertInsgesamt = document.getElementById("summarySummeInsgesamt");
+                //var feldWertGesamtInsgesamtValue = feldWertInsgesamt.innerHTML != "0,00" ? parseFloat(feldWertInsgesamt.innerHTML.replace(',', '.')) : 0;
+                summeGesamtOverall = summeGesamtOverall + (wertGeldSpeise * wertAnzahlPersonenSpeise);
+                document.getElementById("summarySummeInsgesamt").innerHTML = summeGesamtOverall.toFixed(2);
+                
+                wertGeldSpeise = 0;
+
+            }
+            
+            counterSpeise++;
+        }
+        summeGesamtSpeisen = 0;
+        //summeGesamtOverall = 0;
+        summePersonenKategorie = 0
+        BerechneGetränke();
+    }
+
+    function BerechneGetränke() {
+        var checker = true;
+        var counterSpeise = 0;
+        var counterKategorie = 0;
+        var summeGesamtSpeisen = 0;
+        var summePersonenKategorie = 0;
+        var summeGeldKategorie = 0;
+
+        while (checker == true) {
+            var summeKategorie = 0;
+
+            var txt = "itemsGetränke_".concat(counterKategorie).concat("_").concat(counterSpeise);
+            var txtGeld = "itemsPreisG_".concat(counterKategorie).concat("_").concat(counterSpeise);
+
+            var feld = document.getElementById(txt);
+            var feldGeld = document.getElementById(txtGeld);
+            if (feld == null) {
+                //Nächste Iteration checken, wenn leer dann raus
+                var txt2 = "itemsGetränke_".concat(counterKategorie + 1).concat("_").concat("0");
+                var feld2 = document.getElementById(txt2);
+                if (feld2 == null) {
+                    //Für diese Kategorie gint es keine Einträge mehr
+                    //--> Die nächsten möglichen Kategorien testen
+                    //Es gibt nichts mehr --> raus
+                    checker = false;
+                    //Falls doch, wieder rein
+                    for (var i = 0; i < 4; i++) {
+                        var t = "itemsGetränke_".concat(counterKategorie + 1 + i).concat("_").concat("0");
+                        var f = document.getElementById(t);
+                        if (f != null) {
+                            counterSpeise = -1;
+                            checker = true;
+                            counterKategorie = counterKategorie  + i;
+                        }
+                    }
+                } else {
+                    //Eine Kategorie ist beendet, Werte in die entsprechenden Felder schreiben
+                    counterSpeise = -1;
+                    summeGeldKategorie = 0;
+                    summePersonenKategorie = 0;
+                    counterKategorie++;
+                }
+            } else {
+                //Feld existiert
+                var wertAnzahlPersonenSpeise = feld.value != "" ? parseInt(feld.value) : 0;
+                var wertGeldSpeise = feldGeld.value != "" ? parseFloat(feldGeld.value.replace(',', '.')) : 0;
+                var aK = "anzahlKategorieGetränk".concat(counterKategorie);
+                var sK = "summeKategorieGetränk".concat(counterKategorie);
+                //Preis zu Summe Kategorie addieren
+                summeGeldKategorie = summeGeldKategorie + (wertGeldSpeise * wertAnzahlPersonenSpeise);
+                document.getElementById(sK).innerHTML = summeGeldKategorie.toFixed(2);
+
+                summePersonenKategorie = summePersonenKategorie + wertAnzahlPersonenSpeise;
+                document.getElementById(aK).innerHTML = summePersonenKategorie;
+
+                //Preis zur Gesamtsumme Speisen addieren
+                var feldWertGesamtSpeisen = document.getElementById("summarySummeGetränke");
+                //var feldWertGesamtSpeisenValue = feldWertGesamtSpeisen.innerHTML != "0,00" ? parseFloat(feldWertGesamtSpeisen.innerHTML.replace(',', '.')) : 0;
+                summeGesamtSpeisen = summeGesamtSpeisen + (wertGeldSpeise * wertAnzahlPersonenSpeise);
+                document.getElementById("summarySummeGetränke").innerHTML = summeGesamtSpeisen.toFixed(2);
+
+
+                //Preis zur Gesamtsumme Insgesamt addieren
+                //var feldWertInsgesamt = document.getElementById("summarySummeInsgesamt");
+                //var feldWertGesamtInsgesamtValue = feldWertInsgesamt.innerHTML != "0,00" ? parseFloat(feldWertInsgesamt.innerHTML.replace(',', '.')) : 0;
+                summeGesamtOverall = summeGesamtOverall + (wertGeldSpeise * wertAnzahlPersonenSpeise);
+                document.getElementById("summarySummeInsgesamt").innerHTML = summeGesamtOverall.toFixed(2);
+
+                wertGeldSpeise = 0;
+
+            }
+
+            counterSpeise++;
+        }
+        summeGesamtSpeisen = 0;
+        summePersonenKategorie = 0
+    }
+
+</script>
+<h2>Veranstaltungsplaner</h2>
+@using (Html.BeginForm("VeranstaltungSpeichern", "Home", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    <table border="0">
+        <tr>
+            <td class="PlanerIntro">Lediglich Planer, Bla Bla Bla keine Daten werden gespeichert usw<br /><br /></td>
+        </tr>
+        <tr>
+            <td class="PlanerPersonen">Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten.<br/><br /></td>
+        </tr>
+        <tr>
+            <td class="PlanerSpeisenHeader">Speisen</td>
+        </tr>
+        <tr>
+            <td class="PlanerSpeisenItems">
+                @{
+                    int kategorieCounter = 0;
+                    
+                    foreach (KategorienFuerModel kat in Model.Speisen.AlleKategorien)
+                    {
+                        string text1 = "SpeisenKategorieBezeichnung" + kat.Level;
+                        string text2 = "SpeisenKategorieHeader" + kat.Level;
+                <div class="MittagstischKategorie">
+                    <div class=@text1>@kat.Kategorie.Bezeichnung</div>
+                    <div class=@text2>
+                        @if (kat.Kategorie.Header != null && !kat.Kategorie.Header.Equals(""))
+                        {
+                            string[] texte = kat.Kategorie.Header.Split('|');
+                            foreach (var item in texte)
+                            {
+                                <center>@item</center><br />
+                            }
+                        }
+                    </div>
+
+                    @foreach (var item in Model.Speisen.AlleSpeisenZuDenKategorien.Where(x => x.Key == kat.Kategorie.id))
+                    {
+                        int counterSpeisen = 0;
+                        foreach (VeranstaltungsSpeisen mt in item.Value)
+                        {
+                            string txt = "itemsSpeisen_" + kategorieCounter + "_" + counterSpeisen;
+                            string txt2 = "itemsPreis_" + kategorieCounter + "_" + counterSpeisen;
+                            counterSpeisen++;
+                            <div class="MittagstischElement">
+                                <div class="PlanerFeld"><input type="text" class="PlanerAnzahlItem" name="@txt" id="@txt" onchange="Berechnen()" /></div>
+                                <div class="KarteElementBezeichnung">
+                                    @{
+                                        var val = "";
+                                        if (Model.Speisen.AllergeneZuSpeisen.Where(x => x.Key == mt.id).Any())
+                                        {
+                                            val = Model.Speisen.AllergeneZuSpeisen.Where(x => x.Key == mt.id).FirstOrDefault().Value;
+                                        }
+                                        @mt.Bezeichnung
+                                        if (!val.Equals(""))
+                                        {
+                                            <text>&nbsp;<sup>@val</sup></text>
+                                        }
+                                    }
+                                </div>
+                                <div class="KarteElementBeschreibung">@mt.Beschreibung</div>
+                                <div class="PlanerEinheit">@mt.Einheit</div>
+                                <div class="MittagstischElementPreis">€ @mt.PreisProEinheit</div>
+                                <input type="hidden" name="@txt2" id="@txt2" value="@mt.PreisProEinheit" />
+                            </div>
+                        }
+                    }
+
+                    @{
+                        string anzahlKategorie = "anzahlKategorie" + kategorieCounter;
+                        string summeKategorie = "summeKategorie" + kategorieCounter;
+                    }
+                    @if (!kat.SelectedKategorieHasChilds)
+                    {
+                        <div style="clear:both" />
+                        <div class="PlanerKategorieSummenPersonenText">Speisen/@kat.Kategorie.Bezeichnung:</div>
+                        <div class="PlanerKategorieSummenPersonen"><label name="@anzahlKategorie" id="@anzahlKategorie">0</label></div>
+                        <div class="PlanerKategorieSummenPreisText">Summe @kat.Kategorie.Bezeichnung:</div>
+                        <div class="PlanerKategorieSummenPreis">€ <label name="@summeKategorie" id="@summeKategorie">0,00</label></div>
+                    }
+                    <div style="clear:both" />
+                    <div class="MittagstischKategorieFooter">
+                        @if (kat.Kategorie.Footer != null && !kat.Kategorie.Footer.Equals(""))
+                        {
+                            string[] texte = kat.Kategorie.Footer.Split('|');
+                            int counter = 0;
+                            foreach (var item in texte)
+                            {
+                                counter++;
+                                <br /><center>@item</center>
+                                if (counter == texte.Length)
+                                {
+                                    <br />
+                                }
+
+                            }
+                        }
+
+                    </div>
+                </div>
+                        kategorieCounter++;
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="PlanerSpeisenHeader">Getränke</td>
+        </tr>
+        <tr>
+            <td class="PlanerGetränkeItems">
+                @{
+                    int kategorieGCounter = 0;
+                    
+                    foreach (KategorienFuerModel kat in Model.Getränke.AlleKategorien)
+                    {
+                        string text1 = "SpeisenKategorieBezeichnung" + kat.Level;
+                        string text2 = "SpeisenKategorieHeader" + kat.Level;
+                <div class="MittagstischKategorie">
+                    <div class=@text1>@kat.Kategorie.Bezeichnung</div>
+                    <div class=@text2>
+                        @if (kat.Kategorie.Header != null && !kat.Kategorie.Header.Equals(""))
+                        {
+                            string[] texte = kat.Kategorie.Header.Split('|');
+                            foreach (var item in texte)
+                            {
+                                <center>@item</center><br />
+                            }
+                        }
+                    </div>
+
+                    @foreach (var item in Model.Getränke.AlleSpeisenZuDenKategorien.Where(x => x.Key == kat.Kategorie.id))
+                    {
+                        int counterGetränke = 0;
+                        foreach (VeranstaltungsGetränke mt in item.Value)
+                        {
+                            string txtG = "itemsGetränke_" + kategorieGCounter + "_" + counterGetränke;
+                            string txtG2 = "itemsPreisG_" + kategorieGCounter + "_" + counterGetränke;
+                            counterGetränke++;
+                            <div class="PlanerGetränkeElement">
+                                <div class="PlanerFeldGetränk">
+                                    <input type="text" class="PlanerAnzahlItem" name="@txtG" id="@txtG" onchange="Berechnen()" />
+                                </div>
+                                <div style="float:left;">
+                                    <div class="PlanerElementBezeichnung">
+                                        @{
+                                            var val = "";
+                                            if (Model.Getränke.AllergeneZuSpeisen.Where(x => x.Key == mt.id).Any())
+                                            {
+                                                val = Model.Getränke.AllergeneZuSpeisen.Where(x => x.Key == mt.id).FirstOrDefault().Value;
+                                            }
+                                            @mt.Bezeichnung
+                                            if (!val.Equals(""))
+                                            {
+                                                <text>&nbsp;<sup>@val</sup></text>
+                                            }
+                                        }
+                                    </div>
+                                    <br />
+                                    <div class="PlanerElementBeschreibung">@mt.Beschreibung</div>
+                                </div>
+                                <div class="PlanerEinheitGetränk">@mt.Einheit</div>
+                                <div class="PlanerElementPreis">€ @mt.PreisProEinheit</div>
+                                <input type="hidden" name="@txtG2" id="@txtG2" value="@mt.PreisProEinheit" />
+                            </div>
+                        }
+                    }
+
+                    @{
+                        string anzahlKategorie = "anzahlKategorieGetränk" + kategorieGCounter;
+                        string summeKategorie = "summeKategorieGetränk" + kategorieGCounter;
+                    }
+                    @if (!kat.SelectedKategorieHasChilds)
+                    {
+                        <div style="clear:both" />
+                        <div class="PlanerKategorieSummenPersonenText">Getränke/@kat.Kategorie.Bezeichnung:</div>
+                        <div class="PlanerKategorieSummenPersonen"><label name="@anzahlKategorie" id="@anzahlKategorie">0</label></div>
+                        <div class="PlanerKategorieSummenPreisText">Summe @kat.Kategorie.Bezeichnung:</div>
+                        <div class="PlanerKategorieSummenPreis">€ <label name="@summeKategorie" id="@summeKategorie">0,00</label></div>
+                    }
+                        <div style="clear:both" />
+                        <div class="MittagstischKategorieFooter">
+                            @if (kat.Kategorie.Footer != null && !kat.Kategorie.Footer.Equals(""))
+                            {
+                                string[] texte = kat.Kategorie.Footer.Split('|');
+                                int counter = 0;
+                                foreach (var item in texte)
+                                {
+                                    counter++;
+                                    <br /><center>@item</center>
+                                    if (counter == texte.Length)
+                                    {
+                                        <br />
+                                    }
+
+                                }
+                            }
+
+                        </div>
+                    </div>
+                            kategorieGCounter++;
+                        }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="PlanerZusammenfassung">
+                <div class="PlanerSummaryHeader">Zusammenfassung</div>
+                <div class="PlanerSummarySpeisenText">Summe Speisen</div>
+                <div class="PlanerSummarySpeisenValue">€ <label name="summarySummeSpeisen" id="summarySummeSpeisen">0,00</label></div>
+                <div class="PlanerSummarySpeisenText">Summe Getränke</div>
+                <div class="PlanerSummarySpeisenValue">€ <label name="summarySummeGetränke" id="summarySummeGetränke">0,00</label></div>
+                <div class="PlanerSummaryGesamtText">Insgesamt</div>
+                <div class="PlanerSummaryGesamtValue"><u>€ <label name="summarySummeInsgesamt" id="summarySummeInsgesamt">0,00</label></u></div>
+                <div style="clear:both" />
+                <button class="PlanerBtnSend" name="btnDrucken" id="btnDrucken" onclick="Drucken()">Drucken</button>
+                <input class="PlanerBtnSubmit" type="submit" value="Anfrage senden" />
+            </td>
+        </tr>
+    </table>
+}

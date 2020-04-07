@@ -1,0 +1,146 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeSpeisenModel
+<h1><b>Speisen und Getränke</b></h1>
+<h1>Speisen</h1>
+@{
+    foreach (KategorienFuerModel kat in Model.AlleKategorien)
+    {
+        string text1 = "SpeisenKategorieBezeichnung" + kat.Level;
+        string text2 = "SpeisenKategorieHeader" + kat.Level;
+        <div class="MittagstischKategorie">
+            <div class=@text1>@kat.Kategorie.Bezeichnung</div>
+            <div class=@text2>
+                @if (kat.Kategorie.Header != null && !kat.Kategorie.Header.Equals(""))
+                {
+                    string[] texte = kat.Kategorie.Header.Split('|');
+                    foreach (var item in texte)
+                    {
+                        <center>@item</center><br />
+                    }
+                }
+            </div>
+
+            @foreach (var item in Model.AlleSpeisenZuDenKategorien.Where(x => x.Key == kat.Kategorie.id))
+            {
+                foreach (Speisen mt in item.Value)
+                {
+                    <div class="MittagstischElement">
+                        <div class="MittagstischElementKartennummer">@mt.Kartennummer)</div>
+                        <div class="KarteElementBezeichnung">
+                            @{
+                                var val = "";
+                                if (Model.AllergeneZuSpeisen.Where(x => x.Key == mt.id).Any())
+                                {
+                                    val = Model.AllergeneZuSpeisen.Where(x => x.Key == mt.id).FirstOrDefault().Value;
+                                }
+                                @mt.Bezeichnung
+                                if (!val.Equals(""))
+                                {
+                                    <text>&nbsp;<sup>@val</sup></text>
+                                }
+                            }
+                        </div>
+                        <div class="KarteElementBeschreibung">@mt.Beschreibung</div>
+                        <div class="MittagstischElementPreis">€ @mt.Preis</div>
+                    </div>
+                }
+            }
+            <div class="MittagstischKategorieFooter">
+                @if (kat.Kategorie.Footer != null && !kat.Kategorie.Footer.Equals(""))
+                {
+                    string[] texte = kat.Kategorie.Footer.Split('|');
+                    int counter = 0;
+                    foreach (var item in texte)
+                    {
+                        counter++;
+                        <br /><center>@item</center>
+                        if (counter == texte.Length)
+                        {
+                            <br />
+                        }
+
+                    }
+                }
+
+            </div>
+        </div>
+    }
+    <h2>Getränke</h2>
+    foreach (KategorienFuerModel kat in Model.GetränkeModel.AlleKategorien)
+    {
+        string text1 = "SpeisenKategorieBezeichnung" + kat.Level;
+        string text2 = "SpeisenKategorieHeader" + kat.Level;
+        <div class="MittagstischKategorie">
+            <div class=@text1>@kat.Kategorie.Bezeichnung</div>
+            <div class=@text2>
+                @if (kat.Kategorie.Header != null && !kat.Kategorie.Header.Equals(""))
+                {
+                    string[] texte = kat.Kategorie.Header.Split('|');
+                    foreach (var item in texte)
+                    {
+                        <center>@item</center><br />
+                    }
+                }
+            </div>
+
+            @foreach (var item in Model.GetränkeModel.AlleSpeisenZuDenKategorien.Where(x => x.Key == kat.Kategorie.id))
+            {
+                foreach (Getränke mt in item.Value)
+                {
+                    <div class="MittagstischElement">
+                        <div class="KarteGetränkBezeichnung">
+                            @{
+                                var val = "";
+                                if (Model.GetränkeModel.AllergeneZuSpeisen.Where(x => x.Key == mt.id).Any())
+                                {
+                                    val = Model.GetränkeModel.AllergeneZuSpeisen.Where(x => x.Key == mt.id).FirstOrDefault().Value;
+                                }
+                                @mt.Bezeichnung
+                                if (val != null && !val.Equals(""))
+                                {
+                                    <text>&nbsp;<sup>@val</sup></text>
+                                }
+                            }
+                                            </div>
+                        <div class="KarteGetränkErg1">@mt.Ergänzung1</div>
+                        <div class="KarteGetränkErg2">@mt.Ergänzung2</div>
+                        <div class="GetränkPreis">€ @mt.Preis</div>
+                    </div>
+                }
+            }
+            <div class="MittagstischKategorieFooter">
+                @if (kat.Kategorie.Footer != null && !kat.Kategorie.Footer.Equals(""))
+                {
+                    string[] texte = kat.Kategorie.Footer.Split('|');
+                    int counter = 0;
+                    foreach (var item in texte)
+                    {
+                        counter++;
+                        <br /><center>@item</center>
+                        if (counter == texte.Length)
+                        {
+                            <br />
+                        }
+
+                    }
+                }
+
+            </div>
+        </div>
+    }
+    <div class="Allergene">
+        <h4>Inhaltsstoffliste</h4>
+        <table border="0">
+            @foreach (Allergene al in Model.AlleAllergene)
+            {
+                <tr>
+                    <td class="AllergeneNummer">@al.Nummer</td>
+                    <td class="AllergeneBezeichnung">@al.Bezeichnung</td>
+                    <td class="AllergeneBeschreibung">@al.Beschreibung</td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+
+

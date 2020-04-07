@@ -1,0 +1,78 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminBenutzerModel
+<h2>Benutzer</h2>
+@using (Html.BeginForm("BenutzerEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    @Html.HiddenFor(model => model.Benutzer.id)
+    <table border="0" width="100%">
+        <tr>
+            <td width="25%">
+                <label>Nachname: </label><br />
+                @Html.TextBoxFor(model => model.Benutzer.Nachname, new { value = Model.Benutzer.Nachname })
+            </td>
+            <td width="25%">
+                <label>Vorname:</label><br />
+                @Html.TextBoxFor(model => model.Benutzer.Vorname)
+            </td>
+            <td width="25%">
+                <label>Email:</label><br />
+                @Html.TextBoxFor(model => model.Benutzer.Email)
+            </td>
+            <td width="25%">
+                <label>Telefon:</label><br />
+                @Html.TextBoxFor(model => model.Benutzer.Telefon)
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                <label>Passwort:</label><br />
+                @Html.TextBoxFor(model => model.Benutzer.Passwort)
+            </td>
+            <td width="25%">
+                <label>Ist aktiv:</label><br />
+                @Html.CheckBoxFor(model => model.Benutzer.IstAktiv)
+            </td>
+            <td width="25%">
+                <label>Ist Admin:</label><br />
+                @Html.CheckBoxFor(model => model.Benutzer.IstAdmin)
+            </td>
+            <td width="25%">
+                <input type="submit" />
+            </td>
+        </tr>
+    </table>
+}
+<hr/>
+<table border="0" width="100%">
+    <tr>
+        <th>Id</th>
+        <th>Nachname</th>
+        <th>Vorname</th>
+        <th>Email</th>
+        <th>Telefon</th>
+        <th>Passwort</th>
+        <th>Admin</th>
+        <th>Aktiv</th>
+        <th></th>
+    </tr>
+
+    @{
+        foreach (Benutzer benutzer in Model.AlleBenutzer)
+        {
+            <tr>
+                <td>@benutzer.id</td>
+                <td>@benutzer.Nachname</td>
+                <td>@benutzer.Vorname</td>
+                <td>@benutzer.Email</td>
+                <td>@benutzer.Telefon</td>
+                <td>@benutzer.Passwort</td>
+                <td>@benutzer.IstAdmin</td>
+                <td>@benutzer.IstAktiv</td>
+                <td>@Html.ActionLink("Bearbeiten", "BenutzerBearbeiten", "Admin", new { id = benutzer.id }, null)</td>
+            </tr>
+        }
+
+    }
+
+
+</table>

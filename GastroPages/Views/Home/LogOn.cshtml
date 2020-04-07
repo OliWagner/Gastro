@@ -1,0 +1,32 @@
+﻿@using GastroPages.Models
+@using System.Globalization;
+@using System.Threading;
+@using ResourcesGastro = ResourcesGastro.Home.Logon
+
+@model GastroPages.Models.LoginModel
+
+<div id="pageContent">
+    <h2>Log In</h2>
+
+    @using (Html.BeginForm("LogOn", "Home", FormMethod.Post, new { id = "EingabeForm" }))
+    {
+
+    <div class="leftRowKontakt">
+        @ResourcesGastro.Logintext<br />
+        <br />
+        @ResourcesGastro.Email:<br />
+        @Html.ValidationMessageFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "pflicht" })
+        <br />
+
+        @ResourcesGastro.Passwort:<br />
+        @Html.ValidationMessageFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password, new { @class = "pflicht" })
+        <br />
+
+        <input type="submit" class="loginAbsenden" name="absenden" value="Einloggen" />
+
+    </div>
+
+    }
+</div>

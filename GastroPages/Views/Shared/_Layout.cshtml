@@ -1,0 +1,72 @@
+﻿@using Resources = ResourcesGastro.Shared.Navi
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Meine ASP.NET-Anwendung</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(Resources.Raeumlichkeiten, "Räume", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Speisekarte, "Karte", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Mittagstisch, "Mittagstisch", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Reservierung, "Reservierung", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Veranstaltungsplaner, "Planer", "Home")</li>
+
+                    <li>@Html.ActionLink(Resources.Öffnungszeiten, "Öffnungszeiten", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Login, "Logon", "Home")</li>
+                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                    <li>
+                        @{
+                            if (Session["Rolle"] != null)
+                            {
+                                <text><b style="color: #ffffff">Angemeldet als: @Session["Nachname"], @Session["Vorname"]  @Html.ActionLink("[X]", "Logout", "Admin")</b></text>
+                            }
+                        }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(Resources.UeberUns, "About", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Kontakt, "Contact", "Home")</li>
+                    <li>@Html.ActionLink(Resources.Impressum, "Impressum", "Home")</li>
+                    <li>@Html.ActionLink("English", "SetCulture", new { controller = "Home", culture = "en-US" })</li>
+                    <li>@Html.ActionLink("Espanol", "SetCulture", new { controller = "Home", culture = "es-ES" })</li>
+                    <li>@Html.ActionLink("Deutsch", "SetCulture", new { controller = "Home", culture = "de-DE" })</li>
+                    <li>@Html.ActionLink("Italiano", "SetCulture", new { controller = "Home", culture = "it-IT" })</li>
+                    <li>@Html.ActionLink("Russki", "SetCulture", new { controller = "Home", culture = "ru-RU" })</li>
+                </ul>
+            </div>
+
+            <p>&copy; @DateTime.Now.Year - Restaurant Zur Glocke</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

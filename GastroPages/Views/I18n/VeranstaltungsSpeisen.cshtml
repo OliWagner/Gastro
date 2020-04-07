@@ -1,0 +1,49 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminI18nVeranstaltungsSpeisenModel
+<h2>Veranst. Speisen Mehrsprachigkeit - @Model.Deutsch_Bezeichnung</h2>
+@using (Html.BeginForm("VeranstaltungsSpeisenEintragen", "I18n", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    @Html.HiddenFor(x => x.GetränkId)
+<table border="0" class="AllergeneMehrsprachigkeit">
+    <tr>
+        <td width="50" valign="top"></td>
+        <td width="50" valign="top">Bezeichnung</td>
+        <td width="400" valign="top">Beschreibung</td>
+        <td width="50" valign="top">Einheit</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Englisch</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Englisch_Bezeichnung)</td>
+        <td valign="top">@Html.TextAreaFor(model => model.Englisch_Beschreibung)</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Englisch_Einheit)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Italienisch</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Italienisch_Bezeichnung)</td>
+        <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Beschreibung)</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Italienisch_Einheit)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Russisch</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Russisch_Bezeichnung)</td>
+        <td valign="top">@Html.TextAreaFor(model => model.Russisch_Beschreibung)</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Russisch_Einheit)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Spanisch</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Spanisch_Bezeichnung)</td>
+        <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Beschreibung)</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Spanisch_Einheit)</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td valign="top"><input type="submit" value="eintragen"/></td>
+    </tr>
+
+</table>
+}

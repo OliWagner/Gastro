@@ -1,0 +1,57 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeMittagstischModel
+<h2>Mittagstisch</h2>
+
+    @{
+
+
+        foreach (KategorienFuerModel kat in Model.AlleKategorien)
+        {
+            string text1 = "MittagstischKategorieBezeichnung"+kat.Level;
+            string text2 = "MittagstischKategorieHeader" + kat.Level;
+                <div class="MittagstischKategorie">
+                
+                <div class=@text1>@kat.Kategorie.Bezeichnung</div>
+                <div class=@text2>@kat.Kategorie.Header</div>
+
+                @foreach (var item in Model.AlleSpeisenZuDenKategorien.Where(x => x.Key == kat.Kategorie.id))
+                {
+                    foreach (Mittagstisch mt in item.Value)
+                    {
+                        <div class="MittagstischElement">
+                            <div class="MittagstischElementBezeichnung">
+                                @{
+                                    var val = "";
+                                    if (Model.AllergeneZuSpeisen.Where(x => x.Key == mt.id).Any())
+                                    {
+                                        val = Model.AllergeneZuSpeisen.Where(x => x.Key == mt.id).FirstOrDefault().Value;
+                                    }
+                                    @mt.Bezeichnung
+                                    if (!val.Equals(""))
+                                    {
+                                        <text>&nbsp;<sup>@val</sup></text>
+                                    }
+                                }
+                            </div>
+                            <div class="MittagstischElementBeschreibung">@mt.Beschreibung</div>
+                            <div class="MittagstischElementPreis">€ @mt.Preis</div>
+                        </div>
+                    }
+        }
+                <div class="MittagstischKategorieFooter">@kat.Kategorie.Footer</div>
+            </div>
+        }
+                <div class="Allergene">
+                    <h4>Inhaltsstoffliste</h4>
+                    <table border="0">
+                        @foreach (Allergene al in Model.AlleAllergene)
+                        {
+                        <tr>
+                            <td class="AllergeneNummer">@al.Nummer</td>
+                            <td class="AllergeneBezeichnung">@al.Bezeichnung</td>
+                            <td class="AllergeneBeschreibung">@al.Beschreibung</td>
+                        </tr>
+                        }
+                    </table>
+                </div>
+    }

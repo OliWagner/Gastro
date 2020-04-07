@@ -1,0 +1,601 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.adminMittagstischLinkLevel1 {
+    color: #000000;
+    margin-left:10px;
+    font-size:20px;
+    font-weight: bold;
+}
+
+.adminMittagstischLinkLevel2 {
+    color: #000000;
+    margin-left: 30px;
+    font-size: 17px;
+}
+
+.adminMittagstischLinkLevel3 {
+    color: #000000;
+    margin-left: 50px;
+    font-size: 14px;
+}
+
+.adminMittagstischLinkLevel4 {
+    color: #000000;
+    margin-left: 70px;
+    font-size: 12px;
+}
+
+.adminMittagstischHeader {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.adminMittagstischLink {
+    color: #000000;
+    font-weight: bold;
+}
+
+.adminMittagstischTable {
+    color: #000000;
+    background-color: #eeeeee;
+    font-weight: bold;
+    margin-top: 0px;
+    padding-top: 0px;
+    font-size: 16px;
+}
+
+.adminMittagstischKategorieLeft {
+    margin-left: 30px;
+}
+
+.adminMittagstischKategorieRight {
+    
+    margin-left: 230px;
+}
+
+.adminMittagstischSpeisenBezeichnung {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    font-weight: bold;
+}
+
+.adminMittagstischSpeisenPreis {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.adminMittagstischSpeisenIstAktiv {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.adminMittagstischSpeisenBeschreibung {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.adminMittagstischAllergene {
+    float: left;
+    margin-left:10px;
+}
+
+.adminSpeisenAllergene {
+    float: left;
+    margin-left: 10px;
+}
+
+
+.adminMittagstischSpeisenSortierung {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.MittagstischSpeisenSortierung {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+.MittagstischKategorie {
+
+}
+
+.MittagstischKategorieBezeichnung {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.MittagstischKategorieHeader {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width:480px;
+}
+.MittagstischKategorieFooter {
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width:480px;
+}
+
+.MittagstischKategorieBezeichnung0 {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.MittagstischKategorieHeader0 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.MittagstischKategorieBezeichnung1 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.MittagstischKategorieHeader1 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.MittagstischKategorieBezeichnung2 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.MittagstischKategorieHeader2 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.MittagstischKategorieBezeichnung3 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.MittagstischKategorieHeader3 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.MittagstischElement {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+
+.MittagstischElementKartennummer {
+    margin-left: 0px;
+    font-weight: bold;
+    float: left;
+}
+
+.MittagstischElementBezeichnung {
+    margin-left: 20px;
+    font-weight: bold;
+
+}
+
+
+.adminMittagstischSpeisenKartennummer {
+    margin-left: 0px;
+    font-weight: bold;
+    float: left;
+}
+
+.MittagstischElementBeschreibung {
+    width: 480px;
+    margin-left: 20px;
+}
+
+.KarteElementBezeichnung {
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+
+.KarteElementBeschreibung {
+    width: 480px;
+    margin-left: 30px;
+}
+
+
+
+
+
+
+.MittagstischElementPreis {
+    margin-top: -17px;
+    font-weight: bold;
+    margin-left: 580px;
+}
+
+.MittagstischElementSortierung {
+
+    margin-left: 680px;
+}
+
+.SpeisenKategorieBezeichnung {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.SpeisenKategorieHeader {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 25px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.SpeisenKategorieBezeichnung0 {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 0px;
+    font-weight: bold;
+}
+
+.SpeisenKategorieHeader0 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 5px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.SpeisenKategorieBezeichnung1 {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.SpeisenKategorieHeader1 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.SpeisenKategorieBezeichnung2 {
+    font-size: 17px;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.SpeisenKategorieHeader2 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.SpeisenKategorieBezeichnung3 {
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.SpeisenKategorieHeader3 {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-left: 10px;
+    font-weight: bold;
+    width: 480px;
+}
+
+.SpeisenKategorie {
+}
+
+.adminGetränkeErg1 {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    font-weight: bold;
+}
+
+.adminGetränkeErg2 {
+    float: left;
+    font-size: 14px;
+    margin-top: 0px;
+    font-weight: bold;
+}
+
+.KarteGetränkBezeichnung {
+    margin-top: 0px;
+    float: left;
+    margin-left: 0px;
+    font-weight: bold;
+}
+
+.KarteGetränkErg1 {
+    position: absolute;
+    margin-top: 0px;
+    float: left;
+    width: 60px;
+    margin-left: 380px;
+}
+
+.KarteGetränkErg2 {
+    position: absolute;
+    margin-top: 0px;
+    float: left;
+    width: 100px;
+    margin-left: 480px;
+}
+
+.GetränkPreis {
+
+    font-weight: bold;
+    margin-left: 580px;
+}
+
+.Allergene {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.AllergeneNummer {
+    float: left;
+    width: 20px;
+    margin-left: 10px;
+}
+
+.AllergeneBezeichnung {
+    float: left;
+    width: 200px;
+    margin-left: 10px;
+}
+
+.AllergeneBeschreibung {
+    font-size: 12px;
+    margin-left: 10px;
+    width: 500px;
+}
+
+.AllergeneMehrsprachigkeit {
+    font-size: 14px;
+    margin-left: 10px;
+    width: 800px;
+    font-weight: bold;
+}
+
+.PlanerBtnSend {
+    margin-left:110px;
+    width:150px;
+    height:25px;
+    margin-top: 0px;
+}
+
+.PlanerBtnSubmit {
+    margin-left: 200px;
+    width: 150px;
+    height: 25px;
+    margin-top: 0px;
+}
+
+.PlanerIntro {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.PlanerPersonen {
+    font-size: 16px;
+}
+
+.PlanerEinheit {
+    margin-top: -20px;
+    font-size: 12px;
+    margin-left:500px;
+}
+
+.PlanerEinheitGetränk {
+    float:left;
+    margin-top: 20px;
+    font-size: 12px;
+    margin-left: 50px;
+}
+
+.PlanerFeld {
+    float:left;
+    font-size: 16px;
+    margin-left: 0px;
+    width: 50px;
+}
+
+.PlanerSpeisenHeader {
+    vertical-align: bottom;
+    height:60px;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;  
+}
+
+.PlanerAnzahlItem {
+    float: left;
+    margin-top: 5px;
+    font-size: 12px;
+    width: 40px;
+    height: 25px;
+}
+
+.PlanerKategorieSummenPersonen {
+    margin-top: 20px;
+    margin-left: 60px;
+    float: left;
+    width: 40px;
+    height: 25px;
+}
+
+.PlanerKategorieSummenPersonenText {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 20px;
+    float: left;
+    width: 120px;
+    height: 25px;
+}
+
+.PlanerKategorieSummenPreis {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 5px;
+    float: left;
+    width: 120px;
+    height: 25px;
+}
+
+.PlanerKategorieSummenPreisText {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-left: 220px;
+    float: left;
+    width: 150px;
+    height: 25px;
+}
+
+.PlanerZusammenfassung {
+    background-color: #eeeeee;
+}
+
+
+
+.PlanerSummaryHeader {
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 300px;
+    
+}
+
+.PlanerSummarySpeisenText {
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    margin-left: 350px;
+}
+
+.PlanerSummarySpeisenValue {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 550px;
+}
+
+.PlanerSummaryGesamtText {
+    margin-top:30px;
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    margin-left: 350px;
+}
+
+.PlanerSummaryGesamtValue {
+
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration-style: solid;
+    margin-left: 550px;
+}
+
+.PlanerElementPreis {
+    float:left;
+    margin-top: -17px;
+    font-weight: bold;
+    margin-left: 150px;
+}
+
+.PlanerGetränkeElement {
+    float:left;
+    margin-top: 10px;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-left: 10px;
+}
+.PlanerFeldGetränk {
+
+    font-size: 16px;
+    margin-left: 0px;
+    width: 50px;
+}
+
+.PlanerElementBeschreibung {
+    width: 380px;
+    margin-left: 10px;
+}
+
+.PlanerElementBezeichnung {
+    margin-left:10px;
+    font-weight:bold;
+    float: left;
+}

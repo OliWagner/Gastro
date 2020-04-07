@@ -1,0 +1,54 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminAllergeneModel
+<h2>Allergene</h2>
+@using (Html.BeginForm("AllergeneEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    @Html.HiddenFor(model => model.AllergenItem.id)
+    <table border="0" width="100%">
+        <tr>
+            <td width="25%">
+                <label>Nummer: </label><br />
+                @Html.TextBoxFor(model => model.AllergenItem.Nummer, new { value = Model.AllergenItem.Nummer })
+            </td>
+            <td width="25%">
+                <label>Bezeichnung:</label><br />
+                @Html.TextBoxFor(model => model.AllergenItem.Bezeichnung)
+            </td>
+            <td width="50%">
+                <label>Beschreibung:</label><br />
+                @Html.TextAreaFor(model => model.AllergenItem.Beschreibung)
+            </td>
+            <td width="25%">
+                <input type="submit" />
+            </td>
+        </tr>
+    </table>
+}
+<hr />
+<table border="0" width="100%">
+    <tr>
+        <th>Nummer</th>
+        <th>Bezeichnung</th>
+        <th colspan="3">Beschreibung</th>
+    </tr>
+
+    @{
+        foreach (Allergene al in Model.AlleAllergene)
+        {
+    <tr>
+        <td>@al.Nummer</td>
+        <td>@al.Bezeichnung</td>
+        <td>@al.Beschreibung</td>
+
+
+        <td>@Html.ActionLink("Bearbeiten", "Allergene", "Admin", new { id = al.id, todo = 1 }, null)</td>
+        @*<td>@Html.ActionLink("Löschen", "Allergene", "Admin", new { id = al.id, todo = 0 }, null)</td>*@
+        <td>@Html.ActionLink("I18n", "Allergene", "I18n", new { id = al.id }, null)</td>
+    </tr>
+        }
+
+    }
+
+
+</table>
+

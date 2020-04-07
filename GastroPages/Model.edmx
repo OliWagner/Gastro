@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GastroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Allergene">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nummer" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AllergeneGetränkeIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="aid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneMittagstischIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="aid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneSpeiseIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="aid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneVeranstaltungsGetränkeIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="aid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneVeranstaltungsSpeisenIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sid" Type="int" Nullable="false" />
+          <Property Name="aid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nachname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Vorname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Passwort" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="IstAdmin" Type="bit" Nullable="false" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Getränke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Kartennummer" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategorieId" Type="int" Nullable="false" />
+          <Property Name="Sortierung" Type="int" Nullable="false" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+          <Property Name="Ergänzung1" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ergänzung2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Preis" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="I18n">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Typ" Type="int" Nullable="false" />
+          <Property Name="SprachId" Type="int" Nullable="false" />
+          <Property Name="AllergenId" Type="int" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" />
+          <Property Name="Ergänzung1" Type="nvarchar" MaxLength="10" />
+          <Property Name="Ergänzung2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Header" Type="nvarchar(max)" />
+          <Property Name="Footer" Type="nvarchar(max)" />
+          <Property Name="Einheit" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kategorien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Header" Type="nvarchar(max)" />
+          <Property Name="Footer" Type="nvarchar(max)" />
+          <Property Name="Kategorieart" Type="int" Nullable="false" />
+          <Property Name="Oberkategorie" Type="int" />
+          <Property Name="Sortierung" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogInLog">
+          <Key>
+            <PropertyRef Name="LogInLogId" />
+          </Key>
+          <Property Name="LogInLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Wann" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mittagstisch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" />
+          <Property Name="KategorieId" Type="int" Nullable="false" />
+          <Property Name="Preis" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Räume">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" />
+          <Property Name="MaxPersonen" Type="int" />
+          <Property Name="Preis" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Speisen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kartennummer" Type="nvarchar" MaxLength="50" />
+          <Property Name="KategorieId" Type="int" Nullable="false" />
+          <Property Name="Sortierung" Type="int" Nullable="false" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+          <Property Name="Preis" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Tischbelegungen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TischId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Von" Type="datetime" Nullable="false" />
+          <Property Name="Bis" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tische">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaxPersonen" Type="int" Nullable="false" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Veranstaltungen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" />
+          <Property Name="RaumId" Type="int" />
+          <Property Name="Fahrtkosten" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Personenzahl" Type="int" Nullable="false" />
+          <Property Name="Dekokosten" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Von" Type="datetime" Nullable="false" />
+          <Property Name="Bis" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungenGetränke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VeranstaltungsId" Type="int" Nullable="false" />
+          <Property Name="VeranstaltungsGetränkeId" Type="int" Nullable="false" />
+          <Property Name="Anzahl" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungenSpeisen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VeranstaltungsId" Type="int" Nullable="false" />
+          <Property Name="VeranstaltungsSpeisenId" Type="int" Nullable="false" />
+          <Property Name="Anzahl" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungsGetränke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Einheit" Type="nvarchar" MaxLength="50" />
+          <Property Name="PreisProEinheit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KategorieGetränke" Type="int" Nullable="false" />
+          <Property Name="Sortierung" Type="int" Nullable="false" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungsSpeisen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bezeichnung" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Beschreibung" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Einheit" Type="nvarchar" MaxLength="50" />
+          <Property Name="PreisProEinheit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="KategorieSpeise" Type="int" Nullable="false" />
+          <Property Name="Sortierung" Type="int" Nullable="false" />
+          <Property Name="BildURL" Type="nvarchar" MaxLength="100" />
+          <Property Name="IstAktiv" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GastroModelStoreContainer">
+          <EntitySet Name="Allergene" EntityType="Self.Allergene" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllergeneGetränkeIdSpeiseId" EntityType="Self.AllergeneGetränkeIdSpeiseId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllergeneMittagstischIdSpeiseId" EntityType="Self.AllergeneMittagstischIdSpeiseId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllergeneSpeiseIdSpeiseId" EntityType="Self.AllergeneSpeiseIdSpeiseId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllergeneVeranstaltungsGetränkeIdSpeiseId" EntityType="Self.AllergeneVeranstaltungsGetränkeIdSpeiseId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllergeneVeranstaltungsSpeisenIdSpeiseId" EntityType="Self.AllergeneVeranstaltungsSpeisenIdSpeiseId" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Getränke" EntityType="Self.Getränke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="I18n" EntityType="Self.I18n" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategorien" EntityType="Self.Kategorien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogInLog" EntityType="Self.LogInLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mittagstisch" EntityType="Self.Mittagstisch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Räume" EntityType="Self.Räume" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speisen" EntityType="Self.Speisen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tischbelegungen" EntityType="Self.Tischbelegungen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tische" EntityType="Self.Tische" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Veranstaltungen" EntityType="Self.Veranstaltungen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeranstaltungenGetränke" EntityType="Self.VeranstaltungenGetränke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeranstaltungenSpeisen" EntityType="Self.VeranstaltungenSpeisen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeranstaltungsGetränke" EntityType="Self.VeranstaltungsGetränke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VeranstaltungsSpeisen" EntityType="Self.VeranstaltungsSpeisen" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GastroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nachname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vorname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IstAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+          <Property Name="Passwort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Getränke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kartennummer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategorieId" Type="Int32" Nullable="false" />
+          <Property Name="Sortierung" Type="Int32" Nullable="false" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+          <Property Name="Ergänzung1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ergänzung2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Preis" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Speisen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kartennummer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KategorieId" Type="Int32" Nullable="false" />
+          <Property Name="Sortierung" Type="Int32" Nullable="false" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+          <Property Name="Beschreibung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Preis" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Tischbelegungen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TischId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Von" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Bis" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tische">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaxPersonen" Type="Int32" Nullable="false" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GastroEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Benutzer" EntityType="Self.Benutzer" />
+          <EntitySet Name="Getränke" EntityType="Self.Getränke" />
+          <EntitySet Name="Speisen" EntityType="Self.Speisen" />
+          <EntitySet Name="Tischbelegungen" EntityType="Self.Tischbelegungen" />
+          <EntitySet Name="Tische" EntityType="Self.Tische" />
+          <EntitySet Name="Veranstaltungen" EntityType="GastroModel.Veranstaltungen" />
+          <EntitySet Name="VeranstaltungenGetränke" EntityType="GastroModel.VeranstaltungenGetränke" />
+          <EntitySet Name="VeranstaltungenSpeisen" EntityType="GastroModel.VeranstaltungenSpeisen" />
+          <EntitySet Name="VeranstaltungsGetränke" EntityType="GastroModel.VeranstaltungsGetränke" />
+          <EntitySet Name="VeranstaltungsSpeisen" EntityType="GastroModel.VeranstaltungsSpeisen" />
+          <EntitySet Name="LogInLog" EntityType="GastroModel.LogInLog" />
+          <EntitySet Name="Räume" EntityType="GastroModel.Räume" />
+          <EntitySet Name="Kategorien" EntityType="GastroModel.Kategorien" />
+          <EntitySet Name="Mittagstisch" EntityType="GastroModel.Mittagstisch" />
+          <EntitySet Name="Allergene" EntityType="GastroModel.Allergene" />
+          <EntitySet Name="AllergeneMittagstischIdSpeiseId" EntityType="GastroModel.AllergeneMittagstischIdSpeiseId" />
+          <EntitySet Name="AllergeneSpeiseIdSpeiseId" EntityType="GastroModel.AllergeneSpeiseIdSpeiseId" />
+          <EntitySet Name="I18n" EntityType="GastroModel.I18n" />
+          <EntitySet Name="AllergeneGetränkeIdSpeiseId" EntityType="GastroModel.AllergeneGetränkeIdSpeiseId" />
+          <EntitySet Name="AllergeneVeranstaltungsGetränkeIdSpeiseId" EntityType="GastroModel.AllergeneVeranstaltungsGetränkeIdSpeiseId" />
+          <EntitySet Name="AllergeneVeranstaltungsSpeisenIdSpeiseId" EntityType="GastroModel.AllergeneVeranstaltungsSpeisenIdSpeiseId" />
+        </EntityContainer>
+        <EntityType Name="Veranstaltungen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RaumId" Type="Int32" />
+          <Property Name="Fahrtkosten" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Personenzahl" Type="Int32" Nullable="false" />
+          <Property Name="Dekokosten" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Von" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Bis" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VeranstaltungenGetränke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VeranstaltungsId" Type="Int32" Nullable="false" />
+          <Property Name="VeranstaltungsGetränkeId" Type="Int32" Nullable="false" />
+          <Property Name="Anzahl" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungenSpeisen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VeranstaltungsId" Type="Int32" Nullable="false" />
+          <Property Name="VeranstaltungsSpeisenId" Type="Int32" Nullable="false" />
+          <Property Name="Anzahl" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungsGetränke">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Einheit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PreisProEinheit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KategorieGetränke" Type="Int32" Nullable="false" />
+          <Property Name="Sortierung" Type="Int32" Nullable="false" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VeranstaltungsSpeisen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Einheit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PreisProEinheit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="KategorieSpeise" Type="Int32" Nullable="false" />
+          <Property Name="Sortierung" Type="Int32" Nullable="false" />
+          <Property Name="BildURL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LogInLog">
+          <Key>
+            <PropertyRef Name="LogInLogId" />
+          </Key>
+          <Property Name="LogInLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Wann" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Räume">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MaxPersonen" Type="Int32" />
+          <Property Name="Preis" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Kategorien">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Footer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kategorieart" Type="Int32" Nullable="false" />
+          <Property Name="Oberkategorie" Type="Int32" />
+          <Property Name="Sortierung" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mittagstisch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KategorieId" Type="Int32" Nullable="false" />
+          <Property Name="Preis" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IstAktiv" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Allergene">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nummer" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AllergeneMittagstischIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="aid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneSpeiseIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="aid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="I18n">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Typ" Type="Int32" Nullable="false" />
+          <Property Name="SprachId" Type="Int32" Nullable="false" />
+          <Property Name="Bezeichnung" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ergänzung1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Ergänzung2" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Header" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Footer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Einheit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AllergenId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneGetränkeIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="aid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneVeranstaltungsGetränkeIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="aid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AllergeneVeranstaltungsSpeisenIdSpeiseId">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sid" Type="Int32" Nullable="false" />
+          <Property Name="aid" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GastroModelStoreContainer" CdmEntityContainer="GastroEntities">
+          <EntitySetMapping Name="Benutzer">
+            <EntityTypeMapping TypeName="GastroModel.Benutzer">
+              <MappingFragment StoreEntitySet="Benutzer">
+                <ScalarProperty Name="Passwort" ColumnName="Passwort" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="IstAdmin" ColumnName="IstAdmin" />
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Getränke">
+            <EntityTypeMapping TypeName="GastroModel.Getränke">
+              <MappingFragment StoreEntitySet="Getränke">
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+                <ScalarProperty Name="Ergänzung2" ColumnName="Ergänzung2" />
+                <ScalarProperty Name="Ergänzung1" ColumnName="Ergänzung1" />
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Kartennummer" ColumnName="Kartennummer" />
+                <ScalarProperty Name="KategorieId" ColumnName="KategorieId" />
+                <ScalarProperty Name="Sortierung" ColumnName="Sortierung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Speisen">
+            <EntityTypeMapping TypeName="GastroModel.Speisen">
+              <MappingFragment StoreEntitySet="Speisen">
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Kartennummer" ColumnName="Kartennummer" />
+                <ScalarProperty Name="KategorieId" ColumnName="KategorieId" />
+                <ScalarProperty Name="Sortierung" ColumnName="Sortierung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tischbelegungen">
+            <EntityTypeMapping TypeName="GastroModel.Tischbelegungen">
+              <MappingFragment StoreEntitySet="Tischbelegungen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TischId" ColumnName="TischId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Von" ColumnName="Von" />
+                <ScalarProperty Name="Bis" ColumnName="Bis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tische">
+            <EntityTypeMapping TypeName="GastroModel.Tische">
+              <MappingFragment StoreEntitySet="Tische">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="MaxPersonen" ColumnName="MaxPersonen" />
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Veranstaltungen">
+            <EntityTypeMapping TypeName="GastroModel.Veranstaltungen">
+              <MappingFragment StoreEntitySet="Veranstaltungen">
+                <ScalarProperty Name="Bis" ColumnName="Bis" />
+                <ScalarProperty Name="Von" ColumnName="Von" />
+                <ScalarProperty Name="Dekokosten" ColumnName="Dekokosten" />
+                <ScalarProperty Name="Personenzahl" ColumnName="Personenzahl" />
+                <ScalarProperty Name="Fahrtkosten" ColumnName="Fahrtkosten" />
+                <ScalarProperty Name="RaumId" ColumnName="RaumId" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeranstaltungenGetränke">
+            <EntityTypeMapping TypeName="GastroModel.VeranstaltungenGetränke">
+              <MappingFragment StoreEntitySet="VeranstaltungenGetränke">
+                <ScalarProperty Name="Anzahl" ColumnName="Anzahl" />
+                <ScalarProperty Name="VeranstaltungsGetränkeId" ColumnName="VeranstaltungsGetränkeId" />
+                <ScalarProperty Name="VeranstaltungsId" ColumnName="VeranstaltungsId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeranstaltungenSpeisen">
+            <EntityTypeMapping TypeName="GastroModel.VeranstaltungenSpeisen">
+              <MappingFragment StoreEntitySet="VeranstaltungenSpeisen">
+                <ScalarProperty Name="Anzahl" ColumnName="Anzahl" />
+                <ScalarProperty Name="VeranstaltungsSpeisenId" ColumnName="VeranstaltungsSpeisenId" />
+                <ScalarProperty Name="VeranstaltungsId" ColumnName="VeranstaltungsId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeranstaltungsGetränke">
+            <EntityTypeMapping TypeName="GastroModel.VeranstaltungsGetränke">
+              <MappingFragment StoreEntitySet="VeranstaltungsGetränke">
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+                <ScalarProperty Name="Sortierung" ColumnName="Sortierung" />
+                <ScalarProperty Name="KategorieGetränke" ColumnName="KategorieGetränke" />
+                <ScalarProperty Name="PreisProEinheit" ColumnName="PreisProEinheit" />
+                <ScalarProperty Name="Einheit" ColumnName="Einheit" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VeranstaltungsSpeisen">
+            <EntityTypeMapping TypeName="GastroModel.VeranstaltungsSpeisen">
+              <MappingFragment StoreEntitySet="VeranstaltungsSpeisen">
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+                <ScalarProperty Name="BildURL" ColumnName="BildURL" />
+                <ScalarProperty Name="Sortierung" ColumnName="Sortierung" />
+                <ScalarProperty Name="KategorieSpeise" ColumnName="KategorieSpeise" />
+                <ScalarProperty Name="PreisProEinheit" ColumnName="PreisProEinheit" />
+                <ScalarProperty Name="Einheit" ColumnName="Einheit" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogInLog">
+            <EntityTypeMapping TypeName="GastroModel.LogInLog">
+              <MappingFragment StoreEntitySet="LogInLog">
+                <ScalarProperty Name="Wann" ColumnName="Wann" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LogInLogId" ColumnName="LogInLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Räume">
+            <EntityTypeMapping TypeName="GastroModel.Räume">
+              <MappingFragment StoreEntitySet="Räume">
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+                <ScalarProperty Name="MaxPersonen" ColumnName="MaxPersonen" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorien">
+            <EntityTypeMapping TypeName="GastroModel.Kategorien">
+              <MappingFragment StoreEntitySet="Kategorien">
+                <ScalarProperty Name="Sortierung" ColumnName="Sortierung" />
+                <ScalarProperty Name="Oberkategorie" ColumnName="Oberkategorie" />
+                <ScalarProperty Name="Kategorieart" ColumnName="Kategorieart" />
+                <ScalarProperty Name="Footer" ColumnName="Footer" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mittagstisch">
+            <EntityTypeMapping TypeName="GastroModel.Mittagstisch">
+              <MappingFragment StoreEntitySet="Mittagstisch">
+                <ScalarProperty Name="IstAktiv" ColumnName="IstAktiv" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+                <ScalarProperty Name="KategorieId" ColumnName="KategorieId" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Allergene">
+            <EntityTypeMapping TypeName="GastroModel.Allergene">
+              <MappingFragment StoreEntitySet="Allergene">
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="Nummer" ColumnName="Nummer" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllergeneMittagstischIdSpeiseId">
+            <EntityTypeMapping TypeName="GastroModel.AllergeneMittagstischIdSpeiseId">
+              <MappingFragment StoreEntitySet="AllergeneMittagstischIdSpeiseId">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllergeneSpeiseIdSpeiseId">
+            <EntityTypeMapping TypeName="GastroModel.AllergeneSpeiseIdSpeiseId">
+              <MappingFragment StoreEntitySet="AllergeneSpeiseIdSpeiseId">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="I18n">
+            <EntityTypeMapping TypeName="GastroModel.I18n">
+              <MappingFragment StoreEntitySet="I18n">
+                <ScalarProperty Name="AllergenId" ColumnName="AllergenId" />
+                <ScalarProperty Name="Einheit" ColumnName="Einheit" />
+                <ScalarProperty Name="Footer" ColumnName="Footer" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Ergänzung2" ColumnName="Ergänzung2" />
+                <ScalarProperty Name="Ergänzung1" ColumnName="Ergänzung1" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Bezeichnung" ColumnName="Bezeichnung" />
+                <ScalarProperty Name="SprachId" ColumnName="SprachId" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllergeneGetränkeIdSpeiseId">
+            <EntityTypeMapping TypeName="GastroModel.AllergeneGetränkeIdSpeiseId">
+              <MappingFragment StoreEntitySet="AllergeneGetränkeIdSpeiseId">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllergeneVeranstaltungsGetränkeIdSpeiseId">
+            <EntityTypeMapping TypeName="GastroModel.AllergeneVeranstaltungsGetränkeIdSpeiseId">
+              <MappingFragment StoreEntitySet="AllergeneVeranstaltungsGetränkeIdSpeiseId">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllergeneVeranstaltungsSpeisenIdSpeiseId">
+            <EntityTypeMapping TypeName="GastroModel.AllergeneVeranstaltungsSpeisenIdSpeiseId">
+              <MappingFragment StoreEntitySet="AllergeneVeranstaltungsSpeisenIdSpeiseId">
+                <ScalarProperty Name="aid" ColumnName="aid" />
+                <ScalarProperty Name="sid" ColumnName="sid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminI18nKategorienModel
+<h2>Allergene Mehrsprachigkeit - @Model.Deutsch_Bezeichnung</h2>
+@using (Html.BeginForm("KategorienEintragen", "I18n", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    @Html.HiddenFor(x => x.KategorieArt)
+    @Html.HiddenFor(x => x.KategorieId)
+    <table border="0" class="AllergeneMehrsprachigkeit">
+        <tr>
+            <td width="50" valign="top"></td>
+            <td width="50" valign="top">Bezeichnung</td>
+            <td width="250" valign="top">Header</td>
+            <td width="250" valign="top">Footer</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Englisch</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Englisch_Bezeichnung)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Englisch_Header)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Englisch_Footer)</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Italienisch</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Italienisch_Bezeichnung)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Header)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Footer)</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Russisch</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Russisch_Bezeichnung)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Russisch_Header)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Russisch_Footer)</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Spanisch</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Spanisch_Bezeichnung)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Header)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Footer)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td valign="top"><input type="submit" value="eintragen" /></td>
+        </tr>
+
+    </table>
+}

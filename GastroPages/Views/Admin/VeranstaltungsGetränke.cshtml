@@ -1,0 +1,246 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminVeranstaltungsGetränkeModel
+<h2>Veranstaltungen - Getränke</h2>
+<br />
+<table border="0" width="100%">
+    <tr>
+        <td class="adminMittagstischHeader">Kategorien</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td width="30%" valign="top">
+
+            @{
+
+                foreach (KategorienFuerModel kat in Model.AlleKategorien.Where(x => x.Kategorie.Oberkategorie == 0).OrderBy(x => x.Kategorie.Sortierung))
+                {
+                    <div class="adminMittagstischLinkLevel1">
+                        @Html.ActionLink(kat.Kategorie.Bezeichnung, "VeranstaltungsGetränke", "Admin", new { katid = kat.Kategorie.id, level = 1 }, new { @class = "adminMittagstischLink" })
+                    </div>
+                    foreach (KategorienFuerModel k in Model.AlleKategorien.Where(x => x.Kategorie.Oberkategorie == kat.Kategorie.id).OrderBy(x => x.Kategorie.Sortierung))
+                    {
+                        <div class="adminMittagstischLinkLevel2">
+                            @Html.ActionLink(k.Kategorie.Bezeichnung, "VeranstaltungsGetränke", "Admin", new { katid = k.Kategorie.id, level = 2 }, new { @class = "adminMittagstischLink" })
+                        </div>
+
+                        foreach (KategorienFuerModel k2 in Model.AlleKategorien.Where(x => x.Kategorie.Oberkategorie == k.Kategorie.id).OrderBy(x => x.Kategorie.Sortierung))
+                        {
+                            <div class="adminMittagstischLinkLevel3">
+                                @Html.ActionLink(k2.Kategorie.Bezeichnung, "VeranstaltungsGetränke", "Admin", new { katid = k2.Kategorie.id, level = 3 }, new { @class = "adminMittagstischLink" })
+                            </div>
+                            foreach (KategorienFuerModel k3 in Model.AlleKategorien.Where(x => x.Kategorie.Oberkategorie == k2.Kategorie.id).OrderBy(x => x.Kategorie.Sortierung))
+                            {
+                                <div class="adminMittagstischLinkLevel4">
+                                    @Html.ActionLink(k3.Kategorie.Bezeichnung, "VeranstaltungsGetränke", "Admin", new { katid = k3.Kategorie.id, level = 4 }, new { @class = "adminMittagstischLink" })
+                                </div>
+                            }
+                        }
+                    }
+                }
+                <br />
+                using (Html.BeginForm("VeranstaltungsGetränkeKategorieEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm3" }))
+                {
+                    <input type="hidden" name="SelectedKategoriId" id="SelectedKategoriId" value="0" />
+                    <div>Neue Hauptkategorie:</div>
+                    <input type="text" name="NeueHauptKategorieBezeichnung" id="NeueHauptKategorieBezeichnung" />
+                    <br />
+                    <input type="submit" name="BtnSend" id="BtnSend" value="Eintragen" />
+                }
+            }
+
+        </td>
+        <td width="70%" valign="top">
+            <table border="0" width="100%" class="adminMittagstischTable">
+                <tr>
+                    <td width="100%">
+                        @if (Model.SelectedKategorie != null)
+                        {
+                            using (Html.BeginForm("VeranstaltungsGetränkeKategorieEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm1" }))
+                            {
+                                <input type="hidden" name="SelectedKategoriId" id="SelectedKategoriId" value="@Model.SelectedKategorie.Kategorie.id" />
+
+                                <div class="adminMittagstischKategorieLeft">Bezeichnung ändern:</div> <input class="adminMittagstischKategorieRight" type="text" name="KategorieBezeichnung" id="KategorieBezeichnung" value="@Model.SelectedKategorie.Kategorie.Bezeichnung" /> <input type="text" name="KategorieSortierung" id="KategorieSortierung" value="@Model.SelectedKategorie.Kategorie.Sortierung" size="3" />
+                                <br />
+
+                                <div class="adminMittagstischKategorieLeft">Header ändern:</div> <textarea class="adminMittagstischKategorieRight" name="KategorieHeader" id="KategorieHeader" cols="100" rows="3">@Model.SelectedKategorie.Kategorie.Header</textarea>
+                                <br />
+
+                                <div class="adminMittagstischKategorieLeft">Footer ändern:</div> <textarea class="adminMittagstischKategorieRight" name="KategorieFooter" id="KategorieFooter">@Model.SelectedKategorie.Kategorie.Footer</textarea>
+                                <br />
+
+                                if (!Model.SelectedKategorie.SelectedKategorieHasItems && Model.SelectedKategorie.Level < 4)
+                                {
+                                    <div class="adminMittagstischKategorieLeft">Neue Unterkategorie:</div> <input class="adminMittagstischKategorieRight" type="text" name="NeueUnterKategorie" id="NeueUnterKategorie" /> <input type="text" name="NeueUnterKategorieSortierung" id="NeueUnterKategorieSortierung" size="3" /><br />
+
+                                    <div class="adminMittagstischKategorieLeft">Header:</div> <textarea class="adminMittagstischKategorieRight" name="NeueKategorieHeader" id="NeueKategorieHeader"></textarea>
+                                    <br />
+
+                                    <div class="adminMittagstischKategorieLeft">Footer:</div> <textarea class="adminMittagstischKategorieRight" name="NeueKategorieFooter" id="NeueKategorieFooter"></textarea>
+                                    <br />
+                                }
+
+                                if (!Model.SelectedKategorie.SelectedKategorieHasItems && !Model.SelectedKategorie.SelectedKategorieHasChilds)
+                                {
+                                    <div class="adminMittagstischKategorieLeft">Kategorie löschen:  <input type="checkbox" name="KategorieLoeschen" id="KategorieLoeschen" value="x" /></div> <br />
+                                }
+                                <br />
+                                <input type="submit" name="BtnSend" id="BtnSend" value="Eintragen" />
+                                <text>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                                @Html.ActionLink("I18n", "Kategorien", "I18n", new { id = Model.SelectedKategorie.Kategorie.id, art = Model.SelectedKategorie.Kategorie.Kategorieart }, null)
+                            }
+                        }
+                        else
+                        {
+                            <text>Keine Kategorie ausgewählt.</text>
+                        }
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    @{
+        if (Model.AlleGetränke != null)
+        {
+            if (Model.SelectedKategorie.SelectedKategorieHasChilds)
+            {
+                <tr>
+                    <td colspan="2"><br /><b><big>Für diese Kategorie können keine Getränke eingegeben werden, weil Unterkategorien existieren.</big></b></td>
+                </tr>
+            }
+            else
+            {
+                //Ab hier Code für die Dartsellung der Getränke
+                //Formular für die Speise an sich
+                <tr>
+                    <td colspan="2">
+                        <br />
+                        <h2>Veranstaltungen Getränke</h2>
+                        <br /><br />
+                        @using (Html.BeginForm("VeranstaltungsGetränkeEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm2" }))
+                        {
+                            <input type="hidden" name="GetränkeKategorie" id="GetränkeKategorie" value="@Model.SelectedKategorie.Kategorie.id" />
+                            <input type="hidden" name="Level" id="Level" value="@Model.SelectedKategorie.Level" />
+                            <input type="hidden" name="SpeiseId" id="Level" value="@Model.GewähltesGetränk.id" />
+
+                            <div class="adminMittagstischSpeisenBezeichnung">
+                                Bezeichnung:<br />
+                                <input type="text" name="Bezeichnung" id="Bezeichnung" size="200" value="@Model.GewähltesGetränk.Bezeichnung" />
+                            </div>
+
+                            <div class="adminGetränkeErg1">
+                                Beschreibung:<br />
+                                       <textarea type="text" name="Beschreibung" id="Beschreibung" cols="20" rows="5">@Model.GewähltesGetränk.Beschreibung</textarea>
+                            </div>
+
+                            <div class="adminGetränkeErg2">
+                                Einheit:<br />
+                                <input type="text" name="Einheit" id="Einheit" size="10" value="@Model.GewähltesGetränk.Einheit" />
+                            </div>
+
+                            <div class="adminMittagstischSpeisenPreis">
+                                Preis/Einheit:<br />
+                                <input type="text" name="PreisProEinheit" id="PreisProEinheit" size="6" value="@Model.GewähltesGetränk.PreisProEinheit" />
+                            </div>
+
+                            <div class="adminMittagstischSpeisenSortierung">
+                                Sortierung:<br />
+                                <input type="text" name="Sortierung" id="Sortierung" size="6" value="@Model.GewähltesGetränk.Sortierung" />
+                            </div>
+
+                            <div class="adminMittagstischSpeisenIstAktiv">
+                                Ist Aktiv:<br />
+                                <input type="checkbox" name="IstAktiv" id="IstAktiv" value="x" checked="@Model.GewähltesGetränk.IstAktiv" />
+                            </div>
+
+                            <div class="adminMittagstischAllergene">
+                                <b>Allergene:</b><br />
+                                @{
+                                    List<Allergene> als = (Model.AllergeneSpeise.Where(x => x.Key == Model.GewähltesGetränk.id).Select(x => x.Value)).FirstOrDefault();
+
+                                    foreach (Allergene item in Model.AlleAllergene)
+                                    {
+                                        <input type="checkbox" name="aids[]" id="aids[]" value="@item.id" checked="@(als != null && als.Contains(item))" /> @item.Bezeichnung<br />
+                                    }
+                                }
+
+                            </div>
+
+                            <div class="adminMittagstischSpeisenSortierung">
+                                <br />
+                                <input type="submit" name="btnSubmit" value="Eintragen" />
+                            </div>
+
+                        }
+                    </td>
+                </tr>
+                //Tabellarische Darstellung der Speisen
+                if (Model.AlleGetränke.Count == 0)
+                {
+                    <tr>
+                        <td colspan="2"><br /><b><big>Für diese Kategorie wurden noch keine Getränke eingegeben.</big></b></td>
+                    </tr>
+                }
+                else
+                {
+                    <table border="0" width="100%">
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td><b>Bezeichnung</b></td>
+                            <td><b>Beschreibung</b></td>
+                            <td><b>Einheit</b></td>
+                            <td><b>Preis/Einheit</b></td>
+                            <td><b>IstAktiv</b></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        @foreach (VeranstaltungsGetränke mt in Model.AlleGetränke)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@mt.Bezeichnung</td>
+                                <td>@mt.Beschreibung</td>
+                                <td>@mt.Einheit</td>
+                                <td>@mt.PreisProEinheit</td>
+                                <td>@mt.IstAktiv</td>
+                                <td>
+                                    @using (Html.BeginForm("VeranstaltungsGetränke", "Admin", FormMethod.Post, new { id = "EingabeForm10" }))
+                                    {
+                                        <input type="hidden" name="katid" id="katid" value="@Model.SelectedKategorie.Kategorie.id" />
+                                        <input type="hidden" name="Level" id="Level" value="@Model.SelectedKategorie.Level" />
+                                        <input type="hidden" name="SpeiseId" id="SpeiseId" value="@mt.id" />
+                                        <input type="hidden" name="Todo" id="Todo" value="Delete" />
+                                        <input type="submit" value="Löschen" />
+                                    }
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("VeranstaltungsGetränke", "Admin", FormMethod.Post, new { id = "EingabeForm11" }))
+                                    {
+                                        <input type="hidden" name="katid" id="katid" value="@Model.SelectedKategorie.Kategorie.id" />
+                                        <input type="hidden" name="Level" id="Level" value="@Model.SelectedKategorie.Level" />
+                                        <input type="hidden" name="SpeiseId" id="Level" value="@mt.id" />
+                                        <input type="hidden" name="Todo" id="Todo" value="Edit" />
+                                        <input type="submit" value="Bearbeiten" />
+                                    }
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("VeranstaltungsGetränke", "I18n", FormMethod.Post, new { id = "EingabeForm12" }))
+                                    {
+                                        <input type="hidden" name="id" id="id" value="@mt.id" />
+                                        <input type="submit" value="I18n" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+
+
+            }
+        }
+    }
+
+
+
+
+</table>
