@@ -324,7 +324,7 @@
     <Content Include="Views\Admin\VeranstaltungsSpeisen.cshtml" />
     <Content Include="Views\I18n\VeranstaltungsSpeisen.cshtml" />
     <Content Include="Views\I18n\VeranstaltungsGetränke.cshtml" />
-    <Content Include="Views\Admin\PartialKategorien.cshtml" />
+    <Content Include="Views\Admin\_PartialKategorien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

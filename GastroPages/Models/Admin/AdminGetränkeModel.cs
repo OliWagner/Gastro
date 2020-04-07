@@ -8,8 +8,8 @@ namespace GastroPages.Models
 {
     public class AdminGetränkeModel
     {
-        public List<KategorienFuerModel> AlleKategorien { get; set; }
-        public KategorienFuerModel SelectedKategorie { get; set; }
+        public AdminKategorienModel AKModel { get; set; }
+
         public List<Getränke> AlleGetränke { get; set; }
         public Getränke GewähltesGetränk { get; set; }
 
@@ -18,66 +18,26 @@ namespace GastroPages.Models
 
         public AdminGetränkeModel()
         {
-            AlleKategorien = new List<KategorienFuerModel>();
-            using (GastroEntities _db = new GastroEntities())
-            {
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(2);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from Getränke mt in _db.Getränke where mt.KategorieId == kat.id select mt).Any();
-                    AlleKategorien.Add(kfm);
-                }
-            }
+                AKModel = new AdminKategorienModel("Getränke", "GetränkeKategorieEintragen", 2);
         }
 
         public AdminGetränkeModel(int id, int level)
         {
-            AlleKategorien = new List<KategorienFuerModel>();
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(2);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from Getränke mt in _db.Getränke where mt.KategorieId == kat.id select mt).Any();
-                    if(kfm.Kategorie.id == id){
-                        SelectedKategorie = kfm;
-                        SelectedKategorie.Level = level;
-                    }
-                    AlleKategorien.Add(kfm);
-                }
                 AlleGetränke = (from Getränke mt in _db.Getränke where mt.KategorieId == id select mt).ToList();
                 GewähltesGetränk = new Getränke();
                 GewähltesGetränk.id = 0;
+                AKModel = new AdminKategorienModel("Getränke", "GetränkeKategorieEintragen", 2, id, level);
             }
         }
 
         public AdminGetränkeModel(int id, int level, int speiseId)
         {
-            AlleKategorien = new List<KategorienFuerModel>();
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(2);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from Getränke mt in _db.Getränke where mt.KategorieId == kat.id select mt).Any();
-                    if (kfm.Kategorie.id == id)
-                    {
-                        SelectedKategorie = kfm;
-                        SelectedKategorie.Level = level;
-                    }
-                    AlleKategorien.Add(kfm);
-                }
                 AlleGetränke = (from Getränke mt in _db.Getränke where mt.KategorieId == id select mt).ToList();
                 foreach (Getränke mt in AlleGetränke)
                 {
@@ -90,6 +50,7 @@ namespace GastroPages.Models
                     AllergeneSpeise.Add(mt.id, listAl);
                 }
                 GewähltesGetränk = AlleGetränke.Where(x => x.id == speiseId).FirstOrDefault();
+                AKModel = new AdminKategorienModel("Getränke", "GetränkeKategorieEintragen", 2, id, level);
             }
         }
     }

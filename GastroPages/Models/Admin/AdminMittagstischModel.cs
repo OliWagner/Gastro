@@ -8,8 +8,8 @@ namespace GastroPages.Models
 {
     public class AdminMittagstischModel
     {
-        public List<KategorienFuerModel> AlleKategorien { get; set; }
-        public KategorienFuerModel SelectedKategorie { get; set; }
+        public AdminKategorienModel AKModel { get; set; }
+
         public List<Mittagstisch> AlleSpeisen { get; set; }
         public Mittagstisch GewählteSpeise { get; set; }
         public Dictionary<int, List<Allergene>> AllergeneSpeise = new Dictionary<int, List<Allergene>>();
@@ -17,40 +17,14 @@ namespace GastroPages.Models
 
         public AdminMittagstischModel()
         {
-            AlleKategorien = new List<KategorienFuerModel>();
-            using (GastroEntities _db = new GastroEntities())
-            {
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(5);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from Mittagstisch mt in _db.Mittagstisch where mt.KategorieId == kat.id select mt).Any();
-                    AlleKategorien.Add(kfm);
-                }
-            }
+            AKModel = new AdminKategorienModel("Mittagstisch", "MittagstischKategorieEintragen", 5);
         }
 
         public AdminMittagstischModel(int id, int level)
         {
-            AlleKategorien = new List<KategorienFuerModel>();
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(5);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from Mittagstisch mt in _db.Mittagstisch where mt.KategorieId == kat.id select mt).Any();
-                    if(kfm.Kategorie.id == id){
-                        SelectedKategorie = kfm;
-                        SelectedKategorie.Level = level;
-                    }
-                    AlleKategorien.Add(kfm);
-                }
                 AlleSpeisen = (from Mittagstisch mt in _db.Mittagstisch where mt.KategorieId == id select mt).ToList();
 
                 foreach (Mittagstisch mt in AlleSpeisen)
@@ -66,30 +40,16 @@ namespace GastroPages.Models
 
                 GewählteSpeise = new Mittagstisch();
                 GewählteSpeise.id = 0;
+                AKModel = new AdminKategorienModel("Mittagstisch", "MittagstischKategorieEintragen", 5, id, level);
             }
         }
 
         public AdminMittagstischModel(int id, int level, int speiseId)
         {
             
-            AlleKategorien = new List<KategorienFuerModel>();
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(5);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from Mittagstisch mt in _db.Mittagstisch where mt.KategorieId == kat.id select mt).Any();
-                    if (kfm.Kategorie.id == id)
-                    {
-                        SelectedKategorie = kfm;
-                        SelectedKategorie.Level = level;
-                    }
-                    AlleKategorien.Add(kfm);
-                }
                 AlleSpeisen = (from Mittagstisch mt in _db.Mittagstisch where mt.KategorieId == id select mt).ToList();
                 foreach (Mittagstisch mt in AlleSpeisen)
                 {
@@ -102,6 +62,7 @@ namespace GastroPages.Models
                     AllergeneSpeise.Add(mt.id, listAl);
                 }
                 GewählteSpeise = AlleSpeisen.Where(x => x.id == speiseId).FirstOrDefault();
+                AKModel = new AdminKategorienModel("Mittagstisch", "MittagstischKategorieEintragen", 5, id, level);
             }
         }
     }

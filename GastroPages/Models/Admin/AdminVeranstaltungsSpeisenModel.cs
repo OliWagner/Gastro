@@ -8,8 +8,8 @@ namespace GastroPages.Models
 {
     public class AdminVeranstaltungsSpeisenModel
     {
-        public List<KategorienFuerModel> AlleKategorien { get; set; }
-        public KategorienFuerModel SelectedKategorie { get; set; }
+        public AdminKategorienModel AKModel { get; set; }
+
         public List<VeranstaltungsSpeisen> AlleGetränke { get; set; }
         public VeranstaltungsSpeisen GewähltesGetränk { get; set; }
 
@@ -18,66 +18,26 @@ namespace GastroPages.Models
 
         public AdminVeranstaltungsSpeisenModel()
         {
-            AlleKategorien = new List<KategorienFuerModel>();
-            using (GastroEntities _db = new GastroEntities())
-            {
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(4);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from VeranstaltungsSpeisen mt in _db.VeranstaltungsSpeisen where mt.KategorieSpeise == kat.id select mt).Any();
-                    AlleKategorien.Add(kfm);
-                }
-            }
+            AKModel = new AdminKategorienModel("VeranstaltungsSpeisen", "VeranstaltungsSpeisenKategorieEintragen", 4);
         }
 
         public AdminVeranstaltungsSpeisenModel(int id, int level)
         {
-            AlleKategorien = new List<KategorienFuerModel>();
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(4);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from VeranstaltungsSpeisen mt in _db.VeranstaltungsSpeisen where mt.KategorieSpeise == kat.id select mt).Any();
-                    if(kfm.Kategorie.id == id){
-                        SelectedKategorie = kfm;
-                        SelectedKategorie.Level = level;
-                    }
-                    AlleKategorien.Add(kfm);
-                }
                 AlleGetränke = (from VeranstaltungsSpeisen mt in _db.VeranstaltungsSpeisen where mt.KategorieSpeise == id select mt).ToList();
                 GewähltesGetränk = new VeranstaltungsSpeisen();
                 GewähltesGetränk.id = 0;
+                AKModel = new AdminKategorienModel("VeranstaltungsSpeisen", "VeranstaltungsSpeisenKategorieEintragen", 4, id, level);
             }
         }
 
         public AdminVeranstaltungsSpeisenModel(int id, int level, int speiseId)
         {
-            AlleKategorien = new List<KategorienFuerModel>();
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                List<Kategorien> alleKategorien = KategorienHelper.LoadKategorien(4);
-                foreach (Kategorien kat in alleKategorien)
-                {
-                    KategorienFuerModel kfm = new KategorienFuerModel();
-                    kfm.Kategorie = kat;
-                    kfm.SelectedKategorieHasChilds = (from Kategorien k in _db.Kategorien where k.Oberkategorie == kat.id select k).Any();
-                    kfm.SelectedKategorieHasItems = (from VeranstaltungsSpeisen mt in _db.VeranstaltungsSpeisen where mt.KategorieSpeise == kat.id select mt).Any();
-                    if (kfm.Kategorie.id == id)
-                    {
-                        SelectedKategorie = kfm;
-                        SelectedKategorie.Level = level;
-                    }
-                    AlleKategorien.Add(kfm);
-                }
                 AlleGetränke = (from VeranstaltungsSpeisen mt in _db.VeranstaltungsSpeisen where mt.KategorieSpeise == id select mt).ToList();
                 foreach (VeranstaltungsSpeisen mt in AlleGetränke)
                 {
@@ -90,6 +50,7 @@ namespace GastroPages.Models
                     AllergeneSpeise.Add(mt.id, listAl);
                 }
                 GewähltesGetränk = AlleGetränke.Where(x => x.id == speiseId).FirstOrDefault();
+                AKModel = new AdminKategorienModel("VeranstaltungsSpeisen", "VeranstaltungsSpeisenKategorieEintragen", 4, id , level);
             }
         }
     }
