@@ -156,6 +156,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\I18nController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Getränke.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -163,6 +164,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Helpers\KategorienHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="I18n.cs">
@@ -253,6 +255,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\logo.png" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
@@ -272,6 +275,15 @@
     <Content Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\ARIAL.TTF" />
+    <Content Include="fonts\ARIALBD.TTF" />
+    <Content Include="fonts\ARIALBI.TTF" />
+    <Content Include="fonts\ARIALI.TTF" />
+    <Content Include="fonts\ARIALN.TTF" />
+    <Content Include="fonts\ARIALNB.TTF" />
+    <Content Include="fonts\ARIALNBI.TTF" />
+    <Content Include="fonts\ARIALNI.TTF" />
+    <Content Include="fonts\ARIBLK.TTF" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -325,9 +337,11 @@
     <Content Include="Views\I18n\VeranstaltungsSpeisen.cshtml" />
     <Content Include="Views\I18n\VeranstaltungsGetränke.cshtml" />
     <Content Include="Views\Admin\_PartialKategorien.cshtml" />
+    <Content Include="Views\Pdf\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Culture\" />
   </ItemGroup>
@@ -348,10 +362,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OkPdf\OkPdf.csproj">
-      <Project>{149cbfc9-d4f7-4096-92f5-aa2516959e19}</Project>
-      <Name>OkPdf</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ResourcesGastro\ResourcesGastro.csproj">
       <Project>{748f6636-692b-416e-8088-dd3b2ba843ac}</Project>
       <Name>ResourcesGastro</Name>

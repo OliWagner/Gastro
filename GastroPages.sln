@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GastroPages", "GastroPages\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourcesGastro", "ResourcesGastro\ResourcesGastro.csproj", "{748F6636-692B-416E-8088-DD3B2BA843AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkPdf", "OkPdf\OkPdf.csproj", "{149CBFC9-D4F7-4096-92F5-AA2516959E19}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,26 +61,6 @@ Global
 		{748F6636-692B-416E-8088-DD3B2BA843AC}.Release|x64.Build.0 = Release|Any CPU
 		{748F6636-692B-416E-8088-DD3B2BA843AC}.Release|x86.ActiveCfg = Release|Any CPU
 		{748F6636-692B-416E-8088-DD3B2BA843AC}.Release|x86.Build.0 = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|ARM.Build.0 = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|x64.Build.0 = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Debug|x86.Build.0 = Debug|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|ARM.ActiveCfg = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|ARM.Build.0 = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|ARM64.Build.0 = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|x64.ActiveCfg = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|x64.Build.0 = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|x86.ActiveCfg = Release|Any CPU
-		{149CBFC9-D4F7-4096-92F5-AA2516959E19}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

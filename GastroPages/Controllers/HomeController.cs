@@ -1,6 +1,5 @@
 ﻿using GastroPages.Helpers;
 using GastroPages.Models;
-using OkPdf;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -37,7 +36,6 @@ namespace GastroPages.Controllers
 
         public ActionResult Index()
         {
-            //PdfHelloWorld ok = new PdfHelloWorld();
             return View();
         }
 

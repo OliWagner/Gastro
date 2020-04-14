@@ -61,6 +61,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Getränke ähnelt.
+        /// </summary>
+        public static string Getränke {
+            get {
+                return ResourceManager.GetString("Getränke", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Impressum ähnelt.
         /// </summary>
         public static string Impressum {
@@ -129,6 +138,15 @@ namespace ResourcesGastro.Shared {
         public static string Speisekarte {
             get {
                 return ResourceManager.GetString("Speisekarte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Speisen ähnelt.
+        /// </summary>
+        public static string Speisen {
+            get {
+                return ResourceManager.GetString("Speisen", resourceCulture);
             }
         }
         
