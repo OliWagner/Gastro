@@ -55,6 +55,16 @@ namespace GastroPages.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult VeranstaltungSpeichern()
+        {
+            PdfHelper.MakePdfPlaner(Request);
+            return View();
+        }
+
+       
+
+
         public ActionResult Karte()
         {
             HomeSpeisenModel model = new HomeSpeisenModel();

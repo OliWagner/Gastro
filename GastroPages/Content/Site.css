@@ -432,7 +432,7 @@ textarea {
 }
 
 .PlanerBtnSend {
-    margin-left:110px;
+    margin-left:10px;
     width:150px;
     height:25px;
     margin-top: 0px;
@@ -526,7 +526,7 @@ textarea {
 }
 
 .PlanerZusammenfassung {
-    background-color: #eeeeee;
+    background-color: #ffffff;
 }
 
 
@@ -534,7 +534,7 @@ textarea {
 .PlanerSummaryHeader {
     font-size: 28px;
     font-weight: bold;
-    margin-left: 300px;
+    margin-left: 10px;
     
 }
 
@@ -598,4 +598,10 @@ textarea {
     margin-left:10px;
     font-weight:bold;
     float: left;
+}
+
+.divdsgvo {
+    background-color: #eeeeee;
+    width: 650px;
+    visibility: hidden;
 }

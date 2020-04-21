@@ -195,6 +195,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin\AdminKategorienModel.cs" />
+    <Compile Include="Models\Home\PdfPlanerModel.cs" />
     <Compile Include="Models\Home\HomeVeranstaltungsModel.cs" />
     <Compile Include="Models\Home\HomeVeranstaltungsSpeisenModel.cs" />
     <Compile Include="Models\I18n\AdminI18nVeranstaltungsSpeisenModel.cs" />

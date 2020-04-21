@@ -61,6 +61,24 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Inhaltsstoffe ähnelt.
+        /// </summary>
+        public static string Allergene {
+            get {
+                return ResourceManager.GetString("Allergene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die gleichzeitig als Anfrage an den Wirt senden ähnelt.
+        /// </summary>
+        public static string AnfrageWirt {
+            get {
+                return ResourceManager.GetString("AnfrageWirt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Getränke ähnelt.
         /// </summary>
         public static string Getränke {
@@ -115,6 +133,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Summe ähnelt.
+        /// </summary>
+        public static string Planersumme {
+            get {
+                return ResourceManager.GetString("Planersumme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Räumlichkeiten ähnelt.
         /// </summary>
         public static string Raeumlichkeiten {
@@ -165,6 +192,15 @@ namespace ResourcesGastro.Shared {
         public static string Veranstaltungsplaner {
             get {
                 return ResourceManager.GetString("Veranstaltungsplaner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zusammenfassung ähnelt.
+        /// </summary>
+        public static string Zusammenfassung {
+            get {
+                return ResourceManager.GetString("Zusammenfassung", resourceCulture);
             }
         }
     }

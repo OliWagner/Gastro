@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Allergene" xml:space="preserve">
+    <value>Ingredients</value>
+  </data>
+  <data name="AnfrageWirt" xml:space="preserve">
+    <value>send to the planner as well</value>
+  </data>
   <data name="Getränke" xml:space="preserve">
     <value>Drinks</value>
   </data>
@@ -131,6 +137,9 @@
   </data>
   <data name="Mittagstisch" xml:space="preserve">
     <value>Midday meal</value>
+  </data>
+  <data name="Planersumme" xml:space="preserve">
+    <value>Sum</value>
   </data>
   <data name="Raeumlichkeiten" xml:space="preserve">
     <value>Premises</value>
@@ -149,6 +158,9 @@
   </data>
   <data name="Veranstaltungsplaner" xml:space="preserve">
     <value>Event planning</value>
+  </data>
+  <data name="Zusammenfassung" xml:space="preserve">
+    <value>Recapitulation</value>
   </data>
   <data name="Öffnungszeiten" xml:space="preserve">
     <value>Opening hours</value>

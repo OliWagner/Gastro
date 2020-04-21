@@ -13,6 +13,17 @@ namespace GastroPages.Controllers
         public ActionResult Index()
         {
             PdfHelper.MakePdfSpeisen(new Models.HomeSpeisenModel());
+            PdfHelper.MakePdfGetränke(new Models.HomeGetränkeModel());
+            PdfHelper.MakePdfMittagstisch(new Models.HomeMittagstischModel());
+            PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Planer()
+        {
+
+            PdfHelper.MakePdfPlaner(Request);
             return View();
         }
     }

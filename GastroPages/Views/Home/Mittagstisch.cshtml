@@ -1,6 +1,6 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.HomeMittagstischModel
-<h2>Mittagstisch</h2>
+<h2>@ResourcesGastro.Shared.Navi.Mittagstisch</h2>
 
     @{
 
@@ -42,7 +42,7 @@
             </div>
         }
                 <div class="Allergene">
-                    <h4>Inhaltsstoffliste</h4>
+                    <h4>@ResourcesGastro.Shared.Navi.Allergene</h4>
                     <table border="0">
                         @foreach (Allergene al in Model.AlleAllergene)
                         {

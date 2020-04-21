@@ -1,7 +1,7 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.HomeSpeisenModel
-<h1><b>Speisen und Getränke</b></h1>
-<h1>Speisen</h1>
+<h1><b>@ResourcesGastro.Shared.Navi.Speisekarte</b></h1>
+<h1>@ResourcesGastro.Shared.Navi.Speisen</h1>
 @{
     foreach (KategorienFuerModel kat in Model.AlleKategorien)
     {
@@ -65,7 +65,7 @@
             </div>
         </div>
     }
-    <h2>Getränke</h2>
+        <h2>@ResourcesGastro.Shared.Navi.Getränke</h2>
     foreach (KategorienFuerModel kat in Model.GetränkeModel.AlleKategorien)
     {
         string text1 = "SpeisenKategorieBezeichnung" + kat.Level;
@@ -129,7 +129,7 @@
         </div>
     }
     <div class="Allergene">
-        <h4>Inhaltsstoffliste</h4>
+        <h4>@ResourcesGastro.Shared.Navi.Allergene</h4>
         <table border="0">
             @foreach (Allergene al in Model.AlleAllergene)
             {
