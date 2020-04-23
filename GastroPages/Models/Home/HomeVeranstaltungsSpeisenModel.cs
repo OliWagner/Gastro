@@ -52,7 +52,7 @@ namespace GastroPages.Models
                     {
                         foreach (KategorienFuerModel all in AlleKategorien)
                         {
-                            var element = (from I18n i18n in _db.I18n where i18n.Typ == 7 && i18n.AllergenId == all.Kategorie.id && i18n.SprachId == sprachId select i18n).FirstOrDefault();
+                            var element = (from I18n i18n in _db.I18n where i18n.Typ == 3 && i18n.AllergenId == all.Kategorie.id && i18n.SprachId == sprachId select i18n).FirstOrDefault();
                             if (element != null)
                             {
                                 all.Kategorie.Bezeichnung = element.Bezeichnung;

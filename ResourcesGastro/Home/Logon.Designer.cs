@@ -70,7 +70,7 @@ namespace ResourcesGastro.Home {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Diese Angabe ist erforderlich ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Angabe erforderlich ähnelt.
         /// </summary>
         public static string ErrorPasswort {
             get {
@@ -79,7 +79,7 @@ namespace ResourcesGastro.Home {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Diese Angabe ist erforderlich ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Angabe erforderlich ähnelt.
         /// </summary>
         public static string ErrorUsername {
             get {
@@ -88,7 +88,7 @@ namespace ResourcesGastro.Home {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte loggen Sie sich mit Email und Passwort ein. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte melden Sie sich mit Mailadresse und Passwort an ähnelt.
         /// </summary>
         public static string Logintext {
             get {

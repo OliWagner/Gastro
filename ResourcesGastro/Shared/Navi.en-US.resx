@@ -121,7 +121,7 @@
     <value>Ingredients</value>
   </data>
   <data name="AnfrageWirt" xml:space="preserve">
-    <value>send to the planner as well</value>
+    <value>Send to the host at the same time as a non-binding request</value>
   </data>
   <data name="Getränke" xml:space="preserve">
     <value>Drinks</value>
@@ -164,5 +164,50 @@
   </data>
   <data name="Öffnungszeiten" xml:space="preserve">
     <value>Opening hours</value>
+  </data>
+  <data name="Insgesamt" xml:space="preserve">
+    <value>overall</value>
+  </data>
+  <data name="AlertMail" xml:space="preserve">
+    <value>It must be a valid email address.</value>
+  </data>
+  <data name="AlertPersonenzahl" xml:space="preserve">
+    <value>Please enter a number of people in the form above.</value>
+  </data>
+  <data name="AlertTelefon" xml:space="preserve">
+    <value>Please only enter digits.</value>
+  </data>
+  <data name="BtnPdfErstellenText" xml:space="preserve">
+    <value>Create a PDF</value>
+  </data>
+  <data name="DsvgoText" xml:space="preserve">
+    <value>I agree that my details will be used to respond to my request. My data is not stored in any database, it is only printed on the PDF document that is sent to the organizer.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>mail adress</value>
+  </data>
+  <data name="PdfAnsprache" xml:space="preserve">
+    <value>Thank you for your interest in our house. We will get in touch with you as soon as possible.</value>
+  </data>
+  <data name="Personen" xml:space="preserve">
+    <value>people</value>
+  </data>
+  <data name="PlanderPdfHeader" xml:space="preserve">
+    <value>Your selection</value>
+  </data>
+  <data name="PlanerBeschreibung" xml:space="preserve">
+    <value>With this service you can calculate the expected costs for an event and print out the result. If you want, you can also send your calculation to the host. Then we ask for a few details to be able to contact you.</value>
+  </data>
+  <data name="PlanerIntro" xml:space="preserve">
+    <value>Please enter the number of people for whom you are planning an event with us. Please first enter the number of people for whom you want to plan an event with us.</value>
+  </data>
+  <data name="PlanerPdfName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PlanerPdfTelefon" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
+  <data name="PlanerPdfTermin" xml:space="preserve">
+    <value>Scheduled appointment</value>
   </data>
 </root>

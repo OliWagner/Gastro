@@ -1,2 +1,29 @@
 ﻿<h2>Pdf</h2>
+<table border="0" width="800">
+    @{ 
+        var cucu = "/Images/flagge_" + HttpContext.Current.Request.Cookies["_culture"].Value.Substring(0, 2) + ".png";
+    }
+    <tr>
+        <td colspan="5">Derzeit eingestellte Sprache: <image src="@cucu" width="40" height="27" /></td>
+    </tr>
+    <tr>
+        <td colspan="5">&nbsp;<br /></td>
+    </tr>
+
+
+    <tr>
+        <td><center><a href="/Home/SetCulture?culture=de-DE"><image src="/Images/flagge_de.png" width="120" height="80" border="0" /></a></center></td>
+        <td><center><a href="/Home/SetCulture?culture=en-US"><image src="/Images/flagge_en.png" width="120" height="80" /></a></center></td>
+        <td><center><a href="/Home/SetCulture?culture=es-ES"><image src="/Images/flagge_es.png" width="120" height="80" /></a></center></td>
+        <td><center><a href="/Home/SetCulture?culture=it-IT"><image src="/Images/flagge_it.png" width="120" height="80" /></a></center></td>
+        <td><center><a href="/Home/SetCulture?culture=ru-RU"><image src="/Images/flagge_ru.png" width="120" height="80" /></a></center></td>
+    </tr>
+    <tr>
+        <td colspan="5">&nbsp;<br /></td>
+    </tr>
+
+    <tr>
+        <td colspan="5"><center><big><big>Speisen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Getränke&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mittagstisch&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Allergene</big></big></center></td>
+    </tr>
+</table>
 

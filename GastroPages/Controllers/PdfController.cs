@@ -12,17 +12,21 @@ namespace GastroPages.Controllers
         // GET: Pdf
         public ActionResult Index()
         {
-            PdfHelper.MakePdfSpeisen(new Models.HomeSpeisenModel());
-            PdfHelper.MakePdfGetränke(new Models.HomeGetränkeModel());
-            PdfHelper.MakePdfMittagstisch(new Models.HomeMittagstischModel());
-            PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
-            return View();
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                
+                PdfHelper.MakePdfSpeisen(new Models.HomeSpeisenModel());
+                PdfHelper.MakePdfGetränke(new Models.HomeGetränkeModel());
+                PdfHelper.MakePdfMittagstisch(new Models.HomeMittagstischModel());
+                PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         public ActionResult Planer()
         {
-
             PdfHelper.MakePdfPlaner(Request);
             return View();
         }

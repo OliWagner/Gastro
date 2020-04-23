@@ -121,13 +121,13 @@
     <value>Mailadresse</value>
   </data>
   <data name="ErrorPasswort" xml:space="preserve">
-    <value>Diese Angabe ist erforderlich</value>
+    <value>Angabe erforderlich</value>
   </data>
   <data name="ErrorUsername" xml:space="preserve">
-    <value>Diese Angabe ist erforderlich</value>
+    <value>Angabe erforderlich</value>
   </data>
   <data name="Logintext" xml:space="preserve">
-    <value>Bitte loggen Sie sich mit Email und Passwort ein.</value>
+    <value>Bitte melden Sie sich mit Mailadresse und Passwort an</value>
   </data>
   <data name="Passwort" xml:space="preserve">
     <value>Passwort</value>

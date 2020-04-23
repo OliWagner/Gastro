@@ -59,10 +59,17 @@ namespace GastroPages.Controllers
         public ActionResult VeranstaltungSpeichern()
         {
             PdfHelper.MakePdfPlaner(Request);
+            //FileResult fr = DownloadPdfPlaner();
+            System.Diagnostics.Process.Start("C:\\copy\\_Planer.pdf");
             return View();
         }
 
-       
+        public FileResult DownloadPdfPlaner()
+        {
+            var filePath = "C:\\copy\\_Planer.pdf";
+            var pdfFileBytes = FileHelper.GetBytesFromFile(filePath);
+            return File(pdfFileBytes, "application/pdf", "IhreAnfrage.pdf");
+        }
 
 
         public ActionResult Karte()

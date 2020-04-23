@@ -164,6 +164,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\FIleHelper.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Helpers\KategorienHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
@@ -256,6 +257,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\flagge_de.png" />
+    <Content Include="Images\flagge_en.png" />
+    <Content Include="Images\flagge_es.png" />
+    <Content Include="Images\flagge_it.png" />
+    <Content Include="Images\flagge_ru.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

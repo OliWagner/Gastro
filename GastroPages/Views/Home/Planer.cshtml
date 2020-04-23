@@ -50,8 +50,14 @@
                 }
             } else {
                 //Feld existiert
+                
+
                 var wertAnzahlPersonenSpeise = feld.value != "" ? parseInt(feld.value) : 0;
-                var wertGeldSpeise = feldGeld.value != "" ? parseFloat(feldGeld.value.replace(',','.')) : 0;
+                if (checkDigit(feld.value)) { wertAnzahlPersonenSpeise = 0; feld.value = 0; }
+                var wertGeldSpeise = feldGeld.value != "" ? parseFloat(feldGeld.value.replace(',', '.')) : 0;
+                if (isNaN(wertGeldSpeise)) { wertGeldSpeise = 0; }
+
+
                 var aK = "anzahlKategorie".concat(counterKategorie);
                 var sK = "summeKategorie".concat(counterKategorie);
                 //Preis zu Summe Kategorie addieren
@@ -137,7 +143,10 @@
             } else {
                 //Feld existiert
                 var wertAnzahlPersonenSpeise = feld.value != "" ? parseInt(feld.value) : 0;
+                if (checkDigit(feld.value)) { wertAnzahlPersonenSpeise = 0; feld.value = 0; }
                 var wertGeldSpeise = feldGeld.value != "" ? parseFloat(feldGeld.value.replace(',', '.')) : 0;
+                if (isNaN(wertGeldSpeise)) { wertGeldSpeise = 0; }
+
                 var aK = "anzahlKategorieGetränk".concat(counterKategorie);
                 var sK = "summeKategorieGetränk".concat(counterKategorie);
                 //Preis zu Summe Kategorie addieren
@@ -176,13 +185,25 @@
         summePersonenKategorie = 0
     }
 
+    function checkDigit(tester) {
+        if (tester != '') {
+            const regex = RegExp(/^\d+$/);
+            if (regex.test(tester)) {
+                return (false);
+            } else {
+                alert("@ResourcesGastro.Shared.Navi.AlertTelefon");
+            }
+        }
+        return true;
+    }
+
     function validateEmail(email) {
         if (email != "") {
             const regex = RegExp(/^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
             if (regex.test(email)) {
                 return (true);
             } else {
-                alert("Es muss sich um eine gültige Mailadresse handeln.");
+                alert("@ResourcesGastro.Shared.Navi.AlertMail");
             }
         }
         return (false);
@@ -194,9 +215,31 @@
             if (regex.test(number)) {
                 return (true);
             } else {
-                alert("Bitte nur Ziffern eingeben.");
+                alert("@ResourcesGastro.Shared.Navi.AlertTelefon");
             }
         }
+        return (false);
+    }
+
+    function validateName(name) {
+        if (name != "") {
+           return (true);
+        }
+        return (false);
+    }
+
+    function validateDatum(datum) {
+        if (datum != "") {
+            return (true);
+        }
+        return (false);
+    }
+
+    function validateAnzahlPersonen(anzahl) {
+        if (anzahl != "") {
+            return (true);
+        }
+        alert("@ResourcesGastro.Shared.Navi.AlertPersonenzahl");
         return (false);
     }
 
@@ -211,6 +254,8 @@
         var Mail = document.getElementById("dsgvoMail");
         var Telefon = document.getElementById("dsgvoTelefon");
 
+        var AnzahlPersonenInsgesamt = document.getElementById("anzahlPersonenInsgesamt");
+
         if (chkAnfrageSenden.checked == true) {
             divdsgvo.style.visibility = "visible"; 
             if (chkDsgvoOk.checked == true) {
@@ -220,6 +265,18 @@
                     return;
                 }
                 if (validateNumber(Telefon.value) == false) {
+                    btnDrucken.disabled = true;
+                    return;
+                }
+                if (validateName(Name.value) == false) {
+                    btnDrucken.disabled = true;
+                    return;
+                }
+                if (validateDatum(Datum.value) == false) {
+                    btnDrucken.disabled = true;
+                    return;
+                }
+                if (validateAnzahlPersonen(AnzahlPersonenInsgesamt.value) == false) {
                     btnDrucken.disabled = true;
                     return;
                 }
@@ -233,24 +290,24 @@
         }
     }
 </script>
-<h2>Veranstaltungsplaner</h2>
+<h2>@ResourcesGastro.Shared.Navi.Veranstaltungsplaner</h2>
 @using (Html.BeginForm("VeranstaltungSpeichern", "Home", FormMethod.Post, new { id = "EingabeForm" }))
 {
 <table border="0">
     <tr>
-            <td class="PlanerIntro">Lediglich Planer, Bla Bla Bla keine Daten werden gespeichert usw<br /><br /></td>
+            <td class="PlanerIntro">@ResourcesGastro.Shared.Navi.PlanerBeschreibung<br /><br /></td>
     </tr>
     <tr>
         <td class="PlanerPersonen">
             <table border="0" width="580">
                 <tr>
                     <td width="500" valign="top">
-                        Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten.
+                        @ResourcesGastro.Shared.Navi.PlanerIntro
                         <br /><br />
                     </td>
                     <td width="80" valign="top">
                         <center>
-                            <input type="text" size="3" name="anzahlPersonenInsgesamt" id="anzahlPersonenInsgesamt" />
+                            <input type="text" size="3" name="anzahlPersonenInsgesamt" id="anzahlPersonenInsgesamt" onchange="dsgvoChange()" />
                         </center>
                     </td>
                 </tr>
@@ -486,7 +543,7 @@
             <div class="PlanerSummaryGesamtValue"><u>€ <text name="summarySummeInsgesamt" id="summarySummeInsgesamt">0,00</text></u></div>
             <input type="hidden" name="summarySummeGesamtValue" id="summarySummeGesamtValue" value="" />
             <div style="clear:both" />
-            <input type="submit" class="PlanerBtnSend" name="btnDrucken" id="btnDrucken" value="Drucken" />&nbsp;&nbsp;<input onchange="dsgvoChange()" type="checkbox" value="x" name="AnfrageAnWirt" id="AnfrageAnWirt" /><b> @ResourcesGastro.Shared.Navi.AnfrageWirt </b><br /><br />
+            <input type="submit" class="PlanerBtnSend" name="btnDrucken" id="btnDrucken" value="@ResourcesGastro.Shared.Navi.BtnPdfErstellenText" />&nbsp;&nbsp;<input onchange="dsgvoChange()" type="checkbox" value="x" name="AnfrageAnWirt" id="AnfrageAnWirt" /><b> @ResourcesGastro.Shared.Navi.AnfrageWirt </b><br /><br />
             @*Hier DSGVO beachten -->
         -- Name
         -- Telefonnummer
@@ -496,22 +553,22 @@
             <div id="divdsgvo" name="divdsgvo" class="divdsgvo">
                 <table border="0" width="650">
                     <tr>
-                        <td colspan="2"><input onchange="dsgvoChange()" type="checkbox" value="x" name="dsgvoOk" id="dsgvoOk" />&nbsp;Ich bin damit einverstanden, dass meine Angaben verwendet werden, damit auf meine Anfrage reagiert werden kann. Meine Daten werden in keiner Datenbank gespeichert, sie werden lediglich auf das Pdf-Dokument gedruckt, das dem Veranstalter zugeht.</td>
+                        <td colspan="2"><input onchange="dsgvoChange()" type="checkbox" value="x" name="dsgvoOk" id="dsgvoOk" />&nbsp;@ResourcesGastro.Shared.Navi.DsvgoText</td>
                     </tr>
                     <tr>
-                        <td>Datum der geplanten Veranstaltung:</td>
+                        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTermin:</td>
                         <td><input type="text" onchange="dsgvoChange()" name="dsgvoDatum" id="dsgvoDatum" class="dsgvoDatum" /></td>
                     </tr>
                     <tr>
-                        <td>Name:</td>
+                        <td>@ResourcesGastro.Shared.Navi.PlanerPdfName:</td>
                         <td><input type="text" onchange="dsgvoChange()" name="dsgvoName" id="dsgvoName" class="dsgvoName" /></td>
                     </tr>
                     <tr>
-                        <td>Mailadresse:</td>
+                        <td>@ResourcesGastro.Shared.Navi.Email</td>
                         <td><input type="text" onchange="dsgvoChange()" name="dsgvoMail" id="dsgvoMail" class="dsgvoMail" /></td>
                     </tr>
                     <tr>
-                        <td>Telefonnummer:</td>
+                        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTelefon:</td>
                         <td><input type="text" onchange="dsgvoChange()" name="dsgvoTelefon" id="dsgvoTelefon" class="dsgvoTelefon" /></td>
                     </tr>
                 </table>

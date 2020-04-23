@@ -121,13 +121,13 @@
     <value>электро́нная по́чта</value>
   </data>
   <data name="ErrorPasswort" xml:space="preserve">
-    <value>Field is required</value>
+    <value>Эта информация обязательна</value>
   </data>
   <data name="ErrorUsername" xml:space="preserve">
-    <value>Field is required</value>
+    <value>Эта информация обязательна</value>
   </data>
   <data name="Logintext" xml:space="preserve">
-    <value>Please login with your mail and password.</value>
+    <value>Пожалуйста, войдите, используя свой адрес электронной почты и пароль.</value>
   </data>
   <data name="Passwort" xml:space="preserve">
     <value>про́пуск</value>

@@ -121,7 +121,7 @@
     <value>ингредие́нт</value>
   </data>
   <data name="AnfrageWirt" xml:space="preserve">
-    <value>gleichzeitig als Anfrage an den Wirt senden</value>
+    <value>Отправить на хост одновременно с необязательным запросом</value>
   </data>
   <data name="Getränke" xml:space="preserve">
     <value>напи́ток</value>
@@ -154,15 +154,60 @@
     <value>еда́</value>
   </data>
   <data name="UeberUns" xml:space="preserve">
-    <value>About us</value>
+    <value>о нас</value>
   </data>
   <data name="Veranstaltungsplaner" xml:space="preserve">
-    <value>Event planning</value>
+    <value>Планировщик событий</value>
   </data>
   <data name="Zusammenfassung" xml:space="preserve">
     <value>подведе́ние ито́гов</value>
   </data>
   <data name="Öffnungszeiten" xml:space="preserve">
     <value>часы́ рабо́ты</value>
+  </data>
+  <data name="Insgesamt" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="AlertMail" xml:space="preserve">
+    <value>Это должен быть действующий адрес электронной почты.</value>
+  </data>
+  <data name="AlertPersonenzahl" xml:space="preserve">
+    <value>Пожалуйста, введите количество людей в форму выше.</value>
+  </data>
+  <data name="AlertTelefon" xml:space="preserve">
+    <value>Пожалуйста, введите только цифры.</value>
+  </data>
+  <data name="BtnPdfErstellenText" xml:space="preserve">
+    <value>Создать PDF</value>
+  </data>
+  <data name="DsvgoText" xml:space="preserve">
+    <value>Я согласен, что мои данные будут использованы для ответа на мой запрос. Мои данные не хранятся ни в одной базе данных, они печатаются только в PDF-документе, который отправляется организатору.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>электро́нная по́чта</value>
+  </data>
+  <data name="Personen" xml:space="preserve">
+    <value>люди</value>
+  </data>
+  <data name="PlanderPdfHeader" xml:space="preserve">
+    <value>Ваш выбор</value>
+  </data>
+  <data name="PlanerBeschreibung" xml:space="preserve">
+    <value>С помощью этой услуги вы можете рассчитать ожидаемые затраты на событие и распечатать результат. Если вы хотите, вы также можете отправить свой расчет на хост. Затем мы просим несколько деталей, чтобы иметь возможность связаться с вами.</value>
+  </data>
+  <data name="PlanerIntro" xml:space="preserve">
+    <value>Пожалуйста, введите количество людей, для которых вы планируете мероприятие с нами. Сначала введите число людей, для которых вы хотите запланировать мероприятие у нас.</value>
+  </data>
+  <data name="PlanerPdfName" xml:space="preserve">
+    <value>имя</value>
+  </data>
+  <data name="PlanerPdfTelefon" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="PlanerPdfTermin" xml:space="preserve">
+    <value>Запланированная встреча</value>
+  </data>
+  <data name="PdfAnsprache" xml:space="preserve">
+    <value>Спасибо за ваш интерес к нашему дому. Мы свяжемся с вами как можно скорее.</value>
   </data>
 </root>

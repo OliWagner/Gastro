@@ -61,6 +61,33 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Es muss sich um eine gültige Mailadresse handeln. ähnelt.
+        /// </summary>
+        public static string AlertMail {
+            get {
+                return ResourceManager.GetString("AlertMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte geben Sie oben im Formular eine Personenzahl ein. ähnelt.
+        /// </summary>
+        public static string AlertPersonenzahl {
+            get {
+                return ResourceManager.GetString("AlertPersonenzahl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte nur Ziffern eingeben. ähnelt.
+        /// </summary>
+        public static string AlertTelefon {
+            get {
+                return ResourceManager.GetString("AlertTelefon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Inhaltsstoffe ähnelt.
         /// </summary>
         public static string Allergene {
@@ -70,11 +97,38 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die gleichzeitig als Anfrage an den Wirt senden ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die gleichzeitig als unverbindliche Anfrage an den Wirt senden ähnelt.
         /// </summary>
         public static string AnfrageWirt {
             get {
                 return ResourceManager.GetString("AnfrageWirt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pdf erstellen ähnelt.
+        /// </summary>
+        public static string BtnPdfErstellenText {
+            get {
+                return ResourceManager.GetString("BtnPdfErstellenText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ich bin damit einverstanden, dass meine Angaben verwendet werden, damit auf meine Anfrage reagiert werden kann. Meine Daten werden in keiner Datenbank gespeichert, sie werden lediglich auf das Pdf-Dokument gedruckt, das dem Veranstalter zugeht. ähnelt.
+        /// </summary>
+        public static string DsvgoText {
+            get {
+                return ResourceManager.GetString("DsvgoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mailadresse ähnelt.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -93,6 +147,15 @@ namespace ResourcesGastro.Shared {
         public static string Impressum {
             get {
                 return ResourceManager.GetString("Impressum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die insgesamt ähnelt.
+        /// </summary>
+        public static string Insgesamt {
+            get {
+                return ResourceManager.GetString("Insgesamt", resourceCulture);
             }
         }
         
@@ -129,6 +192,78 @@ namespace ResourcesGastro.Shared {
         public static string Öffnungszeiten {
             get {
                 return ResourceManager.GetString("Öffnungszeiten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vielen Dank für Ihr Interesse an unserem Haus. Wir werden uns zeitnah mit Ihnen in Verbindung setzen. ähnelt.
+        /// </summary>
+        public static string PdfAnsprache {
+            get {
+                return ResourceManager.GetString("PdfAnsprache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Personen ähnelt.
+        /// </summary>
+        public static string Personen {
+            get {
+                return ResourceManager.GetString("Personen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ihre Auswahl ähnelt.
+        /// </summary>
+        public static string PlanderPdfHeader {
+            get {
+                return ResourceManager.GetString("PlanderPdfHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mit diesem Service können Sie die zu erwartenden Kosten für eine Veranstaltung berechnen und sich das Ergebnis ausdrucken. Wenn Sie möchten, können Sie Ihre Berechnung auch an den Wirt senden. Dann bitten wir Sie um ein paar Angaben, um Sie kontaktieren zu können. ähnelt.
+        /// </summary>
+        public static string PlanerBeschreibung {
+            get {
+                return ResourceManager.GetString("PlanerBeschreibung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten. ähnelt.
+        /// </summary>
+        public static string PlanerIntro {
+            get {
+                return ResourceManager.GetString("PlanerIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+        /// </summary>
+        public static string PlanerPdfName {
+            get {
+                return ResourceManager.GetString("PlanerPdfName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Telefonnummer ähnelt.
+        /// </summary>
+        public static string PlanerPdfTelefon {
+            get {
+                return ResourceManager.GetString("PlanerPdfTelefon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Geplanter Termin ähnelt.
+        /// </summary>
+        public static string PlanerPdfTermin {
+            get {
+                return ResourceManager.GetString("PlanerPdfTermin", resourceCulture);
             }
         }
         
