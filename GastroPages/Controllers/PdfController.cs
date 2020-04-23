@@ -30,5 +30,37 @@ namespace GastroPages.Controllers
             PdfHelper.MakePdfPlaner(Request);
             return View();
         }
+
+        public ActionResult PdfSpeisen()
+        {
+            PdfHelper.MakePdfPlaner(Request);
+            //FileResult fr = DownloadPdfPlaner();
+            System.Diagnostics.Process.Start("C:\\copy\\_Speisen.pdf");
+            return RedirectToAction("Index", "Pdf");
+        }
+
+        public ActionResult PdfGetränke()
+        {
+            PdfHelper.MakePdfPlaner(Request);
+            //FileResult fr = DownloadPdfPlaner();
+            System.Diagnostics.Process.Start("C:\\copy\\_Getränke.pdf");
+            return RedirectToAction("Index", "Pdf");
+        }
+
+        public ActionResult PdfMittagstisch()
+        {
+            PdfHelper.MakePdfPlaner(Request);
+            //FileResult fr = DownloadPdfPlaner();
+            System.Diagnostics.Process.Start("C:\\copy\\_Mittagtisch.pdf");
+            return RedirectToAction("Index", "Pdf");
+        }
+
+        public ActionResult PdfAllergene()
+        {
+            PdfHelper.MakePdfPlaner(Request);
+            //FileResult fr = DownloadPdfPlaner();
+            System.Diagnostics.Process.Start("C:\\copy\\_Allergene.pdf");
+            return RedirectToAction("Index", "Pdf");
+        }
     }
 }
