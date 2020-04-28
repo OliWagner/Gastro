@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="Models\Admin\AdminÖffnungszeitenModel.cs" />
     <Compile Include="Models\Admin\AdminKategorienModel.cs" />
+    <Compile Include="Models\Home\HomeÖffnungszeitenModel.cs" />
     <Compile Include="Models\Home\PdfPlanerModel.cs" />
     <Compile Include="Models\Home\HomeVeranstaltungsModel.cs" />
     <Compile Include="Models\Home\HomeVeranstaltungsSpeisenModel.cs" />

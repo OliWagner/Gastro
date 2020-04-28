@@ -142,6 +142,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die durchgehend ähnelt.
+        /// </summary>
+        public static string durchgehend {
+            get {
+                return ResourceManager.GetString("durchgehend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Mailadresse ähnelt.
         /// </summary>
         public static string Email {
@@ -403,11 +412,38 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Uhr ähnelt.
+        /// </summary>
+        public static string Uhr {
+            get {
+                return ResourceManager.GetString("Uhr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die und ähnelt.
+        /// </summary>
+        public static string und {
+            get {
+                return ResourceManager.GetString("und", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Veranstaltungsplaner ähnelt.
         /// </summary>
         public static string Veranstaltungsplaner {
             get {
                 return ResourceManager.GetString("Veranstaltungsplaner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die von ähnelt.
+        /// </summary>
+        public static string von {
+            get {
+                return ResourceManager.GetString("von", resourceCulture);
             }
         }
         

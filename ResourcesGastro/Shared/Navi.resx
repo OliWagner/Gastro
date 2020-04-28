@@ -237,4 +237,16 @@
   <data name="Restaurant" xml:space="preserve">
     <value>Restaurant</value>
   </data>
+  <data name="durchgehend" xml:space="preserve">
+    <value>durchgehend</value>
+  </data>
+  <data name="Uhr" xml:space="preserve">
+    <value>Uhr</value>
+  </data>
+  <data name="und" xml:space="preserve">
+    <value>und</value>
+  </data>
+  <data name="von" xml:space="preserve">
+    <value>von</value>
+  </data>
 </root>

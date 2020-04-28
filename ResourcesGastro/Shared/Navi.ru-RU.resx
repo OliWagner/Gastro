@@ -237,4 +237,16 @@
   <data name="Restaurant" xml:space="preserve">
     <value>ресторан</value>
   </data>
+  <data name="durchgehend" xml:space="preserve">
+    <value>по всему</value>
+  </data>
+  <data name="Uhr" xml:space="preserve">
+    <value>часов утра</value>
+  </data>
+  <data name="und" xml:space="preserve">
+    <value>и</value>
+  </data>
+  <data name="von" xml:space="preserve">
+    <value>из</value>
+  </data>
 </root>

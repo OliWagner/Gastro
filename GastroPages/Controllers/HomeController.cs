@@ -101,7 +101,8 @@ namespace GastroPages.Controllers
 
         public ActionResult Öffnungszeiten()
         {
-            return View();
+            HomeÖffnungszeitenModel model = new HomeÖffnungszeitenModel();
+            return View(model);
         }
 
         public ActionResult LogOn()

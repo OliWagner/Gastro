@@ -1,2 +1,208 @@
-﻿<h2>@ResourcesGastro.Shared.Navi.Öffnungszeiten</h2>
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeÖffnungszeitenModel
+<h2> @ResourcesGastro.Shared.Navi.Öffnungszeiten</h2>
+<table border="0">
+    @if (Model.Vorwort != null && !Model.Vorwort.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenVorwort">@Model.Vorwort</td>
+        </tr>
+    }
 
+    @*MONTAG*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Montag</td>
+    </tr>
+    <tr>
+        @if ((Model.Montag.Von1 != null && !Model.Montag.Von1.Equals("")) && (Model.Montag.Von2 != null && !Model.Montag.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Montag.Von1 - @Model.Montag.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Montag.Von2 - @Model.Montag.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Montag.Von1 - @Model.Montag.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Montag.Ergänzung1 != null && !Model.Montag.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Montag.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Montag.Ergänzung2 != null && !Model.Montag.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Montag.Ergänzung2</td>
+        </tr>
+    }
+
+    @*Dienstag*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Dienstag</td>
+    </tr>
+    <tr>
+        @if ((Model.Dienstag.Von1 != null && !Model.Dienstag.Von1.Equals("")) && (Model.Dienstag.Von2 != null && !Model.Dienstag.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Dienstag.Von1 - @Model.Dienstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Dienstag.Von2 - @Model.Dienstag.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Dienstag.Von1 - @Model.Dienstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Dienstag.Ergänzung1 != null && !Model.Dienstag.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Dienstag.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Dienstag.Ergänzung2 != null && !Model.Dienstag.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Dienstag.Ergänzung2</td>
+        </tr>
+    }
+
+    @*Mittwoch*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Mittwoch</td>
+    </tr>
+    <tr>
+        @if ((Model.Mittwoch.Von1 != null && !Model.Mittwoch.Von1.Equals("")) && (Model.Mittwoch.Von2 != null && !Model.Mittwoch.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Mittwoch.Von1 - @Model.Mittwoch.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Mittwoch.Von2 - @Model.Mittwoch.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Mittwoch.Von1 - @Model.Mittwoch.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Mittwoch.Ergänzung1 != null && !Model.Mittwoch.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Mittwoch.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Mittwoch.Ergänzung2 != null && !Model.Mittwoch.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Mittwoch.Ergänzung2</td>
+        </tr>
+    }
+
+    @*Donnerstag*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Donnerstag</td>
+    </tr>
+    <tr>
+        @if ((Model.Donnerstag.Von1 != null && !Model.Donnerstag.Von1.Equals("")) && (Model.Donnerstag.Von2 != null && !Model.Donnerstag.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Donnerstag.Von1 - @Model.Donnerstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Donnerstag.Von2 - @Model.Donnerstag.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Donnerstag.Von1 - @Model.Donnerstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Donnerstag.Ergänzung1 != null && !Model.Donnerstag.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Donnerstag.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Donnerstag.Ergänzung2 != null && !Model.Donnerstag.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Donnerstag.Ergänzung2</td>
+        </tr>
+    }
+
+    @*Freitag*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Freitag</td>
+    </tr>
+    <tr>
+        @if ((Model.Freitag.Von1 != null && !Model.Freitag.Von1.Equals("")) && (Model.Freitag.Von2 != null && !Model.Freitag.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Freitag.Von1 - @Model.Freitag.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Freitag.Von2 - @Model.Freitag.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Freitag.Von1 - @Model.Freitag.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Freitag.Ergänzung1 != null && !Model.Freitag.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Freitag.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Freitag.Ergänzung2 != null && !Model.Freitag.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Freitag.Ergänzung2</td>
+        </tr>
+    }
+
+    @*Samstag*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Samstag</td>
+    </tr>
+    <tr>
+        @if ((Model.Samstag.Von1 != null && !Model.Samstag.Von1.Equals("")) && (Model.Samstag.Von2 != null && !Model.Samstag.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Samstag.Von1 - @Model.Samstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Samstag.Von2 - @Model.Samstag.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Samstag.Von1 - @Model.Samstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Samstag.Ergänzung1 != null && !Model.Samstag.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Samstag.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Samstag.Ergänzung2 != null && !Model.Samstag.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Samstag.Ergänzung2</td>
+        </tr>
+    }
+
+    @*Samstag*@
+    <tr>
+        <td class="ÖffnungszeitenWochentag">@ResourcesGastro.Shared.Navi.Samstag</td>
+    </tr>
+    <tr>
+        @if ((Model.Samstag.Von1 != null && !Model.Samstag.Von1.Equals("")) && (Model.Samstag.Von2 != null && !Model.Samstag.Von2.Equals("")))
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.von @Model.Samstag.Von1 - @Model.Samstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr @ResourcesGastro.Shared.Navi.und @ResourcesGastro.Shared.Navi.von @Model.Samstag.Von2 - @Model.Samstag.Bis2 @ResourcesGastro.Shared.Navi.Uhr</td>
+        }
+        else
+        {
+            <td class="ÖffnungszeitenWochentagZeile">@ResourcesGastro.Shared.Navi.durchgehend @ResourcesGastro.Shared.Navi.von @Model.Samstag.Von1 - @Model.Samstag.Bis1 @ResourcesGastro.Shared.Navi.Uhr </td>
+        }
+    </tr>
+    @if (Model.Samstag.Ergänzung1 != null && !Model.Samstag.Ergänzung1.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Samstag.Ergänzung1</td>
+        </tr>
+    }
+    @if (Model.Samstag.Ergänzung2 != null && !Model.Samstag.Ergänzung2.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenWochentagErgänzung">@Model.Samstag.Ergänzung2</td>
+        </tr>
+    }
+
+
+    @if (Model.Nachwort != null && !Model.Nachwort.Equals(""))
+    {
+        <tr>
+            <td class="ÖffnungszeitenVorwort">@Model.Nachwort</td>
+        </tr>
+    }
+</table>
