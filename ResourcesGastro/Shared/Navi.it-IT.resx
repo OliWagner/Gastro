@@ -234,4 +234,7 @@
   <data name="Sonntag" xml:space="preserve">
     <value>Domenica</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Ristorante</value>
+  </data>
 </root>

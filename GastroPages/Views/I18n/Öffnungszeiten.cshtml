@@ -1,44 +1,369 @@
 ﻿@using GastroPages.Models
-@model GastroPages.Models.AdminI18nAllergeneModel
-<h2>Allergene Mehrsprachigkeit - @Model.Deutsch_Bezeichnung</h2>
-@using (Html.BeginForm("AllergeneEintragen", "I18n", FormMethod.Post, new { id = "EingabeForm" }))
+@model GastroPages.Models.AdminI18nÖffnungszeitenModel
+    <script>
+    function openTab(index)
+    {
+	    var element = document.getElementsByTagName('div');
+	    var name = "";
+	    var obj;
+	
+	    for (var i = 0; i < element.length; i++)
+	    {
+		    name = element[i].id;
+		    if (name.substr(0,8) == 'tab_box_')
+		    {
+			    obj = document.getElementById(name);
+			
+			    obj.hidden = true;
+			
+		    }
+		    if (name.substr(0,8) == 'tab_top_')
+		    {
+			    obj = document.getElementById(name);
+			    obj.setAttribute('class','tab_top_passive');			
+		    }
+		
+	    }
+	    var tab = document.getElementById("tab_box_"+index);
+	    tab.hidden = false;
+	    tab = document.getElementById("tab_top_"+index);
+	    tab.setAttribute('class','tab_top_active');
+        }
+
+        function dokumentVollständigGeladen() {
+            openTab(0);
+        }
+        window.addEventListener('load', dokumentVollständigGeladen, false);
+    </script>
+<h2>Öffnungszeiten Mehrsprachigkeit</h2>
+@using (Html.BeginForm("ÖffnungszeitenEintragen", "I18n", FormMethod.Post, new { id = "EingabeForm" }))
 {
-    @Html.HiddenFor(x => x.AllergenId)
-<table border="0" class="AllergeneMehrsprachigkeit">
-    <tr>
-        <td width="50" valign="top"></td>
-        <td width="50" valign="top">Bezeichnung</td>
-        <td width="400" valign="top">Beschreibung</td>
-    </tr>
+<div id='tabmenu' class='tabmenu'>
+    <!-- Tab-Reiter -->
+    <div id='tab_top_0' class='tab_top_active' onclick='javascript:openTab(0)' ;>Vorwort/Nachwort</div>
+    <div id='tab_top_1' class='tab_top_active' onclick='javascript:openTab(1)' ;>Montag</div>
+    <div id='tab_top_2' class='tab_top_active' onclick='javascript:openTab(2)' ;>Dienstag</div>
+    <div id='tab_top_3' class='tab_top_active' onclick='javascript:openTab(3)' ;>Mittwoch</div>
+    <div id='tab_top_4' class='tab_top_active' onclick='javascript:openTab(4)' ;>Donnerstag</div>
+    <div id='tab_top_5' class='tab_top_active' onclick='javascript:openTab(5)' ;>Freitag</div>
+    <div id='tab_top_6' class='tab_top_active' onclick='javascript:openTab(6)' ;>Samstag</div>
+    <div id='tab_top_7' class='tab_top_active' onclick='javascript:openTab(7)' ;>Sonntag</div>
 
-    <tr>
-        <td valign="top">Englisch</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Englisch_Bezeichnung)</td>
-        <td valign="top">@Html.TextAreaFor(model => model.Englisch_Beschreibung)</td>
-    </tr>
+    <div style='clear: both;'></div>
 
-    <tr>
-        <td valign="top">Italienisch</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Italienisch_Bezeichnung)</td>
-        <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Beschreibung)</td>
-    </tr>
+    <div id='tab_box_0' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Vorwort/Nachwort</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Vorwort</td>
+                <td width="400" valign="top">Nachwort</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Vorwort)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Nachwort)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Vorwort)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Nachwort)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Vorwort)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Nachwort)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Vorwort)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Nachwort)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
 
-    <tr>
-        <td valign="top">Russisch</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Russisch_Bezeichnung)</td>
-        <td valign="top">@Html.TextAreaFor(model => model.Russisch_Beschreibung)</td>
-    </tr>
+    <div id='tab_box_1' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Montag</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Montag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Montag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Montag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Montag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Montag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Montag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Montag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Montag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
 
-    <tr>
-        <td valign="top">Spanisch</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Spanisch_Bezeichnung)</td>
-        <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Beschreibung)</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td valign="top"><input type="submit" value="eintragen"/></td>
-    </tr>
+    <div id='tab_box_2' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Dienstag</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Dienstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Dienstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Dienstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Dienstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Dienstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Dienstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Dienstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Dienstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
 
-</table>
-}
+    <div id='tab_box_3' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Mittwoch</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Mittwoch_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Mittwoch_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Mittwoch_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Mittwoch_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Mittwoch_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Mittwoch_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Mittwoch_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Mittwoch_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id='tab_box_4' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Donnerstag</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Donnerstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Donnerstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Donnerstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Donnerstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Donnerstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Donnerstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Donnerstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Donnerstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id='tab_box_5' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Freitag</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Freitag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Freitag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Freitag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Freitag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Freitag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Freitag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Freitag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Freitag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id='tab_box_6' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Samstag</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Samstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Samstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Samstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Samstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Samstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Samstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Samstag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Samstag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id='tab_box_7' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Sonntag</b></td>
+            </tr>
+            <tr>
+                <td width="50" valign="top"></td>
+                <td width="50" valign="top">Ergänzung 1</td>
+                <td width="400" valign="top">Ergänzung 2</td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Sonntag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Sonntag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Sonntag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Sonntag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Sonntag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Sonntag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Sonntag_Ergänzung1)</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Sonntag_Ergänzung2)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+<div style='clear: both;'></div>
+
+
+
+
+
+
+
+    
+
+    }

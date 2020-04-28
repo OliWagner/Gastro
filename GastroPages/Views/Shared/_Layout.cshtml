@@ -47,21 +47,47 @@
 
         @RenderBody()
         <hr />
-        <footer>
+        <footer style="background-color: #dddddd">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(Resources.UeberUns, "About", "Home")</li>
                     <li>@Html.ActionLink(Resources.Kontakt, "Contact", "Home")</li>
                     <li>@Html.ActionLink(Resources.Impressum, "Impressum", "Home")</li>
-                    <li>@Html.ActionLink("English", "SetCulture", new { controller = "Home", culture = "en-US" })</li>
-                    <li>@Html.ActionLink("Espanol", "SetCulture", new { controller = "Home", culture = "es-ES" })</li>
-                    <li>@Html.ActionLink("Deutsch", "SetCulture", new { controller = "Home", culture = "de-DE" })</li>
-                    <li>@Html.ActionLink("Italiano", "SetCulture", new { controller = "Home", culture = "it-IT" })</li>
-                    <li>@Html.ActionLink("Russki", "SetCulture", new { controller = "Home", culture = "ru-RU" })</li>
+                    @*<li>@Html.ActionLink("Deutsch", "SetCulture", new { controller = "Home", culture = "de-DE" })</li>*@
+                    <li>
+                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "de-DE" })'>
+                            <img src='@Url.Content("~/Images/flagge_de.png")' width="45" height="29" />
+                        </a>
+                    </li>
+                    @*<li>@Html.ActionLink("English", "SetCulture", new { controller = "Home", culture = "en-US" })</li>*@
+                    <li>
+                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "en-US" })'>
+                            <img src='@Url.Content("~/Images/flagge_en.png")' width="45" height="29" />
+                        </a>
+                    </li>
+                    @*<li>@Html.ActionLink("Espanol", "SetCulture", new { controller = "Home", culture = "es-ES" })</li>*@
+                    <li>
+                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "es-ES" })'>
+                            <img src='@Url.Content("~/Images/flagge_es.png")' width="45" height="29" />
+                        </a>
+                    </li>
+
+                    @*<li>@Html.ActionLink("Italiano", "SetCulture", new { controller = "Home", culture = "it-IT" })</li>*@
+                    <li>
+                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "it-IT" })'>
+                            <img src='@Url.Content("~/Images/flagge_it.png")' width="45" height="29" />
+                        </a>
+                    </li>
+                    @*<li>@Html.ActionLink("Russki", "SetCulture", new { controller = "Home", culture = "ru-RU" })</li>*@
+                    <li>
+                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "ru-RU" })'>
+                            <img src='@Url.Content("~/Images/flagge_ru.png")' width="45" height="29" />
+                        </a>
+                    </li>
                 </ul>
             </div>
 
-            <p>&copy; @DateTime.Now.Year - Restaurant Zur Glocke</p>
+            <p>&copy; @DateTime.Now.Year - @ResourcesGastro.Shared.Navi.Restaurant Zur Glocke</p>
         </footer>
     </div>
 

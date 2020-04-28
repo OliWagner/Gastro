@@ -137,9 +137,9 @@ namespace GastroPages.Models
                 Russisch_Montag_Ergänzung2 = (from I18n x in liste where x.SprachId == 4 select x.Ergänzung2).FirstOrDefault();
 
                 Englisch_Vorwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
-                Italienisch_Vorwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
-                Spanisch_Vorwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
-                Russisch_Vorwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
+                Italienisch_Vorwort = (from I18n x in liste where x.SprachId == 2 select x.Header).FirstOrDefault();
+                Spanisch_Vorwort = (from I18n x in liste where x.SprachId == 3 select x.Header).FirstOrDefault();
+                Russisch_Vorwort = (from I18n x in liste where x.SprachId == 4 select x.Header).FirstOrDefault();
 
                 //Dienstag
                 liste = (from I18n i18n in _db.I18n where i18n.Typ == 8 && i18n.AllergenId == 2 select i18n).ToList();
@@ -208,9 +208,9 @@ namespace GastroPages.Models
                 Russisch_Sonntag_Ergänzung2 = (from I18n x in liste where x.SprachId == 4 select x.Ergänzung2).FirstOrDefault();
 
                 Englisch_Nachwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
-                Italienisch_Nachwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
-                Spanisch_Nachwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
-                Russisch_Nachwort = (from I18n x in liste where x.SprachId == 5 select x.Header).FirstOrDefault();
+                Italienisch_Nachwort = (from I18n x in liste where x.SprachId == 2 select x.Header).FirstOrDefault();
+                Spanisch_Nachwort = (from I18n x in liste where x.SprachId == 3 select x.Header).FirstOrDefault();
+                Russisch_Nachwort = (from I18n x in liste where x.SprachId == 4 select x.Header).FirstOrDefault();
             }
         }  
     }
