@@ -115,6 +115,24 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dienstag ähnelt.
+        /// </summary>
+        public static string Dienstag {
+            get {
+                return ResourceManager.GetString("Dienstag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Donnerstag ähnelt.
+        /// </summary>
+        public static string Donnerstag {
+            get {
+                return ResourceManager.GetString("Donnerstag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ich bin damit einverstanden, dass meine Angaben verwendet werden, damit auf meine Anfrage reagiert werden kann. Meine Daten werden in keiner Datenbank gespeichert, sie werden lediglich auf das Pdf-Dokument gedruckt, das dem Veranstalter zugeht. ähnelt.
         /// </summary>
         public static string DsvgoText {
@@ -129,6 +147,15 @@ namespace ResourcesGastro.Shared {
         public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Freitag ähnelt.
+        /// </summary>
+        public static string Freitag {
+            get {
+                return ResourceManager.GetString("Freitag", resourceCulture);
             }
         }
         
@@ -183,6 +210,24 @@ namespace ResourcesGastro.Shared {
         public static string Mittagstisch {
             get {
                 return ResourceManager.GetString("Mittagstisch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mittwoch ähnelt.
+        /// </summary>
+        public static string Mittwoch {
+            get {
+                return ResourceManager.GetString("Mittwoch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Montag ähnelt.
+        /// </summary>
+        public static string Montag {
+            get {
+                return ResourceManager.GetString("Montag", resourceCulture);
             }
         }
         
@@ -291,6 +336,33 @@ namespace ResourcesGastro.Shared {
         public static string Reservierung {
             get {
                 return ResourceManager.GetString("Reservierung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ruhetag ähnelt.
+        /// </summary>
+        public static string Ruhetag {
+            get {
+                return ResourceManager.GetString("Ruhetag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Samstag ähnelt.
+        /// </summary>
+        public static string Samstag {
+            get {
+                return ResourceManager.GetString("Samstag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sonntag ähnelt.
+        /// </summary>
+        public static string Sonntag {
+            get {
+                return ResourceManager.GetString("Sonntag", resourceCulture);
             }
         }
         

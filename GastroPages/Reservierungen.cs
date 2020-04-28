@@ -12,11 +12,14 @@ namespace GastroPages
     using System;
     using System.Collections.Generic;
     
-    public partial class Tische
+    public partial class Reservierungen
     {
         public int id { get; set; }
-        public string Bezeichnung { get; set; }
-        public int MaxPersonen { get; set; }
-        public bool IstAktiv { get; set; }
+        public string Name { get; set; }
+        public string Telefonnummer { get; set; }
+        public Nullable<System.DateTime> Datum { get; set; }
+        public Nullable<int> Personenzahl { get; set; }
+        public Nullable<System.DateTime> Eingabedatum { get; set; }
+        public string Nachricht { get; set; }
     }
 }

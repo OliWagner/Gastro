@@ -210,4 +210,28 @@
   <data name="PdfAnsprache" xml:space="preserve">
     <value>Спасибо за ваш интерес к нашему дому. Мы свяжемся с вами как можно скорее.</value>
   </data>
+  <data name="Dienstag" xml:space="preserve">
+    <value>вторник</value>
+  </data>
+  <data name="Donnerstag" xml:space="preserve">
+    <value>четверг</value>
+  </data>
+  <data name="Freitag" xml:space="preserve">
+    <value>пятница</value>
+  </data>
+  <data name="Mittwoch" xml:space="preserve">
+    <value>среда</value>
+  </data>
+  <data name="Montag" xml:space="preserve">
+    <value>понедельник</value>
+  </data>
+  <data name="Ruhetag" xml:space="preserve">
+    <value>Выходной день</value>
+  </data>
+  <data name="Samstag" xml:space="preserve">
+    <value>суббота</value>
+  </data>
+  <data name="Sonntag" xml:space="preserve">
+    <value>воскресенье</value>
+  </data>
 </root>

@@ -15,6 +15,7 @@ namespace GastroPages.Controllers
     /// 5 - Speisen
     /// 6 - Veranstaltungsgetränke
     /// 7 - Veranstaltungsspeisen
+    /// 8 - Öffnungszeiten
     /// 
     /// 1 - Deutsch
     /// 2 - Italienisch
@@ -85,6 +86,277 @@ namespace GastroPages.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult Öffnungszeiten()
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                AdminI18nÖffnungszeitenModel model = new AdminI18nÖffnungszeitenModel();
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult ÖffnungszeitenEintragen(AdminI18nÖffnungszeitenModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                I18n eintragEnglischMontag = new I18n();
+                eintragEnglischMontag.Typ = 8;
+                eintragEnglischMontag.SprachId = 5;
+                eintragEnglischMontag.Ergänzung1 = model.Englisch_Montag_Ergänzung1;
+                eintragEnglischMontag.Ergänzung2 = model.Englisch_Montag_Ergänzung2;
+                eintragEnglischMontag.AllergenId = 1;
+                eintragEnglischMontag.Header = model.Englisch_Vorwort;
+
+                I18n eintragSpanischMontag = new I18n();
+                eintragSpanischMontag.Typ = 8;
+                eintragSpanischMontag.SprachId = 3;
+                eintragSpanischMontag.Ergänzung1 = model.Spanisch_Montag_Ergänzung1;
+                eintragSpanischMontag.Ergänzung2 = model.Spanisch_Montag_Ergänzung2;
+                eintragSpanischMontag.AllergenId = 1;
+                eintragSpanischMontag.Header = model.Spanisch_Vorwort;
+
+                I18n eintragItalienischMontag = new I18n();
+                eintragItalienischMontag.Typ = 8;
+                eintragItalienischMontag.SprachId = 2;
+                eintragItalienischMontag.Ergänzung1 = model.Italienisch_Montag_Ergänzung1;
+                eintragItalienischMontag.Ergänzung2 = model.Italienisch_Montag_Ergänzung2;
+                eintragItalienischMontag.AllergenId = 1;
+                eintragItalienischMontag.Header = model.Italienisch_Vorwort;
+
+                I18n eintragRussischMontag = new I18n();
+                eintragRussischMontag.Typ = 8;
+                eintragRussischMontag.SprachId = 4;
+                eintragRussischMontag.Ergänzung1 = model.Russisch_Montag_Ergänzung1;
+                eintragRussischMontag.Ergänzung2 = model.Russisch_Montag_Ergänzung2;
+                eintragRussischMontag.AllergenId = 1;
+                eintragRussischMontag.Header = model.Russisch_Vorwort;
+
+                I18n eintragEnglischDienstag = new I18n();
+                eintragEnglischDienstag.Typ = 8;
+                eintragEnglischDienstag.SprachId = 5;
+                eintragEnglischDienstag.Ergänzung1 = model.Englisch_Dienstag_Ergänzung1;
+                eintragEnglischDienstag.Ergänzung2 = model.Englisch_Dienstag_Ergänzung2;
+                eintragEnglischDienstag.AllergenId = 1;
+
+                I18n eintragSpanischDienstag = new I18n();
+                eintragSpanischDienstag.Typ = 8;
+                eintragSpanischDienstag.SprachId = 3;
+                eintragSpanischDienstag.Ergänzung1 = model.Spanisch_Dienstag_Ergänzung1;
+                eintragSpanischDienstag.Ergänzung2 = model.Spanisch_Dienstag_Ergänzung2;
+                eintragSpanischDienstag.AllergenId = 1;
+
+                I18n eintragItalienischDienstag = new I18n();
+                eintragItalienischDienstag.Typ = 8;
+                eintragItalienischDienstag.SprachId = 2;
+                eintragItalienischDienstag.Ergänzung1 = model.Italienisch_Dienstag_Ergänzung1;
+                eintragItalienischDienstag.Ergänzung2 = model.Italienisch_Dienstag_Ergänzung2;
+                eintragItalienischDienstag.AllergenId = 1;
+
+                I18n eintragRussischDienstag = new I18n();
+                eintragRussischDienstag.Typ = 8;
+                eintragRussischDienstag.SprachId = 4;
+                eintragRussischDienstag.Ergänzung1 = model.Russisch_Dienstag_Ergänzung1;
+                eintragRussischDienstag.Ergänzung2 = model.Russisch_Dienstag_Ergänzung2;
+                eintragRussischDienstag.AllergenId = 1;
+
+                I18n eintragEnglischMittwoch = new I18n();
+                eintragEnglischMittwoch.Typ = 8;
+                eintragEnglischMittwoch.SprachId = 5;
+                eintragEnglischMittwoch.Ergänzung1 = model.Englisch_Mittwoch_Ergänzung1;
+                eintragEnglischMittwoch.Ergänzung2 = model.Englisch_Mittwoch_Ergänzung2;
+                eintragEnglischMittwoch.AllergenId = 1;
+
+                I18n eintragSpanischMittwoch = new I18n();
+                eintragSpanischMittwoch.Typ = 8;
+                eintragSpanischMittwoch.SprachId = 3;
+                eintragSpanischMittwoch.Ergänzung1 = model.Spanisch_Mittwoch_Ergänzung1;
+                eintragSpanischMittwoch.Ergänzung2 = model.Spanisch_Mittwoch_Ergänzung2;
+                eintragSpanischMittwoch.AllergenId = 1;
+
+                I18n eintragItalienischMittwoch = new I18n();
+                eintragItalienischMittwoch.Typ = 8;
+                eintragItalienischMittwoch.SprachId = 2;
+                eintragItalienischMittwoch.Ergänzung1 = model.Italienisch_Mittwoch_Ergänzung1;
+                eintragItalienischMittwoch.Ergänzung2 = model.Italienisch_Mittwoch_Ergänzung2;
+                eintragItalienischMittwoch.AllergenId = 1;
+
+                I18n eintragRussischMittwoch = new I18n();
+                eintragRussischMittwoch.Typ = 8;
+                eintragRussischMittwoch.SprachId = 4;
+                eintragRussischMittwoch.Ergänzung1 = model.Russisch_Mittwoch_Ergänzung1;
+                eintragRussischMittwoch.Ergänzung2 = model.Russisch_Mittwoch_Ergänzung2;
+                eintragRussischMittwoch.AllergenId = 1;
+
+                I18n eintragEnglischDonnerstag = new I18n();
+                eintragEnglischDonnerstag.Typ = 8;
+                eintragEnglischDonnerstag.SprachId = 5;
+                eintragEnglischDonnerstag.Ergänzung1 = model.Englisch_Donnerstag_Ergänzung1;
+                eintragEnglischDonnerstag.Ergänzung2 = model.Englisch_Donnerstag_Ergänzung2;
+                eintragEnglischDonnerstag.AllergenId = 1;
+
+                I18n eintragSpanischDonnerstag = new I18n();
+                eintragSpanischDonnerstag.Typ = 8;
+                eintragSpanischDonnerstag.SprachId = 3;
+                eintragSpanischDonnerstag.Ergänzung1 = model.Spanisch_Donnerstag_Ergänzung1;
+                eintragSpanischDonnerstag.Ergänzung2 = model.Spanisch_Donnerstag_Ergänzung2;
+                eintragSpanischDonnerstag.AllergenId = 1;
+
+                I18n eintragItalienischDonnerstag = new I18n();
+                eintragItalienischDonnerstag.Typ = 8;
+                eintragItalienischDonnerstag.SprachId = 2;
+                eintragItalienischDonnerstag.Ergänzung1 = model.Italienisch_Donnerstag_Ergänzung1;
+                eintragItalienischDonnerstag.Ergänzung2 = model.Italienisch_Donnerstag_Ergänzung2;
+                eintragItalienischDonnerstag.AllergenId = 1;
+
+                I18n eintragRussischDonnerstag = new I18n();
+                eintragRussischDonnerstag.Typ = 8;
+                eintragRussischDonnerstag.SprachId = 4;
+                eintragRussischDonnerstag.Ergänzung1 = model.Russisch_Donnerstag_Ergänzung1;
+                eintragRussischDonnerstag.Ergänzung2 = model.Russisch_Donnerstag_Ergänzung2;
+                eintragRussischDonnerstag.AllergenId = 1;
+
+                I18n eintragEnglischFreitag = new I18n();
+                eintragEnglischFreitag.Typ = 8;
+                eintragEnglischFreitag.SprachId = 5;
+                eintragEnglischFreitag.Ergänzung1 = model.Englisch_Freitag_Ergänzung1;
+                eintragEnglischFreitag.Ergänzung2 = model.Englisch_Freitag_Ergänzung2;
+                eintragEnglischFreitag.AllergenId = 1;
+
+                I18n eintragSpanischFreitag = new I18n();
+                eintragSpanischFreitag.Typ = 8;
+                eintragSpanischFreitag.SprachId = 3;
+                eintragSpanischFreitag.Ergänzung1 = model.Spanisch_Freitag_Ergänzung1;
+                eintragSpanischFreitag.Ergänzung2 = model.Spanisch_Freitag_Ergänzung2;
+                eintragSpanischFreitag.AllergenId = 1;
+
+                I18n eintragItalienischFreitag = new I18n();
+                eintragItalienischFreitag.Typ = 8;
+                eintragItalienischFreitag.SprachId = 2;
+                eintragItalienischFreitag.Ergänzung1 = model.Italienisch_Freitag_Ergänzung1;
+                eintragItalienischFreitag.Ergänzung2 = model.Italienisch_Freitag_Ergänzung2;
+                eintragItalienischFreitag.AllergenId = 1;
+
+                I18n eintragRussischFreitag = new I18n();
+                eintragRussischFreitag.Typ = 8;
+                eintragRussischFreitag.SprachId = 4;
+                eintragRussischFreitag.Ergänzung1 = model.Russisch_Freitag_Ergänzung1;
+                eintragRussischFreitag.Ergänzung2 = model.Russisch_Freitag_Ergänzung2;
+                eintragRussischFreitag.AllergenId = 1;
+
+                I18n eintragEnglischSamstag = new I18n();
+                eintragEnglischSamstag.Typ = 8;
+                eintragEnglischSamstag.SprachId = 5;
+                eintragEnglischSamstag.Ergänzung1 = model.Englisch_Samstag_Ergänzung1;
+                eintragEnglischSamstag.Ergänzung2 = model.Englisch_Samstag_Ergänzung2;
+                eintragEnglischSamstag.AllergenId = 1;
+
+                I18n eintragSpanischSamstag = new I18n();
+                eintragSpanischSamstag.Typ = 8;
+                eintragSpanischSamstag.SprachId = 3;
+                eintragSpanischSamstag.Ergänzung1 = model.Spanisch_Samstag_Ergänzung1;
+                eintragSpanischSamstag.Ergänzung2 = model.Spanisch_Samstag_Ergänzung2;
+                eintragSpanischSamstag.AllergenId = 1;
+
+                I18n eintragItalienischSamstag = new I18n();
+                eintragItalienischSamstag.Typ = 8;
+                eintragItalienischSamstag.SprachId = 2;
+                eintragItalienischSamstag.Ergänzung1 = model.Italienisch_Samstag_Ergänzung1;
+                eintragItalienischSamstag.Ergänzung2 = model.Italienisch_Samstag_Ergänzung2;
+                eintragItalienischSamstag.AllergenId = 1;
+
+                I18n eintragRussischSamstag = new I18n();
+                eintragRussischSamstag.Typ = 8;
+                eintragRussischSamstag.SprachId = 4;
+                eintragRussischSamstag.Ergänzung1 = model.Russisch_Samstag_Ergänzung1;
+                eintragRussischSamstag.Ergänzung2 = model.Russisch_Samstag_Ergänzung2;
+                eintragRussischSamstag.AllergenId = 1;
+
+                I18n eintragEnglischSonntag = new I18n();
+                eintragEnglischSonntag.Typ = 8;
+                eintragEnglischSonntag.SprachId = 5;
+                eintragEnglischSonntag.Ergänzung1 = model.Englisch_Sonntag_Ergänzung1;
+                eintragEnglischSonntag.Ergänzung2 = model.Englisch_Sonntag_Ergänzung2;
+                eintragEnglischSonntag.AllergenId = 1;
+                eintragEnglischSonntag.Header = model.Englisch_Nachwort;
+
+                I18n eintragSpanischSonntag = new I18n();
+                eintragSpanischSonntag.Typ = 8;
+                eintragSpanischSonntag.SprachId = 3;
+                eintragSpanischSonntag.Ergänzung1 = model.Spanisch_Sonntag_Ergänzung1;
+                eintragSpanischSonntag.Ergänzung2 = model.Spanisch_Sonntag_Ergänzung2;
+                eintragSpanischSonntag.AllergenId = 1;
+                eintragSpanischSonntag.Header = model.Spanisch_Nachwort;
+
+                I18n eintragItalienischSonntag = new I18n();
+                eintragItalienischSonntag.Typ = 8;
+                eintragItalienischSonntag.SprachId = 2;
+                eintragItalienischSonntag.Ergänzung1 = model.Italienisch_Sonntag_Ergänzung1;
+                eintragItalienischSonntag.Ergänzung2 = model.Italienisch_Sonntag_Ergänzung2;
+                eintragItalienischSonntag.AllergenId = 1;
+                eintragItalienischSonntag.Header = model.Italienisch_Nachwort;
+
+                I18n eintragRussischSonntag = new I18n();
+                eintragRussischSonntag.Typ = 8;
+                eintragRussischSonntag.SprachId = 4;
+                eintragRussischSonntag.Ergänzung1 = model.Russisch_Sonntag_Ergänzung1;
+                eintragRussischSonntag.Ergänzung2 = model.Russisch_Sonntag_Ergänzung2;
+                eintragRussischSonntag.AllergenId = 1;
+                eintragRussischSonntag.Header = model.Russisch_Nachwort;
+
+
+                using (GastroEntities _db = new GastroEntities())
+                {
+                    //erst löschen wenn vorhanden
+                    List<I18n> liste = (from I18n i18n in _db.I18n where i18n.Typ == 8 select i18n).ToList();
+                    _db.I18n.RemoveRange(liste);
+
+                    _db.I18n.Add(eintragEnglischMontag);
+                    _db.I18n.Add(eintragItalienischMontag);
+                    _db.I18n.Add(eintragSpanischMontag);
+                    _db.I18n.Add(eintragRussischMontag);
+
+                    _db.I18n.Add(eintragEnglischDienstag);
+                    _db.I18n.Add(eintragItalienischDienstag);
+                    _db.I18n.Add(eintragSpanischDienstag);
+                    _db.I18n.Add(eintragRussischDienstag);
+
+                    _db.I18n.Add(eintragEnglischMittwoch);
+                    _db.I18n.Add(eintragItalienischMittwoch);
+                    _db.I18n.Add(eintragSpanischMittwoch);
+                    _db.I18n.Add(eintragRussischMittwoch);
+
+                    _db.I18n.Add(eintragEnglischDonnerstag);
+                    _db.I18n.Add(eintragItalienischDonnerstag);
+                    _db.I18n.Add(eintragSpanischDonnerstag);
+                    _db.I18n.Add(eintragRussischDonnerstag);
+
+                    _db.I18n.Add(eintragEnglischFreitag);
+                    _db.I18n.Add(eintragItalienischFreitag);
+                    _db.I18n.Add(eintragSpanischFreitag);
+                    _db.I18n.Add(eintragRussischFreitag);
+
+                    _db.I18n.Add(eintragEnglischSamstag);
+                    _db.I18n.Add(eintragItalienischSamstag);
+                    _db.I18n.Add(eintragSpanischSamstag);
+                    _db.I18n.Add(eintragRussischSamstag);
+
+                    _db.I18n.Add(eintragEnglischSonntag);
+                    _db.I18n.Add(eintragItalienischSonntag);
+                    _db.I18n.Add(eintragSpanischSonntag);
+                    _db.I18n.Add(eintragRussischSonntag);
+
+                    _db.SaveChanges();
+                }
+
+                return RedirectToAction("Öffnungszeiten", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
 
         public ActionResult Mittagstisch(int id)
         {

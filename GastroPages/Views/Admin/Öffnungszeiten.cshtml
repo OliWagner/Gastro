@@ -1,0 +1,121 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminÖffnungszeitenModel
+<h2>Öffnungszeiten <a href="/I18n/Öffnungszeiten/">I18n</a></h2>
+
+    @using (Html.BeginForm("ÖffnungszeitenEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
+    {
+<table border="0">
+    <tr>
+        <td valign="top" colspan="9"><b>Vorwort</b></td>
+    </tr>
+
+    <tr>
+        <td valign="top" colspan="9">@Html.TextAreaFor(model => model.Vorwort)</td>
+    </tr>
+
+    <tr>
+        <td valign="top" width="90"><b>Wochentag</b></td>
+        <td valign="top" width="140"><b>Zeitraum 1 von-bis</b></td>
+        <td valign="top" width="10">&nbsp;</td>
+        <td valign="top" width="140"><b>Zeitraum 2 von-bis</b></td>
+        <td valign="top" width="10">&nbsp;</td>
+        <td valign="top" width="170"><b>Ergänzung 1</b></td>
+        <td valign="top" width="10">&nbsp;</td>
+        <td valign="top" width="170"><b>Ergänzung 2</b></td>
+        <td valign="top" width="10">&nbsp;</td>
+        <td valign="top"><b>Ruhetag</b></td>
+    </tr>
+
+    <tr>
+        <td valign="top">Montag</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Montag.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Montag.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Montag.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Montag.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Montag.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Montag.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Montag.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Dienstag</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Dienstag.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Dienstag.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Dienstag.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Dienstag.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Dienstag.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Dienstag.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Dienstag.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Mittwoch</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Mittwoch.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Mittwoch.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Mittwoch.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Mittwoch.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Mittwoch.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Mittwoch.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Mittwoch.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Donnerstag</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Donnerstag.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Donnerstag.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Donnerstag.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Donnerstag.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Donnerstag.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Donnerstag.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Donnerstag.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Freitag</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Freitag.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Freitag.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Freitag.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Freitag.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Freitag.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Freitag.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Freitag.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Samstag</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Samstag.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Samstag.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Samstag.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Samstag.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Samstag.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Samstag.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Samstag.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Sonntag</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Sonntag.Von1, new { size = 5 }) - @Html.TextBoxFor(model => model.Sonntag.Bis1, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top">@Html.TextBoxFor(model => model.Sonntag.Von2, new { size = 5 }) - @Html.TextBoxFor(model => model.Sonntag.Bis2, new { size = 5 })</td>
+        <td valign="top">&nbsp;</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Sonntag.Ergänzung1)</td>
+        <td valign="top" colspan="2">@Html.TextAreaFor(model => model.Sonntag.Ergänzung2)</td>
+        <td valign="top">@Html.CheckBoxFor(model => model.Sonntag.IstRuhetag)</td>
+    </tr>
+
+    <tr>
+        <td valign="top" colspan="9"><b>Nachwort</b></td>
+    </tr>
+
+    <tr>
+        <td valign="top" colspan="9">@Html.TextAreaFor(model => model.Nachwort)</td>
+    </tr>
+
+    <tr>
+        <td valign="top" colspan="7"><input type="submit" /></td>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+</table>
+
+        
+    }

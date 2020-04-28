@@ -28,8 +28,6 @@ namespace GastroPages
         public virtual DbSet<Benutzer> Benutzer { get; set; }
         public virtual DbSet<Getränke> Getränke { get; set; }
         public virtual DbSet<Speisen> Speisen { get; set; }
-        public virtual DbSet<Tischbelegungen> Tischbelegungen { get; set; }
-        public virtual DbSet<Tische> Tische { get; set; }
         public virtual DbSet<Veranstaltungen> Veranstaltungen { get; set; }
         public virtual DbSet<VeranstaltungenGetränke> VeranstaltungenGetränke { get; set; }
         public virtual DbSet<VeranstaltungenSpeisen> VeranstaltungenSpeisen { get; set; }
@@ -46,5 +44,7 @@ namespace GastroPages
         public virtual DbSet<AllergeneGetränkeIdSpeiseId> AllergeneGetränkeIdSpeiseId { get; set; }
         public virtual DbSet<AllergeneVeranstaltungsGetränkeIdSpeiseId> AllergeneVeranstaltungsGetränkeIdSpeiseId { get; set; }
         public virtual DbSet<AllergeneVeranstaltungsSpeisenIdSpeiseId> AllergeneVeranstaltungsSpeisenIdSpeiseId { get; set; }
+        public virtual DbSet<Öffnungszeiten> Öffnungszeiten { get; set; }
+        public virtual DbSet<Reservierungen> Reservierungen { get; set; }
     }
 }

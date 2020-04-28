@@ -766,16 +766,66 @@ namespace GastroPages.Controllers
 
 
 
-        public ActionResult Tische()
+        public ActionResult Öffnungszeiten()
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                return View();
+                AdminÖffnungszeitenModel model = new AdminÖffnungszeitenModel();
+                return View(model);
             }
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult ÖffnungszeitenEintragen(AdminÖffnungszeitenModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                TrageVorwortNachwortEin(model.Vorwort, model.Nachwort);
+                    for (int i = 1; i < 8; i++) {
+                        switch (i) {
+                            case 1: TrageÖzEin(i, model.Montag); break;
+                            case 2: TrageÖzEin(i, model.Dienstag); break;
+                            case 3: TrageÖzEin(i, model.Mittwoch); break;
+                            case 4: TrageÖzEin(i, model.Donnerstag); break;
+                            case 5: TrageÖzEin(i, model.Freitag); break;
+                            case 6: TrageÖzEin(i, model.Samstag); break;
+                            case 7: TrageÖzEin(i, model.Sonntag); break;
+                        }
+                    }
+                return RedirectToAction("Öffnungszeiten", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
+        private void TrageÖzEin(int id, Öffnungszeiten öz) {
+            using (GastroEntities _db = new GastroEntities())
+            {
+                Öffnungszeiten ö = _db.Öffnungszeiten.Where(x => x.id == id).FirstOrDefault();
+                ö.Bis1 = öz.Bis1;
+                ö.Bis2 = öz.Bis2;
+                ö.Ergänzung1 = öz.Ergänzung1;
+                ö.Ergänzung2 = öz.Ergänzung2;
+                ö.Ergänzung3 = öz.Ergänzung3;
+                ö.IstRuhetag = öz.IstRuhetag;
+                ö.Von1 = öz.Von1;
+                ö.Von2 = öz.Von2;
+
+                _db.SaveChanges();
+            }
+        }
+
+        private void TrageVorwortNachwortEin(string vorwort, string nachwort)
+        {
+            using (GastroEntities _db = new GastroEntities())
+            {
+                Öffnungszeiten özVw = _db.Öffnungszeiten.Where(x => x.id == 8).FirstOrDefault();
+                Öffnungszeiten özNw = _db.Öffnungszeiten.Where(x => x.id == 9).FirstOrDefault();
+                özVw.Ergänzung1 = vorwort;
+                özNw.Ergänzung1 = nachwort;
+                _db.SaveChanges();
+            }
+        }
 
 
         public ActionResult Allergene(int? id, int? todo)

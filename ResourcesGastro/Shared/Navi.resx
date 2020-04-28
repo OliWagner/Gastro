@@ -210,4 +210,28 @@
   <data name="PdfAnsprache" xml:space="preserve">
     <value>Vielen Dank für Ihr Interesse an unserem Haus. Wir werden uns zeitnah mit Ihnen in Verbindung setzen.</value>
   </data>
+  <data name="Dienstag" xml:space="preserve">
+    <value>Dienstag</value>
+  </data>
+  <data name="Donnerstag" xml:space="preserve">
+    <value>Donnerstag</value>
+  </data>
+  <data name="Freitag" xml:space="preserve">
+    <value>Freitag</value>
+  </data>
+  <data name="Mittwoch" xml:space="preserve">
+    <value>Mittwoch</value>
+  </data>
+  <data name="Montag" xml:space="preserve">
+    <value>Montag</value>
+  </data>
+  <data name="Ruhetag" xml:space="preserve">
+    <value>Ruhetag</value>
+  </data>
+  <data name="Samstag" xml:space="preserve">
+    <value>Samstag</value>
+  </data>
+  <data name="Sonntag" xml:space="preserve">
+    <value>Sonntag</value>
+  </data>
 </root>

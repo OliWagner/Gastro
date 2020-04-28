@@ -195,10 +195,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin\AdminÖffnungszeitenModel.cs" />
     <Compile Include="Models\Admin\AdminKategorienModel.cs" />
     <Compile Include="Models\Home\PdfPlanerModel.cs" />
     <Compile Include="Models\Home\HomeVeranstaltungsModel.cs" />
     <Compile Include="Models\Home\HomeVeranstaltungsSpeisenModel.cs" />
+    <Compile Include="Models\I18n\AdminI18nÖffnungszeitenModel.cs" />
     <Compile Include="Models\I18n\AdminI18nVeranstaltungsSpeisenModel.cs" />
     <Compile Include="Models\I18n\AdminI18nVeranstaltungsGetränkeModel.cs" />
     <Compile Include="Models\Admin\AdminVeranstaltungsSpeisenModel.cs" />
@@ -220,16 +222,13 @@
     <Compile Include="Models\I18n\AdminI18nAllergeneModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservierungen.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Räume.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Speisen.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tischbelegungen.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Tische.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Veranstaltungen.cs">
@@ -245,6 +244,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="VeranstaltungsSpeisen.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Öffnungszeiten.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -325,7 +327,7 @@
     <Content Include="Views\Admin\Speisen.cshtml" />
     <Content Include="Views\Admin\Getränke.cshtml" />
     <Content Include="Views\Admin\Räume.cshtml" />
-    <Content Include="Views\Admin\Tische.cshtml" />
+    <Content Include="Views\Admin\Öffnungszeiten.cshtml" />
     <Content Include="Views\Home\Räume.cshtml" />
     <Content Include="Views\Home\Planer.cshtml" />
     <Content Include="Views\Home\Reservierung.cshtml" />
@@ -345,6 +347,7 @@
     <Content Include="Views\I18n\VeranstaltungsGetränke.cshtml" />
     <Content Include="Views\Admin\_PartialKategorien.cshtml" />
     <Content Include="Views\Pdf\Index.cshtml" />
+    <Content Include="Views\I18n\Öffnungszeiten.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

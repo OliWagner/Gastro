@@ -12,12 +12,17 @@ namespace GastroPages
     using System;
     using System.Collections.Generic;
     
-    public partial class Tischbelegungen
+    public partial class Öffnungszeiten
     {
         public int id { get; set; }
-        public int TischId { get; set; }
-        public int UserId { get; set; }
-        public System.DateTime Von { get; set; }
-        public System.DateTime Bis { get; set; }
+        public int Wochentag { get; set; }
+        public string Von1 { get; set; }
+        public string Bis1 { get; set; }
+        public string Von2 { get; set; }
+        public string Bis2 { get; set; }
+        public bool IstRuhetag { get; set; }
+        public string Ergänzung1 { get; set; }
+        public string Ergänzung2 { get; set; }
+        public string Ergänzung3 { get; set; }
     }
 }

@@ -210,4 +210,28 @@
   <data name="PdfAnsprache" xml:space="preserve">
     <value>Grazie per il tuo interesse per la nostra casa. Ti contatteremo al più presto.</value>
   </data>
+  <data name="Dienstag" xml:space="preserve">
+    <value>Martedì</value>
+  </data>
+  <data name="Donnerstag" xml:space="preserve">
+    <value>Giovedi</value>
+  </data>
+  <data name="Freitag" xml:space="preserve">
+    <value>Venerdì</value>
+  </data>
+  <data name="Mittwoch" xml:space="preserve">
+    <value>Mercoledì</value>
+  </data>
+  <data name="Montag" xml:space="preserve">
+    <value>Lunedi</value>
+  </data>
+  <data name="Ruhetag" xml:space="preserve">
+    <value>Giorno libero</value>
+  </data>
+  <data name="Samstag" xml:space="preserve">
+    <value>Sabato</value>
+  </data>
+  <data name="Sonntag" xml:space="preserve">
+    <value>Domenica</value>
+  </data>
 </root>
