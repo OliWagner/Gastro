@@ -249,4 +249,19 @@
   <data name="von" xml:space="preserve">
     <value>von</value>
   </data>
+  <data name="Uhrzeit" xml:space="preserve">
+    <value>Uhrzeit</value>
+  </data>
+  <data name="MitteilungAnWirt" xml:space="preserve">
+    <value>Falls Sie noch eine Nachricht oder Mitteilung für uns haben, benutzen Sie bitte das Textfeld.</value>
+  </data>
+  <data name="BtnSendenText" xml:space="preserve">
+    <value>Senden</value>
+  </data>
+  <data name="DsvgoReservierung" xml:space="preserve">
+    <value>Ich bin damit einverstanden, dass meine Angaben verwendet werden, damit auf meine Anfrage reagiert werden kann. Meine Daten werden sonst nicht verwendet und nach Ablauf des Reservierungstermins automatisch gelöscht.</value>
+  </data>
+  <data name="ReservierungBestätigung" xml:space="preserve">
+    <value>Vielen Dank für Ihre Reservierung. Wir freuen uns auf Sie!</value>
+  </data>
 </root>

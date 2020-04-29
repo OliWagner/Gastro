@@ -249,4 +249,19 @@
   <data name="von" xml:space="preserve">
     <value>из</value>
   </data>
+  <data name="Uhrzeit" xml:space="preserve">
+    <value>время дня</value>
+  </data>
+  <data name="MitteilungAnWirt" xml:space="preserve">
+    <value>Если у вас все еще есть сообщение или сообщение для нас, пожалуйста, используйте текстовое поле.</value>
+  </data>
+  <data name="BtnSendenText" xml:space="preserve">
+    <value>отправить</value>
+  </data>
+  <data name="DsvgoReservierung" xml:space="preserve">
+    <value>Я согласен, что мои данные будут использованы для ответа на мой запрос. В противном случае мои данные не будут использованы и будут автоматически удалены после даты бронирования.</value>
+  </data>
+  <data name="ReservierungBestätigung" xml:space="preserve">
+    <value>Спасибо за ваше бронирование. Мы с нетерпением ждем вас!</value>
+  </data>
 </root>

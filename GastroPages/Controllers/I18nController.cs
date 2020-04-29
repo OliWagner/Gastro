@@ -16,6 +16,17 @@ namespace GastroPages.Controllers
     /// 6 - Veranstaltungsgetränke
     /// 7 - Veranstaltungsspeisen
     /// 8 - Öffnungszeiten
+    ///     Die Tabelle Öffnungszeiten wird ein wenig vergewaltigt:
+    ///         (Die Nummern sind als AllergenId in I18n zu hinterlegen)
+    ///         Wochentag 1-7 sind die tatsächlichen Einträge der Öffnungszeiten
+    ///         Wochentag 8 Öffnungszeiten Einführungstext (Vorwort)
+    ///         Wochentag 9 Öffnungszeiten Schlusstext (Nachwort)
+    ///         Wochentag 10 Reservierungen Einleitung
+    ///         Wochentag 11 Reservierungen Wichtige Mitteilung
+    ///         Wochentag 12 Kontakte
+    ///         Wochentag 13 Impressum
+    /// 9 - Kontakte
+    /// 10 - Impressum
     /// 
     /// 1 - Deutsch
     /// 2 - Italienisch
@@ -389,7 +400,113 @@ namespace GastroPages.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Reservierung()
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                AdminI18nReservierungModel model = new AdminI18nReservierungModel();
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
+        [HttpPost]
+        public ActionResult ReservierungEintragen(AdminI18nReservierungModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                try
+                {
+                    I18n eintragEnglischAnsprache = new I18n();
+                    eintragEnglischAnsprache.Bezeichnung = " ";
+                    eintragEnglischAnsprache.Typ = 9;
+                    eintragEnglischAnsprache.SprachId = 5;
+                    eintragEnglischAnsprache.Ergänzung1 = model.Englisch_Ansprache;
+                    eintragEnglischAnsprache.AllergenId = 10;
+
+                    I18n eintragSpanischAnsprache = new I18n();
+                    eintragSpanischAnsprache.Bezeichnung = " ";
+                    eintragSpanischAnsprache.Typ = 9;
+                    eintragSpanischAnsprache.SprachId = 3;
+                    eintragSpanischAnsprache.Ergänzung1 = model.Spanisch_Ansprache;
+                    eintragSpanischAnsprache.AllergenId = 10;
+
+                    I18n eintragRussischAnsprache = new I18n();
+                    eintragRussischAnsprache.Bezeichnung = " ";
+                    eintragRussischAnsprache.Typ = 9;
+                    eintragRussischAnsprache.SprachId = 4;
+                    eintragRussischAnsprache.Ergänzung1 = model.Russisch_Ansprache;
+                    eintragRussischAnsprache.AllergenId = 10;
+
+                    I18n eintragItalienischAnsprache = new I18n();
+                    eintragItalienischAnsprache.Bezeichnung = " ";
+                    eintragItalienischAnsprache.Typ = 9;
+                    eintragItalienischAnsprache.SprachId = 2;
+                    eintragItalienischAnsprache.Ergänzung1 = model.Italienisch_Ansprache;
+                    eintragItalienischAnsprache.AllergenId = 10;
+
+
+                    I18n eintragEnglischHinweis = new I18n();
+                    eintragEnglischHinweis.Bezeichnung = " ";
+                    eintragEnglischHinweis.Typ = 9;
+                    eintragEnglischHinweis.SprachId = 5;
+                    eintragEnglischHinweis.Ergänzung1 = model.Englisch_WichtigerHinweis;
+                    eintragEnglischHinweis.AllergenId = 11;
+
+                    I18n eintragSpanischHinweis = new I18n();
+                    eintragSpanischHinweis.Bezeichnung = " ";
+                    eintragSpanischHinweis.Typ = 9;
+                    eintragSpanischHinweis.SprachId = 3;
+                    eintragSpanischHinweis.Ergänzung1 = model.Spanisch_WichtigerHinweis;
+                    eintragSpanischHinweis.AllergenId = 11;
+
+                    I18n eintragRussischHinweis = new I18n();
+                    eintragRussischHinweis.Bezeichnung = " ";
+                    eintragRussischHinweis.Typ = 9;
+                    eintragRussischHinweis.SprachId = 4;
+                    eintragRussischHinweis.Ergänzung1 = model.Russisch_WichtigerHinweis;
+                    eintragRussischHinweis.AllergenId = 11;
+
+                    I18n eintragItalienischHinweis = new I18n();
+                    eintragItalienischHinweis.Bezeichnung = " ";
+                    eintragItalienischHinweis.Typ = 9;
+                    eintragItalienischHinweis.SprachId = 2;
+                    eintragItalienischHinweis.Ergänzung1 = model.Italienisch_WichtigerHinweis;
+                    eintragItalienischHinweis.AllergenId = 11;
+
+
+
+
+
+                    using (GastroEntities _db = new GastroEntities())
+                    {
+                        //erst löschen wenn vorhanden
+                        List<I18n> liste = (from I18n i18n in _db.I18n where i18n.Typ == 9 select i18n).ToList();
+                        _db.I18n.RemoveRange(liste);
+
+                        _db.I18n.Add(eintragEnglischAnsprache);
+                        _db.I18n.Add(eintragItalienischAnsprache);
+                        _db.I18n.Add(eintragSpanischAnsprache);
+                        _db.I18n.Add(eintragRussischAnsprache);
+
+                        _db.I18n.Add(eintragEnglischHinweis);
+                        _db.I18n.Add(eintragItalienischHinweis);
+                        _db.I18n.Add(eintragSpanischHinweis);
+                        _db.I18n.Add(eintragRussischHinweis);
+
+                        
+
+                        _db.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var i = 0;
+                }
+                return RedirectToAction("Reservierung", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
         public ActionResult Mittagstisch(int id)
         {

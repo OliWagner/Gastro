@@ -115,6 +115,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Senden ähnelt.
+        /// </summary>
+        public static string BtnSendenText {
+            get {
+                return ResourceManager.GetString("BtnSendenText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dienstag ähnelt.
         /// </summary>
         public static string Dienstag {
@@ -129,6 +138,15 @@ namespace ResourcesGastro.Shared {
         public static string Donnerstag {
             get {
                 return ResourceManager.GetString("Donnerstag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ich bin damit einverstanden, dass meine Angaben verwendet werden, damit auf meine Anfrage reagiert werden kann. Meine Daten werden sonst nicht verwendet und nach Ablauf des Reservierungstermins automatisch gelöscht. ähnelt.
+        /// </summary>
+        public static string DsvgoReservierung {
+            get {
+                return ResourceManager.GetString("DsvgoReservierung", resourceCulture);
             }
         }
         
@@ -219,6 +237,15 @@ namespace ResourcesGastro.Shared {
         public static string Mittagstisch {
             get {
                 return ResourceManager.GetString("Mittagstisch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Falls Sie noch eine Nachricht oder Mitteilung für uns haben, benutzen Sie bitte das Textfeld. ähnelt.
+        /// </summary>
+        public static string MitteilungAnWirt {
+            get {
+                return ResourceManager.GetString("MitteilungAnWirt", resourceCulture);
             }
         }
         
@@ -349,6 +376,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vielen Dank für Ihre Reservierung. Wir freuen uns auf Sie! ähnelt.
+        /// </summary>
+        public static string ReservierungBestätigung {
+            get {
+                return ResourceManager.GetString("ReservierungBestätigung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Restaurant ähnelt.
         /// </summary>
         public static string Restaurant {
@@ -417,6 +453,15 @@ namespace ResourcesGastro.Shared {
         public static string Uhr {
             get {
                 return ResourceManager.GetString("Uhr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Uhrzeit ähnelt.
+        /// </summary>
+        public static string Uhrzeit {
+            get {
+                return ResourceManager.GetString("Uhrzeit", resourceCulture);
             }
         }
         

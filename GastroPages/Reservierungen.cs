@@ -17,7 +17,8 @@ namespace GastroPages
         public int id { get; set; }
         public string Name { get; set; }
         public string Telefonnummer { get; set; }
-        public Nullable<System.DateTime> Datum { get; set; }
+        public string Datum { get; set; }
+        public string Uhrzeit { get; set; }
         public Nullable<int> Personenzahl { get; set; }
         public Nullable<System.DateTime> Eingabedatum { get; set; }
         public string Nachricht { get; set; }

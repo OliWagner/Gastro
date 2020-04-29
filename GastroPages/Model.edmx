@@ -160,7 +160,8 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Telefonnummer" Type="varchar" MaxLength="50" />
-          <Property Name="Datum" Type="datetime" />
+          <Property Name="Datum" Type="varchar" MaxLength="10" />
+          <Property Name="Uhrzeit" Type="varchar" MaxLength="5" />
           <Property Name="Personenzahl" Type="int" />
           <Property Name="Eingabedatum" Type="datetime" />
           <Property Name="Nachricht" Type="nvarchar(max)" />
@@ -512,7 +513,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Telefonnummer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <Property Name="Datum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Uhrzeit" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Personenzahl" Type="Int32" />
           <Property Name="Eingabedatum" Type="DateTime" Precision="3" />
           <Property Name="Nachricht" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -768,6 +770,7 @@
                 <ScalarProperty Name="Nachricht" ColumnName="Nachricht" />
                 <ScalarProperty Name="Eingabedatum" ColumnName="Eingabedatum" />
                 <ScalarProperty Name="Personenzahl" ColumnName="Personenzahl" />
+                <ScalarProperty Name="Uhrzeit" ColumnName="Uhrzeit" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Telefonnummer" ColumnName="Telefonnummer" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

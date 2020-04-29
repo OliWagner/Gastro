@@ -78,9 +78,38 @@ namespace GastroPages.Controllers
             return View(model);
         }
 
-        public ActionResult Reservierung()
+        //public ActionResult Reservierung()
+        //{
+        //    HomeReservierungModel model = new HomeReservierungModel();
+        //    return View(model);
+        //}
+
+
+        public ActionResult Reservierung(HomeReservierungModel model)
         {
-            return View();
+            if (model == null) {
+                HomeReservierungModel m = new HomeReservierungModel();
+                return View(m);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ReservierungEintragen(HomeReservierungModel model)
+        {
+            using (GastroEntities _db = new GastroEntities()) {
+                Reservierungen reservierung = new Reservierungen();
+                reservierung.Eingabedatum = DateTime.Now;
+                reservierung.Nachricht = model.Mitteilung;
+                reservierung.Personenzahl = int.Parse(model.Personenzahl.ToString());
+                reservierung.Telefonnummer = model.Telefon;
+                reservierung.Datum = model.Datum;
+                reservierung.Uhrzeit = model.Uhrzeit;
+                _db.Reservierungen.Add(reservierung);
+                _db.SaveChanges();
+            }
+            
+            return RedirectToAction("Reservierung", "Home", model);
         }
 
         public ActionResult Mittagstisch()

@@ -60,6 +60,36 @@ namespace GastroPages.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Reservierung()
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                AdminReservierungModel model = new AdminReservierungModel();
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult ReservierungEintragen(AdminReservierungModel arm)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                //EIntragen
+                using (GastroEntities _db = new GastroEntities()) {
+                    Öffnungszeiten ö1 = (from Öffnungszeiten oez in _db.Öffnungszeiten where oez.Wochentag == 10 select oez).FirstOrDefault();
+                    Öffnungszeiten ö2 = (from Öffnungszeiten oez in _db.Öffnungszeiten where oez.Wochentag == 11 select oez).FirstOrDefault();
+                    ö1.Ergänzung1 = arm.Ansprache;
+                    ö2.Ergänzung1 = arm.WichtigerHinweis;
+                    _db.SaveChanges();
+                }
+                AdminReservierungModel model = new AdminReservierungModel();
+                return RedirectToAction("Reservierung", "Admin", model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
 
         public ActionResult BenutzerBearbeiten(int id)
         {

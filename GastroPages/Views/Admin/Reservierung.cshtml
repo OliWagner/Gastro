@@ -1,0 +1,28 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminReservierungModel
+<h2>Texte für Reservierungen <a href="/I18n/Reservierung/">I18n</a></h2>
+@using (Html.BeginForm("ReservierungEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    <table border="0">
+        <tr>
+            <td valign="top">Ansprache:</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Ansprache)</td>
+        </tr>
+        <tr>
+            <td valign="top">Wichtiger Hinweis:</td>
+            <td valign="top">
+                Der Hinweis wird rot umrandet angezeigt, wenn ein Inhalt hinterlegt ist<br />
+                @Html.TextAreaFor(model => model.WichtigerHinweis)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" valign="top"><input type="submit" /></td>
+        </tr>
+    </table>
+}
+
+
+
+
+
+
