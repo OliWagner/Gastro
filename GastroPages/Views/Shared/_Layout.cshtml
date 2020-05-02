@@ -1,4 +1,8 @@
-﻿@using Resources = ResourcesGastro.Shared.Navi
+﻿@using GastroPages.Models
+@{
+    var viewModel = (MainLayoutViewModel)ViewBag.MainLayoutViewModel;
+}
+@using Resources = ResourcesGastro.Shared.Navi
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +26,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(Resources.Raeumlichkeiten, "Räume", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.UeberUns<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(Resources.UnserTeam, "About", "Home")</li>
+                            <li>@Html.ActionLink(Resources.Raeumlichkeiten, "Räume", "Home")</li>
+                            <li>@Html.ActionLink(Resources.Login, "Logon", "Home")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink(Resources.Speisekarte, "Karte", "Home")</li>
                     <li>@Html.ActionLink(Resources.Mittagstisch, "Mittagstisch", "Home")</li>
                     <li>@Html.ActionLink(Resources.Reservierung, "Reservierung", "Home")</li>
                     <li>@Html.ActionLink(Resources.Veranstaltungsplaner, "Planer", "Home")</li>
-
                     <li>@Html.ActionLink(Resources.Öffnungszeiten, "Öffnungszeiten", "Home")</li>
-                    <li>@Html.ActionLink(Resources.Login, "Logon", "Home")</li>
+
                     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li>
                         @{
@@ -84,6 +94,42 @@
                             <img src='@Url.Content("~/Images/flagge_ru.png")' width="45" height="29" />
                         </a>
                     </li>
+
+                    @if (viewModel.Youtube != null && !viewModel.Youtube.Equals(""))
+                    {
+                    <li>
+                        <a href="@viewModel.Youtube"><img src="~/Images/social-youtube.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                    </li>}
+
+                    @if (viewModel.Facebook != null && !viewModel.Youtube.Equals(""))
+                    {
+                    <li>
+                        <a href="@viewModel.Youtube"><img src="~/Images/social-facebook.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                    </li>}
+
+                    @if (viewModel.Pinterest != null && !viewModel.Pinterest.Equals(""))
+                    {
+                    <li>
+                        <a href="@viewModel.Pinterest"><img src="~/Images/social-pinterest.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                    </li>}
+
+                    @if (viewModel.Snapchat != null && !viewModel.Snapchat.Equals(""))
+                    {
+                    <li>
+                        <a href="@viewModel.Snapchat"><img src="~/Images/social-snapchat.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                    </li>}
+
+                    @if (viewModel.Instagramm != null && !viewModel.Instagramm.Equals(""))
+                    {
+                    <li>
+                        <a href="@viewModel.Instagramm"><img src="~/Images/social-instagram_2.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                    </li>}
+
+                    @if (viewModel.GooglePlus != null && !viewModel.GooglePlus.Equals(""))
+                    {
+                    <li>
+                        <a href="@viewModel.GooglePlus"><img src="~/Images/social-google.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                    </li>}
                 </ul>
             </div>
 

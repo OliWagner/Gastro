@@ -46,5 +46,6 @@ namespace GastroPages
         public virtual DbSet<AllergeneVeranstaltungsSpeisenIdSpeiseId> AllergeneVeranstaltungsSpeisenIdSpeiseId { get; set; }
         public virtual DbSet<Öffnungszeiten> Öffnungszeiten { get; set; }
         public virtual DbSet<Reservierungen> Reservierungen { get; set; }
+        public virtual DbSet<AdminKontakte> AdminKontakte { get; set; }
     }
 }

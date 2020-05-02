@@ -1,0 +1,123 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminI18nKontaktModel
+<h2>Kontakt - Internationalisierung</h2>
+<script>
+    function openTab(index) {
+        var element = document.getElementsByTagName('div');
+        var name = "";
+        var obj;
+
+        for (var i = 0; i < element.length; i++) {
+            name = element[i].id;
+            if (name.substr(0, 8) == 'tab_box_') {
+                obj = document.getElementById(name);
+
+                obj.hidden = true;
+
+            }
+            if (name.substr(0, 8) == 'tab_top_') {
+                obj = document.getElementById(name);
+                obj.setAttribute('class', 'tab_top_passive');
+            }
+
+        }
+        var tab = document.getElementById("tab_box_" + index);
+        tab.hidden = false;
+        tab = document.getElementById("tab_top_" + index);
+        tab.setAttribute('class', 'tab_top_active');
+    }
+
+    function dokumentVollständigGeladen() {
+        openTab(0);
+    }
+    window.addEventListener('load', dokumentVollständigGeladen, false);
+</script>
+@using (Html.BeginForm("KontaktEintragen", "I18n", FormMethod.Post, new { id = "EingabeForm" }))
+{
+<div id='tabmenu' class='tabmenu'>
+    <!-- Tab-Reiter -->
+    <div id='tab_top_0' class='tab_top_active' onclick='javascript:openTab(0)' ;>Info</div>
+    <div id='tab_top_1' class='tab_top_active' onclick='javascript:openTab(1)' ;>Ansprache</div>
+    <div id='tab_top_2' class='tab_top_active' onclick='javascript:openTab(2)' ;>Nachrichtentext</div>
+
+
+    <div style='clear: both;'></div>
+
+    <div id='tab_box_0' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="2"><b>Informationen</b></td>
+            </tr>
+            <tr>
+                <td valign="top" colspan="2">&nbsp;</td>  
+            </tr>
+            <tr>
+                <td valign="top">&nbsp;</td>
+                <td valign="top"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id='tab_box_1' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Ansprache</b></td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Einleitung)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Einleitung)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Einleitung)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Einleitung)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id='tab_box_2' class='tab_box'>
+        <table border="0" class="AllergeneMehrsprachigkeit">
+            <tr>
+                <td valign="top" colspan="3"><b>Nachrichtentext</b></td>
+            </tr>
+            <tr>
+                <td valign="top">Englisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Nachrichtentext)</td>
+            </tr>
+            <tr>
+                <td valign="top">Italienisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Nachrichtentext)</td>
+            </tr>
+            <tr>
+                <td valign="top">Russisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Nachrichtentext)</td>
+            </tr>
+            <tr>
+                <td valign="top">Spanisch</td>
+                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Nachrichtentext)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td valign="top"><input type="submit" value="eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+    <div style='clear: both;'></div>
+
+}

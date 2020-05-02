@@ -42,11 +42,18 @@
                             <li>@Html.ActionLink("Pdf's erstellen", "Index", "Pdf")</li>
                         </ul>
                     </li>
-                    
-                    <li>@Html.ActionLink("Räume", "Räume", "Admin")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inhalte<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Kontakt", "Kontakt", "Admin")</li>
+                            <li>@Html.ActionLink("Impressum", "Impressum", "Admin")</li>
+                            <li>@Html.ActionLink("Räume", "Räume", "Admin")</li>
+                            <li>@Html.ActionLink("Reservierung", "Reservierung", "Admin")</li>
+                        </ul>
+                    </li>                    
                     <li>@Html.ActionLink("Öffnungszeiten", "Öffnungszeiten", "Admin")</li>
                     
-                    <li>@Html.ActionLink("Reservierung", "Reservierung", "Admin")</li>
+                    
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Veranstaltungen<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Speisen", "VeranstaltungsSpeisen", "Admin")</li>

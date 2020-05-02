@@ -5,6 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GastroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminKontakte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdresseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdresseStrasse" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdresseZusatz" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdressePlz" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdresseOrt" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="255" />
+          <Property Name="GooglePlus" Type="nvarchar" MaxLength="255" />
+          <Property Name="Youtube" Type="nvarchar" MaxLength="255" />
+          <Property Name="Pinterest" Type="nvarchar" MaxLength="255" />
+          <Property Name="Instagramm" Type="nvarchar" MaxLength="255" />
+          <Property Name="Snapchat" Type="nvarchar" MaxLength="255" />
+          <Property Name="Einleitungstext" Type="nvarchar(max)" />
+          <Property Name="TextFuerNachricht" Type="nvarchar(max)" />
+          <Property Name="AdresseInhaber" Type="nvarchar" MaxLength="50" />
+          <Property Name="GpsKartenDaten" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Allergene">
           <Key>
             <PropertyRef Name="id" />
@@ -238,6 +262,7 @@
           <Property Name="IstAktiv" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="GastroModelStoreContainer">
+          <EntitySet Name="AdminKontakte" EntityType="Self.AdminKontakte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Allergene" EntityType="Self.Allergene" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AllergeneGetränkeIdSpeiseId" EntityType="Self.AllergeneGetränkeIdSpeiseId" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AllergeneMittagstischIdSpeiseId" EntityType="Self.AllergeneMittagstischIdSpeiseId" Schema="dbo" store:Type="Tables" />
@@ -326,6 +351,7 @@
           <EntitySet Name="AllergeneVeranstaltungsSpeisenIdSpeiseId" EntityType="GastroModel.AllergeneVeranstaltungsSpeisenIdSpeiseId" />
           <EntitySet Name="Öffnungszeiten" EntityType="GastroModel.Öffnungszeiten" />
           <EntitySet Name="Reservierungen" EntityType="GastroModel.Reservierungen" />
+          <EntitySet Name="AdminKontakte" EntityType="GastroModel.AdminKontakte" />
         </EntityContainer>
         <EntityType Name="Veranstaltungen">
           <Key>
@@ -518,6 +544,30 @@
           <Property Name="Personenzahl" Type="Int32" />
           <Property Name="Eingabedatum" Type="DateTime" Precision="3" />
           <Property Name="Nachricht" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AdminKontakte">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdresseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdresseStrasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdresseZusatz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdressePlz" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdresseOrt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GooglePlus" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Pinterest" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Instagramm" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Snapchat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Einleitungstext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TextFuerNachricht" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AdresseInhaber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GpsKartenDaten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -774,6 +824,31 @@
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="Telefonnummer" ColumnName="Telefonnummer" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminKontakte">
+            <EntityTypeMapping TypeName="GastroModel.AdminKontakte">
+              <MappingFragment StoreEntitySet="AdminKontakte">
+                <ScalarProperty Name="GpsKartenDaten" ColumnName="GpsKartenDaten" />
+                <ScalarProperty Name="AdresseInhaber" ColumnName="AdresseInhaber" />
+                <ScalarProperty Name="TextFuerNachricht" ColumnName="TextFuerNachricht" />
+                <ScalarProperty Name="Einleitungstext" ColumnName="Einleitungstext" />
+                <ScalarProperty Name="Snapchat" ColumnName="Snapchat" />
+                <ScalarProperty Name="Instagramm" ColumnName="Instagramm" />
+                <ScalarProperty Name="Pinterest" ColumnName="Pinterest" />
+                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+                <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefax" ColumnName="Telefax" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="AdresseOrt" ColumnName="AdresseOrt" />
+                <ScalarProperty Name="AdressePlz" ColumnName="AdressePlz" />
+                <ScalarProperty Name="AdresseZusatz" ColumnName="AdresseZusatz" />
+                <ScalarProperty Name="AdresseStrasse" ColumnName="AdresseStrasse" />
+                <ScalarProperty Name="AdresseName" ColumnName="AdresseName" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

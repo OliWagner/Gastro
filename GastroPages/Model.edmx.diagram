@@ -26,6 +26,7 @@
         <EntityTypeShape EntityType="GastroModel.AllergeneVeranstaltungsSpeisenIdSpeiseId" Width="1.5" PointX="12.625" PointY="2.125" />
         <EntityTypeShape EntityType="GastroModel.Öffnungszeiten" Width="1.5" PointX="12.75" PointY="5.625" />
         <EntityTypeShape EntityType="GastroModel.Reservierungen" Width="1.5" PointX="8.625" PointY="3.375" />
+        <EntityTypeShape EntityType="GastroModel.AdminKontakte" Width="1.5" PointX="14.375" PointY="0.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

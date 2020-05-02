@@ -61,6 +61,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Adresse ähnelt.
+        /// </summary>
+        public static string Adresse {
+            get {
+                return ResourceManager.GetString("Adresse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Es muss sich um eine gültige Mailadresse handeln. ähnelt.
         /// </summary>
         public static string AlertMail {
@@ -201,6 +210,15 @@ namespace ResourcesGastro.Shared {
         public static string Impressum {
             get {
                 return ResourceManager.GetString("Impressum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Inhaber ähnelt.
+        /// </summary>
+        public static string Inhaber {
+            get {
+                return ResourceManager.GetString("Inhaber", resourceCulture);
             }
         }
         
@@ -439,6 +457,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Telefax ähnelt.
+        /// </summary>
+        public static string Telefax {
+            get {
+                return ResourceManager.GetString("Telefax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Über uns ähnelt.
         /// </summary>
         public static string UeberUns {
@@ -471,6 +498,15 @@ namespace ResourcesGastro.Shared {
         public static string und {
             get {
                 return ResourceManager.GetString("und", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unser Team ähnelt.
+        /// </summary>
+        public static string UnserTeam {
+            get {
+                return ResourceManager.GetString("UnserTeam", resourceCulture);
             }
         }
         

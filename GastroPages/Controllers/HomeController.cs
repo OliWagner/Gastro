@@ -46,7 +46,7 @@ namespace GastroPages.Controllers
 
         public ActionResult Contact()
         {
-            return View();
+                return View(new HomeKontakteModel());
         }
 
         public ActionResult Planer()

@@ -60,6 +60,48 @@ namespace GastroPages.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Kontakt()
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                HomeKontakteModel model = new HomeKontakteModel();
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult KontaktEintragen(HomeKontakteModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                using (GastroEntities db = new GastroEntities()) { 
+                AdminKontakte m = (from AdminKontakte kon in db.AdminKontakte where kon.id == 1 select kon).FirstOrDefault();
+                    m.Instagramm = model.Kontakt.Instagramm;
+                    m.Pinterest = model.Kontakt.Pinterest;
+                    m.Snapchat = model.Kontakt.Snapchat;
+                    m.Telefax = model.Kontakt.Telefax;
+                    m.Telefon = model.Kontakt.Telefon;
+                    m.TextFuerNachricht = model.Kontakt.TextFuerNachricht;
+                    m.Youtube = model.Kontakt.Youtube;
+                    m.GpsKartenDaten = model.Kontakt.GpsKartenDaten;
+                    m.GooglePlus = model.Kontakt.GooglePlus;
+                    m.Facebook = model.Kontakt.Facebook;
+                    m.Email = model.Kontakt.Email;
+                    m.Einleitungstext = model.Kontakt.Einleitungstext;
+                    m.AdresseZusatz = model.Kontakt.AdresseZusatz;
+                    m.AdresseStrasse = model.Kontakt.AdresseStrasse;
+                    m.AdressePlz = model.Kontakt.AdressePlz;
+                    m.AdresseOrt = model.Kontakt.AdresseOrt;
+                    m.AdresseName = model.Kontakt.AdresseName;
+                    m.AdresseInhaber = model.Kontakt.AdresseInhaber;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Kontakt", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Reservierung()
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))

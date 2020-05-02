@@ -264,4 +264,16 @@
   <data name="ReservierungBestätigung" xml:space="preserve">
     <value>Спасибо за ваше бронирование. Мы с нетерпением ждем вас!</value>
   </data>
+  <data name="UnserTeam" xml:space="preserve">
+    <value>Наша команда</value>
+  </data>
+  <data name="Adresse" xml:space="preserve">
+    <value>адрес</value>
+  </data>
+  <data name="Inhaber" xml:space="preserve">
+    <value>владелец</value>
+  </data>
+  <data name="Telefax" xml:space="preserve">
+    <value>факс</value>
+  </data>
 </root>

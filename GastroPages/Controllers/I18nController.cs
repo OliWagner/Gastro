@@ -23,8 +23,7 @@ namespace GastroPages.Controllers
     ///         Wochentag 9 Öffnungszeiten Schlusstext (Nachwort)
     ///         Wochentag 10 Reservierungen Einleitung
     ///         Wochentag 11 Reservierungen Wichtige Mitteilung
-    ///         Wochentag 12 Kontakte
-    ///         Wochentag 13 Impressum
+    ///         Wochentag 12 Impressum
     /// 9 - Kontakte
     /// 10 - Impressum
     /// 
@@ -37,7 +36,74 @@ namespace GastroPages.Controllers
 
     public class I18nController : Controller
     {
-        // GET: I18n
+
+        public ActionResult Kontakt()
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                AdminI18nKontaktModel model = new AdminI18nKontaktModel();
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult KontaktEintragen(AdminI18nKontaktModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                I18n eintragEnglisch = new I18n();
+                eintragEnglisch.Bezeichnung = " ";
+                eintragEnglisch.Typ = 9;
+                eintragEnglisch.SprachId = 5;
+                eintragEnglisch.Ergänzung1 = model.Englisch_Einleitung;
+                eintragEnglisch.Ergänzung2 = model.Englisch_Nachrichtentext;
+                eintragEnglisch.AllergenId = 1;
+
+                I18n eintragSpanisch = new I18n();
+                eintragSpanisch.Bezeichnung = " ";
+                eintragSpanisch.Typ = 9;
+                eintragSpanisch.SprachId = 3;
+                eintragSpanisch.Ergänzung1 = model.Spanisch_Einleitung;
+                eintragSpanisch.Ergänzung2 = model.Spanisch_Nachrichtentext;
+                eintragSpanisch.AllergenId = 1;
+
+                I18n eintragItalienisch = new I18n();
+                eintragItalienisch.Bezeichnung = " ";
+                eintragItalienisch.Typ = 9;
+                eintragItalienisch.SprachId = 2;
+                eintragItalienisch.Ergänzung1 = model.Italienisch_Einleitung;
+                eintragItalienisch.Ergänzung2 = model.Italienisch_Nachrichtentext;
+                eintragItalienisch.AllergenId = 1;
+
+
+                I18n eintragRussisch = new I18n();
+                eintragRussisch.Bezeichnung = " ";
+                eintragRussisch.Typ = 9;
+                eintragRussisch.SprachId = 4;
+                eintragRussisch.Ergänzung1 = model.Russisch_Einleitung;
+                eintragRussisch.Ergänzung2 = model.Russisch_Nachrichtentext;
+                eintragRussisch.AllergenId = 1;
+
+                using (GastroEntities _db = new GastroEntities())
+                {
+                    //erst löschen wenn vorhanden
+                    List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == 1 && i18n.Typ == 9 select i18n).ToList();
+                    _db.I18n.RemoveRange(liste);
+
+                    _db.I18n.Add(eintragEnglisch);
+                    _db.I18n.Add(eintragItalienisch);
+                    _db.I18n.Add(eintragSpanisch);
+                    _db.I18n.Add(eintragRussisch);
+
+                    _db.SaveChanges();
+                }
+
+                return RedirectToAction("Kontakt", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Allergene(int id)
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))

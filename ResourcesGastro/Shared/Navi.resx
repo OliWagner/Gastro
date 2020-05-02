@@ -264,4 +264,16 @@
   <data name="ReservierungBestätigung" xml:space="preserve">
     <value>Vielen Dank für Ihre Reservierung. Wir freuen uns auf Sie!</value>
   </data>
+  <data name="UnserTeam" xml:space="preserve">
+    <value>Unser Team</value>
+  </data>
+  <data name="Adresse" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Inhaber" xml:space="preserve">
+    <value>Inhaber</value>
+  </data>
+  <data name="Telefax" xml:space="preserve">
+    <value>Telefax</value>
+  </data>
 </root>

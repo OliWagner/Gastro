@@ -1,2 +1,86 @@
-﻿<h2>@ResourcesGastro.Shared.Navi.Kontakt</h2>
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeKontakteModel
+<h2>@ResourcesGastro.Shared.Navi.Kontakt</h2>
 
+@using (Html.BeginForm("KontaktEintragen", "Home", FormMethod.Post, new { id = "EingabeForm" }))
+{
+<table border="0">
+
+    @if (Model.Kontakt.Einleitungstext != null && !Model.Kontakt.Einleitungstext.Equals(""))
+    {
+        <tr>
+            <td>@Model.Kontakt.Einleitungstext</td>
+        </tr>
+    }
+
+    <tr>
+        <td><h3>@Model.Kontakt.AdresseName - @ResourcesGastro.Shared.Navi.Inhaber: @Model.Kontakt.AdresseInhaber</h3></td>
+    </tr>
+
+    <tr>
+        <td>
+            @if (Model.Kontakt.Youtube != null && !Model.Kontakt.Youtube.Equals(""))
+            {
+                <a href="@Model.Kontakt.Youtube"><img src="~/Images/social-youtube.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+            }
+
+            @if (Model.Kontakt.Facebook != null && !Model.Kontakt.Youtube.Equals(""))
+            {
+                <a href="@Model.Kontakt.Youtube"><img src="~/Images/social-facebook.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+            }
+
+            @if (Model.Kontakt.Pinterest != null && !Model.Kontakt.Pinterest.Equals(""))
+            {
+                <a href="@Model.Kontakt.Pinterest"><img src="~/Images/social-pinterest.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+            }
+
+            @if (Model.Kontakt.Snapchat != null && !Model.Kontakt.Snapchat.Equals(""))
+            {
+                <a href="@Model.Kontakt.Snapchat"><img src="~/Images/social-snapchat.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+            }
+
+            @if (Model.Kontakt.Instagramm != null && !Model.Kontakt.Instagramm.Equals(""))
+            {
+                <a href="@Model.Kontakt.Instagramm"><img src="~/Images/social-instagram_2.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+            }
+
+            @if (Model.Kontakt.GooglePlus != null && !Model.Kontakt.GooglePlus.Equals(""))
+            {
+                <a href="@Model.Kontakt.GooglePlus"><img src="~/Images/social-google.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+            }
+            <br /><br />
+        </td>
+    </tr>
+
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.Adresse:</td>
+    </tr>
+    <tr>
+        <td>@Model.Kontakt.AdresseStrasse</td>
+    </tr>
+    <tr>
+        <td>@Model.Kontakt.AdresseZusatz</td>
+    </tr>
+    <tr>
+        <td>@Model.Kontakt.AdressePlz @Model.Kontakt.AdresseOrt</td>
+    </tr>
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.Email: @Model.Kontakt.Email</td>
+    </tr>
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTelefon: @Model.Kontakt.Telefon</td>
+    </tr>
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.Telefax: @Model.Kontakt.Telefax</td>
+    </tr>
+    <tr>
+        <td>@Model.Kontakt.TextFuerNachricht</td>
+    </tr>
+    <tr>
+        <td><textarea name="txtNachricht" id="txtNachricht" cols="20" rows="3"></textarea></td>
+    </tr>
+    <tr>
+        <td><input type="submit" name="" id="" value="@ResourcesGastro.Shared.Navi.BtnSendenText" /></td>
+    </tr>
+</table>
+}

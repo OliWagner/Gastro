@@ -1,4 +1,5 @@
 ﻿using GastroPages.Helpers;
+using GastroPages.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,6 +12,15 @@ namespace GastroPages.Controllers
 {
     public class BaseController : Controller
     {
+        
+        public MainLayoutViewModel MainLayoutViewModel { get; set; }
+
+        public BaseController()
+        {
+            this.MainLayoutViewModel = new MainLayoutViewModel();//has property PageTitle
+            this.ViewData["MainLayoutViewModel"] = this.MainLayoutViewModel;
+        }
+    
 
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {

@@ -264,4 +264,16 @@
   <data name="ReservierungBestätigung" xml:space="preserve">
     <value>Gracias por tu reserva. ¡Te esperamos!</value>
   </data>
+  <data name="UnserTeam" xml:space="preserve">
+    <value>Nuestro equipo</value>
+  </data>
+  <data name="Adresse" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="Inhaber" xml:space="preserve">
+    <value>Propietario</value>
+  </data>
+  <data name="Telefax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
 </root>
