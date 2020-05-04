@@ -168,6 +168,7 @@
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\FIleHelper.cs" />
+    <Compile Include="Helpers\I18nHelper.cs" />
     <Compile Include="Helpers\PdfHelper.cs" />
     <Compile Include="Helpers\KategorienHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />

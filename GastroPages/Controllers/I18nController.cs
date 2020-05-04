@@ -1,4 +1,5 @@
-﻿using GastroPages.Models;
+﻿using GastroPages.Helpers;
+using GastroPages.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,48 +53,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Bezeichnung = " ";
-                eintragEnglisch.Typ = 9;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Ergänzung1 = model.Englisch_Einleitung;
-                eintragEnglisch.Ergänzung2 = model.Englisch_Nachrichtentext;
-                eintragEnglisch.AllergenId = 1;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Bezeichnung = " ";
-                eintragSpanisch.Typ = 9;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Ergänzung1 = model.Spanisch_Einleitung;
-                eintragSpanisch.Ergänzung2 = model.Spanisch_Nachrichtentext;
-                eintragSpanisch.AllergenId = 1;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Bezeichnung = " ";
-                eintragItalienisch.Typ = 9;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Ergänzung1 = model.Italienisch_Einleitung;
-                eintragItalienisch.Ergänzung2 = model.Italienisch_Nachrichtentext;
-                eintragItalienisch.AllergenId = 1;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Bezeichnung = " ";
-                eintragRussisch.Typ = 9;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Ergänzung1 = model.Russisch_Einleitung;
-                eintragRussisch.Ergänzung2 = model.Russisch_Nachrichtentext;
-                eintragRussisch.AllergenId = 1;
-
                 using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == 1 && i18n.Typ == 9 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(9, 5, 1, " ", "", model.Englisch_Einleitung, model.Englisch_Nachrichtentext, "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(9, 2, 1, " ", "", model.Italienisch_Einleitung, model.Italienisch_Nachrichtentext, "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(9, 3, 1, " ", "", model.Spanisch_Einleitung, model.Spanisch_Nachrichtentext, "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(9, 4, 1, " ", "", model.Russisch_Einleitung, model.Russisch_Nachrichtentext, "", "", ""));
 
                     _db.SaveChanges();
                 }
@@ -118,43 +87,15 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 1;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Beschreibung = model.Englisch_Beschreibung;
-                eintragEnglisch.AllergenId = model.AllergenId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 1;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Beschreibung = model.Spanisch_Beschreibung;
-                eintragSpanisch.AllergenId = model.AllergenId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 1;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Beschreibung = model.Italienisch_Beschreibung;
-                eintragItalienisch.AllergenId = model.AllergenId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 1;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Beschreibung = model.Russisch_Beschreibung;
-                eintragRussisch.AllergenId = model.AllergenId;
-
                 using (GastroEntities _db = new GastroEntities()) {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.AllergenId && i18n.Typ == 1 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(1, 5, model.AllergenId, model.Englisch_Bezeichnung, model.Englisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(1, 2, model.AllergenId, model.Italienisch_Bezeichnung, model.Italienisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(1, 3, model.AllergenId, model.Spanisch_Bezeichnung, model.Spanisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(1, 4, model.AllergenId, model.Russisch_Bezeichnung, model.Russisch_Beschreibung, "", "", "", "", ""));
                     _db.SaveChanges();
                 }
 
@@ -180,279 +121,46 @@ namespace GastroPages.Controllers
             {
                 try
                 {
-                    I18n eintragEnglischMontag = new I18n();
-                    eintragEnglischMontag.Bezeichnung = " ";
-                    eintragEnglischMontag.Typ = 8;
-                    eintragEnglischMontag.SprachId = 5;
-                    eintragEnglischMontag.Ergänzung1 = model.Englisch_Montag_Ergänzung1;
-                    eintragEnglischMontag.Ergänzung2 = model.Englisch_Montag_Ergänzung2;
-                    eintragEnglischMontag.AllergenId = 1;
-                    eintragEnglischMontag.Header = model.Englisch_Vorwort;
-
-                    I18n eintragSpanischMontag = new I18n();
-                    eintragSpanischMontag.Bezeichnung = " ";
-                    eintragSpanischMontag.Typ = 8;
-                    eintragSpanischMontag.SprachId = 3;
-                    eintragSpanischMontag.Ergänzung1 = model.Spanisch_Montag_Ergänzung1;
-                    eintragSpanischMontag.Ergänzung2 = model.Spanisch_Montag_Ergänzung2;
-                    eintragSpanischMontag.AllergenId = 1;
-                    eintragSpanischMontag.Header = model.Spanisch_Vorwort;
-
-                    I18n eintragItalienischMontag = new I18n();
-                    eintragItalienischMontag.Bezeichnung = " ";
-                    eintragItalienischMontag.Typ = 8;
-                    eintragItalienischMontag.SprachId = 2;
-                    eintragItalienischMontag.Ergänzung1 = model.Italienisch_Montag_Ergänzung1;
-                    eintragItalienischMontag.Ergänzung2 = model.Italienisch_Montag_Ergänzung2;
-                    eintragItalienischMontag.AllergenId = 1;
-                    eintragItalienischMontag.Header = model.Italienisch_Vorwort;
-
-                    I18n eintragRussischMontag = new I18n();
-                    eintragRussischMontag.Bezeichnung = " ";
-                    eintragRussischMontag.Typ = 8;
-                    eintragRussischMontag.SprachId = 4;
-                    eintragRussischMontag.Ergänzung1 = model.Russisch_Montag_Ergänzung1;
-                    eintragRussischMontag.Ergänzung2 = model.Russisch_Montag_Ergänzung2;
-                    eintragRussischMontag.AllergenId = 1;
-                    eintragRussischMontag.Header = model.Russisch_Vorwort;
-
-                    I18n eintragEnglischDienstag = new I18n();
-                    eintragEnglischDienstag.Bezeichnung = " ";
-                    eintragEnglischDienstag.Typ = 8;
-                    eintragEnglischDienstag.SprachId = 5;
-                    eintragEnglischDienstag.Ergänzung1 = model.Englisch_Dienstag_Ergänzung1;
-                    eintragEnglischDienstag.Ergänzung2 = model.Englisch_Dienstag_Ergänzung2;
-                    eintragEnglischDienstag.AllergenId = 2;
-
-                    I18n eintragSpanischDienstag = new I18n();
-                    eintragSpanischDienstag.Bezeichnung = " ";
-                    eintragSpanischDienstag.Typ = 8;
-                    eintragSpanischDienstag.SprachId = 3;
-                    eintragSpanischDienstag.Ergänzung1 = model.Spanisch_Dienstag_Ergänzung1;
-                    eintragSpanischDienstag.Ergänzung2 = model.Spanisch_Dienstag_Ergänzung2;
-                    eintragSpanischDienstag.AllergenId = 2;
-
-                    I18n eintragItalienischDienstag = new I18n();
-                    eintragItalienischDienstag.Bezeichnung = " ";
-                    eintragItalienischDienstag.Typ = 8;
-                    eintragItalienischDienstag.SprachId = 2;
-                    eintragItalienischDienstag.Ergänzung1 = model.Italienisch_Dienstag_Ergänzung1;
-                    eintragItalienischDienstag.Ergänzung2 = model.Italienisch_Dienstag_Ergänzung2;
-                    eintragItalienischDienstag.AllergenId = 2;
-
-                    I18n eintragRussischDienstag = new I18n();
-                    eintragRussischDienstag.Bezeichnung = " ";
-                    eintragRussischDienstag.Typ = 8;
-                    eintragRussischDienstag.SprachId = 4;
-                    eintragRussischDienstag.Ergänzung1 = model.Russisch_Dienstag_Ergänzung1;
-                    eintragRussischDienstag.Ergänzung2 = model.Russisch_Dienstag_Ergänzung2;
-                    eintragRussischDienstag.AllergenId = 2;
-
-                    I18n eintragEnglischMittwoch = new I18n();
-                    eintragEnglischMittwoch.Bezeichnung = " ";
-                    eintragEnglischMittwoch.Typ = 8;
-                    eintragEnglischMittwoch.SprachId = 5;
-                    eintragEnglischMittwoch.Ergänzung1 = model.Englisch_Mittwoch_Ergänzung1;
-                    eintragEnglischMittwoch.Ergänzung2 = model.Englisch_Mittwoch_Ergänzung2;
-                    eintragEnglischMittwoch.AllergenId = 3;
-
-                    I18n eintragSpanischMittwoch = new I18n();
-                    eintragSpanischMittwoch.Bezeichnung = " ";
-                    eintragSpanischMittwoch.Typ = 8;
-                    eintragSpanischMittwoch.SprachId = 3;
-                    eintragSpanischMittwoch.Ergänzung1 = model.Spanisch_Mittwoch_Ergänzung1;
-                    eintragSpanischMittwoch.Ergänzung2 = model.Spanisch_Mittwoch_Ergänzung2;
-                    eintragSpanischMittwoch.AllergenId = 3;
-
-                    I18n eintragItalienischMittwoch = new I18n();
-                    eintragItalienischMittwoch.Bezeichnung = " ";
-                    eintragItalienischMittwoch.Typ = 8;
-                    eintragItalienischMittwoch.SprachId = 2;
-                    eintragItalienischMittwoch.Ergänzung1 = model.Italienisch_Mittwoch_Ergänzung1;
-                    eintragItalienischMittwoch.Ergänzung2 = model.Italienisch_Mittwoch_Ergänzung2;
-                    eintragItalienischMittwoch.AllergenId = 3;
-
-                    I18n eintragRussischMittwoch = new I18n();
-                    eintragRussischMittwoch.Bezeichnung = " ";
-                    eintragRussischMittwoch.Typ = 8;
-                    eintragRussischMittwoch.SprachId = 4;
-                    eintragRussischMittwoch.Ergänzung1 = model.Russisch_Mittwoch_Ergänzung1;
-                    eintragRussischMittwoch.Ergänzung2 = model.Russisch_Mittwoch_Ergänzung2;
-                    eintragRussischMittwoch.AllergenId = 3;
-
-                    I18n eintragEnglischDonnerstag = new I18n();
-                    eintragEnglischDonnerstag.Bezeichnung = " ";
-                    eintragEnglischDonnerstag.Typ = 8;
-                    eintragEnglischDonnerstag.SprachId = 5;
-                    eintragEnglischDonnerstag.Ergänzung1 = model.Englisch_Donnerstag_Ergänzung1;
-                    eintragEnglischDonnerstag.Ergänzung2 = model.Englisch_Donnerstag_Ergänzung2;
-                    eintragEnglischDonnerstag.AllergenId = 4;
-
-                    I18n eintragSpanischDonnerstag = new I18n();
-                    eintragSpanischDonnerstag.Bezeichnung = " ";
-                    eintragSpanischDonnerstag.Typ = 8;
-                    eintragSpanischDonnerstag.SprachId = 3;
-                    eintragSpanischDonnerstag.Ergänzung1 = model.Spanisch_Donnerstag_Ergänzung1;
-                    eintragSpanischDonnerstag.Ergänzung2 = model.Spanisch_Donnerstag_Ergänzung2;
-                    eintragSpanischDonnerstag.AllergenId = 4;
-
-                    I18n eintragItalienischDonnerstag = new I18n();
-                    eintragItalienischDonnerstag.Bezeichnung = " ";
-                    eintragItalienischDonnerstag.Typ = 8;
-                    eintragItalienischDonnerstag.SprachId = 2;
-                    eintragItalienischDonnerstag.Ergänzung1 = model.Italienisch_Donnerstag_Ergänzung1;
-                    eintragItalienischDonnerstag.Ergänzung2 = model.Italienisch_Donnerstag_Ergänzung2;
-                    eintragItalienischDonnerstag.AllergenId = 4;
-
-                    I18n eintragRussischDonnerstag = new I18n();
-                    eintragRussischDonnerstag.Bezeichnung = " ";
-                    eintragRussischDonnerstag.Typ = 8;
-                    eintragRussischDonnerstag.SprachId = 4;
-                    eintragRussischDonnerstag.Ergänzung1 = model.Russisch_Donnerstag_Ergänzung1;
-                    eintragRussischDonnerstag.Ergänzung2 = model.Russisch_Donnerstag_Ergänzung2;
-                    eintragRussischDonnerstag.AllergenId = 4;
-
-                    I18n eintragEnglischFreitag = new I18n();
-                    eintragEnglischFreitag.Bezeichnung = " ";
-                    eintragEnglischFreitag.Typ = 8;
-                    eintragEnglischFreitag.SprachId = 5;
-                    eintragEnglischFreitag.Ergänzung1 = model.Englisch_Freitag_Ergänzung1;
-                    eintragEnglischFreitag.Ergänzung2 = model.Englisch_Freitag_Ergänzung2;
-                    eintragEnglischFreitag.AllergenId = 5;
-
-                    I18n eintragSpanischFreitag = new I18n();
-                    eintragSpanischFreitag.Bezeichnung = " ";
-                    eintragSpanischFreitag.Typ = 8;
-                    eintragSpanischFreitag.SprachId = 3;
-                    eintragSpanischFreitag.Ergänzung1 = model.Spanisch_Freitag_Ergänzung1;
-                    eintragSpanischFreitag.Ergänzung2 = model.Spanisch_Freitag_Ergänzung2;
-                    eintragSpanischFreitag.AllergenId = 5;
-
-                    I18n eintragItalienischFreitag = new I18n();
-                    eintragItalienischFreitag.Bezeichnung = " ";
-                    eintragItalienischFreitag.Typ = 8;
-                    eintragItalienischFreitag.SprachId = 2;
-                    eintragItalienischFreitag.Ergänzung1 = model.Italienisch_Freitag_Ergänzung1;
-                    eintragItalienischFreitag.Ergänzung2 = model.Italienisch_Freitag_Ergänzung2;
-                    eintragItalienischFreitag.AllergenId = 5;
-
-                    I18n eintragRussischFreitag = new I18n();
-                    eintragRussischFreitag.Bezeichnung = " ";
-                    eintragRussischFreitag.Typ = 8;
-                    eintragRussischFreitag.SprachId = 4;
-                    eintragRussischFreitag.Ergänzung1 = model.Russisch_Freitag_Ergänzung1;
-                    eintragRussischFreitag.Ergänzung2 = model.Russisch_Freitag_Ergänzung2;
-                    eintragRussischFreitag.AllergenId = 5;
-
-                    I18n eintragEnglischSamstag = new I18n();
-                    eintragEnglischSamstag.Bezeichnung = " ";
-                    eintragEnglischSamstag.Typ = 8;
-                    eintragEnglischSamstag.SprachId = 5;
-                    eintragEnglischSamstag.Ergänzung1 = model.Englisch_Samstag_Ergänzung1;
-                    eintragEnglischSamstag.Ergänzung2 = model.Englisch_Samstag_Ergänzung2;
-                    eintragEnglischSamstag.AllergenId = 6;
-
-                    I18n eintragSpanischSamstag = new I18n();
-                    eintragSpanischSamstag.Bezeichnung = " ";
-                    eintragSpanischSamstag.Typ = 8;
-                    eintragSpanischSamstag.SprachId = 3;
-                    eintragSpanischSamstag.Ergänzung1 = model.Spanisch_Samstag_Ergänzung1;
-                    eintragSpanischSamstag.Ergänzung2 = model.Spanisch_Samstag_Ergänzung2;
-                    eintragSpanischSamstag.AllergenId = 6;
-
-                    I18n eintragItalienischSamstag = new I18n();
-                    eintragItalienischSamstag.Bezeichnung = " ";
-                    eintragItalienischSamstag.Typ = 8;
-                    eintragItalienischSamstag.SprachId = 2;
-                    eintragItalienischSamstag.Ergänzung1 = model.Italienisch_Samstag_Ergänzung1;
-                    eintragItalienischSamstag.Ergänzung2 = model.Italienisch_Samstag_Ergänzung2;
-                    eintragItalienischSamstag.AllergenId = 6;
-
-                    I18n eintragRussischSamstag = new I18n();
-                    eintragRussischSamstag.Bezeichnung = " ";
-                    eintragRussischSamstag.Typ = 8;
-                    eintragRussischSamstag.SprachId = 4;
-                    eintragRussischSamstag.Ergänzung1 = model.Russisch_Samstag_Ergänzung1;
-                    eintragRussischSamstag.Ergänzung2 = model.Russisch_Samstag_Ergänzung2;
-                    eintragRussischSamstag.AllergenId = 6;
-
-                    I18n eintragEnglischSonntag = new I18n();
-                    eintragEnglischSonntag.Bezeichnung = " ";
-                    eintragEnglischSonntag.Typ = 8;
-                    eintragEnglischSonntag.SprachId = 5;
-                    eintragEnglischSonntag.Ergänzung1 = model.Englisch_Sonntag_Ergänzung1;
-                    eintragEnglischSonntag.Ergänzung2 = model.Englisch_Sonntag_Ergänzung2;
-                    eintragEnglischSonntag.AllergenId = 7;
-                    eintragEnglischSonntag.Header = model.Englisch_Nachwort;
-
-                    I18n eintragSpanischSonntag = new I18n();
-                    eintragSpanischSonntag.Bezeichnung = " ";
-                    eintragSpanischSonntag.Typ = 8;
-                    eintragSpanischSonntag.SprachId = 3;
-                    eintragSpanischSonntag.Ergänzung1 = model.Spanisch_Sonntag_Ergänzung1;
-                    eintragSpanischSonntag.Ergänzung2 = model.Spanisch_Sonntag_Ergänzung2;
-                    eintragSpanischSonntag.AllergenId = 7;
-                    eintragSpanischSonntag.Header = model.Spanisch_Nachwort;
-
-                    I18n eintragItalienischSonntag = new I18n();
-                    eintragItalienischSonntag.Bezeichnung = " ";
-                    eintragItalienischSonntag.Typ = 8;
-                    eintragItalienischSonntag.SprachId = 2;
-                    eintragItalienischSonntag.Ergänzung1 = model.Italienisch_Sonntag_Ergänzung1;
-                    eintragItalienischSonntag.Ergänzung2 = model.Italienisch_Sonntag_Ergänzung2;
-                    eintragItalienischSonntag.AllergenId = 7;
-                    eintragItalienischSonntag.Header = model.Italienisch_Nachwort;
-
-                    I18n eintragRussischSonntag = new I18n();
-                    eintragRussischSonntag.Bezeichnung = " ";
-                    eintragRussischSonntag.Typ = 8;
-                    eintragRussischSonntag.SprachId = 4;
-                    eintragRussischSonntag.Ergänzung1 = model.Russisch_Sonntag_Ergänzung1;
-                    eintragRussischSonntag.Ergänzung2 = model.Russisch_Sonntag_Ergänzung2;
-                    eintragRussischSonntag.AllergenId = 7;
-                    eintragRussischSonntag.Header = model.Russisch_Nachwort;
-
-
                     using (GastroEntities _db = new GastroEntities())
                     {
                         //erst löschen wenn vorhanden
                         List<I18n> liste = (from I18n i18n in _db.I18n where i18n.Typ == 8 select i18n).ToList();
                         _db.I18n.RemoveRange(liste);
 
-                        _db.I18n.Add(eintragEnglischMontag);
-                        _db.I18n.Add(eintragItalienischMontag);
-                        _db.I18n.Add(eintragSpanischMontag);
-                        _db.I18n.Add(eintragRussischMontag);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 1, " ", "", model.Englisch_Montag_Ergänzung1, model.Englisch_Montag_Ergänzung2, model.Englisch_Vorwort, "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 1, " ", "", model.Italienisch_Montag_Ergänzung1, model.Italienisch_Montag_Ergänzung2, model.Italienisch_Vorwort, "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 1, " ", "", model.Spanisch_Montag_Ergänzung1, model.Spanisch_Montag_Ergänzung2, model.Spanisch_Vorwort, "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 1, " ", "", model.Russisch_Montag_Ergänzung1, model.Russisch_Montag_Ergänzung2, model.Russisch_Vorwort, "", ""));
 
-                        _db.I18n.Add(eintragEnglischDienstag);
-                        _db.I18n.Add(eintragItalienischDienstag);
-                        _db.I18n.Add(eintragSpanischDienstag);
-                        _db.I18n.Add(eintragRussischDienstag);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 2, " ", "", model.Englisch_Dienstag_Ergänzung1, model.Englisch_Dienstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 2, " ", "", model.Italienisch_Dienstag_Ergänzung1, model.Italienisch_Dienstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 2, " ", "", model.Spanisch_Dienstag_Ergänzung1, model.Spanisch_Dienstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 2, " ", "", model.Russisch_Dienstag_Ergänzung1, model.Russisch_Dienstag_Ergänzung2, "", "", ""));
 
-                        _db.I18n.Add(eintragEnglischMittwoch);
-                        _db.I18n.Add(eintragItalienischMittwoch);
-                        _db.I18n.Add(eintragSpanischMittwoch);
-                        _db.I18n.Add(eintragRussischMittwoch);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 3, " ", "", model.Englisch_Mittwoch_Ergänzung1, model.Englisch_Mittwoch_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 3, " ", "", model.Italienisch_Mittwoch_Ergänzung1, model.Italienisch_Mittwoch_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 3, " ", "", model.Spanisch_Mittwoch_Ergänzung1, model.Spanisch_Mittwoch_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 3, " ", "", model.Russisch_Mittwoch_Ergänzung1, model.Russisch_Mittwoch_Ergänzung2, "", "", ""));
 
-                        _db.I18n.Add(eintragEnglischDonnerstag);
-                        _db.I18n.Add(eintragItalienischDonnerstag);
-                        _db.I18n.Add(eintragSpanischDonnerstag);
-                        _db.I18n.Add(eintragRussischDonnerstag);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 4, " ", "", model.Englisch_Donnerstag_Ergänzung1, model.Englisch_Donnerstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 4, " ", "", model.Italienisch_Donnerstag_Ergänzung1, model.Italienisch_Donnerstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 4, " ", "", model.Spanisch_Donnerstag_Ergänzung1, model.Spanisch_Donnerstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 4, " ", "", model.Russisch_Donnerstag_Ergänzung1, model.Russisch_Donnerstag_Ergänzung2, "", "", ""));
 
-                        _db.I18n.Add(eintragEnglischFreitag);
-                        _db.I18n.Add(eintragItalienischFreitag);
-                        _db.I18n.Add(eintragSpanischFreitag);
-                        _db.I18n.Add(eintragRussischFreitag);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 5, " ", "", model.Englisch_Freitag_Ergänzung1, model.Englisch_Freitag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 5, " ", "", model.Italienisch_Freitag_Ergänzung1, model.Italienisch_Freitag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 5, " ", "", model.Spanisch_Freitag_Ergänzung1, model.Spanisch_Freitag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 5, " ", "", model.Russisch_Freitag_Ergänzung1, model.Russisch_Freitag_Ergänzung2, "", "", ""));
 
-                        _db.I18n.Add(eintragEnglischSamstag);
-                        _db.I18n.Add(eintragItalienischSamstag);
-                        _db.I18n.Add(eintragSpanischSamstag);
-                        _db.I18n.Add(eintragRussischSamstag);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 6, " ", "", model.Englisch_Samstag_Ergänzung1, model.Englisch_Samstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 6, " ", "", model.Italienisch_Samstag_Ergänzung1, model.Italienisch_Samstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 6, " ", "", model.Spanisch_Samstag_Ergänzung1, model.Spanisch_Samstag_Ergänzung2, "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 6, " ", "", model.Russisch_Samstag_Ergänzung1, model.Russisch_Samstag_Ergänzung2, "", "", ""));
 
-                        _db.I18n.Add(eintragEnglischSonntag);
-                        _db.I18n.Add(eintragItalienischSonntag);
-                        _db.I18n.Add(eintragSpanischSonntag);
-                        _db.I18n.Add(eintragRussischSonntag);
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 5, 7, " ", "", model.Englisch_Sonntag_Ergänzung1, model.Englisch_Sonntag_Ergänzung2, model.Englisch_Nachwort, "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 2, 7, " ", "", model.Italienisch_Sonntag_Ergänzung1, model.Italienisch_Sonntag_Ergänzung2, model.Italienisch_Nachwort, "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 3, 7, " ", "", model.Spanisch_Sonntag_Ergänzung1, model.Spanisch_Sonntag_Ergänzung2, model.Spanisch_Nachwort, "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(8, 4, 7, " ", "", model.Russisch_Sonntag_Ergänzung1, model.Russisch_Sonntag_Ergänzung2, model.Russisch_Nachwort, "", ""));
 
                         _db.SaveChanges();
                     }
@@ -482,84 +190,21 @@ namespace GastroPages.Controllers
             {
                 try
                 {
-                    I18n eintragEnglischAnsprache = new I18n();
-                    eintragEnglischAnsprache.Bezeichnung = " ";
-                    eintragEnglischAnsprache.Typ = 9;
-                    eintragEnglischAnsprache.SprachId = 5;
-                    eintragEnglischAnsprache.Ergänzung1 = model.Englisch_Ansprache;
-                    eintragEnglischAnsprache.AllergenId = 10;
-
-                    I18n eintragSpanischAnsprache = new I18n();
-                    eintragSpanischAnsprache.Bezeichnung = " ";
-                    eintragSpanischAnsprache.Typ = 9;
-                    eintragSpanischAnsprache.SprachId = 3;
-                    eintragSpanischAnsprache.Ergänzung1 = model.Spanisch_Ansprache;
-                    eintragSpanischAnsprache.AllergenId = 10;
-
-                    I18n eintragRussischAnsprache = new I18n();
-                    eintragRussischAnsprache.Bezeichnung = " ";
-                    eintragRussischAnsprache.Typ = 9;
-                    eintragRussischAnsprache.SprachId = 4;
-                    eintragRussischAnsprache.Ergänzung1 = model.Russisch_Ansprache;
-                    eintragRussischAnsprache.AllergenId = 10;
-
-                    I18n eintragItalienischAnsprache = new I18n();
-                    eintragItalienischAnsprache.Bezeichnung = " ";
-                    eintragItalienischAnsprache.Typ = 9;
-                    eintragItalienischAnsprache.SprachId = 2;
-                    eintragItalienischAnsprache.Ergänzung1 = model.Italienisch_Ansprache;
-                    eintragItalienischAnsprache.AllergenId = 10;
-
-
-                    I18n eintragEnglischHinweis = new I18n();
-                    eintragEnglischHinweis.Bezeichnung = " ";
-                    eintragEnglischHinweis.Typ = 9;
-                    eintragEnglischHinweis.SprachId = 5;
-                    eintragEnglischHinweis.Ergänzung1 = model.Englisch_WichtigerHinweis;
-                    eintragEnglischHinweis.AllergenId = 11;
-
-                    I18n eintragSpanischHinweis = new I18n();
-                    eintragSpanischHinweis.Bezeichnung = " ";
-                    eintragSpanischHinweis.Typ = 9;
-                    eintragSpanischHinweis.SprachId = 3;
-                    eintragSpanischHinweis.Ergänzung1 = model.Spanisch_WichtigerHinweis;
-                    eintragSpanischHinweis.AllergenId = 11;
-
-                    I18n eintragRussischHinweis = new I18n();
-                    eintragRussischHinweis.Bezeichnung = " ";
-                    eintragRussischHinweis.Typ = 9;
-                    eintragRussischHinweis.SprachId = 4;
-                    eintragRussischHinweis.Ergänzung1 = model.Russisch_WichtigerHinweis;
-                    eintragRussischHinweis.AllergenId = 11;
-
-                    I18n eintragItalienischHinweis = new I18n();
-                    eintragItalienischHinweis.Bezeichnung = " ";
-                    eintragItalienischHinweis.Typ = 9;
-                    eintragItalienischHinweis.SprachId = 2;
-                    eintragItalienischHinweis.Ergänzung1 = model.Italienisch_WichtigerHinweis;
-                    eintragItalienischHinweis.AllergenId = 11;
-
-
-
-
-
                     using (GastroEntities _db = new GastroEntities())
                     {
                         //erst löschen wenn vorhanden
                         List<I18n> liste = (from I18n i18n in _db.I18n where i18n.Typ == 9 select i18n).ToList();
                         _db.I18n.RemoveRange(liste);
 
-                        _db.I18n.Add(eintragEnglischAnsprache);
-                        _db.I18n.Add(eintragItalienischAnsprache);
-                        _db.I18n.Add(eintragSpanischAnsprache);
-                        _db.I18n.Add(eintragRussischAnsprache);
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 5, 10, " ", "", model.Englisch_Ansprache, "", "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 2, 10, " ", "", model.Italienisch_Ansprache, "", "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 3, 10, " ", "", model.Spanisch_Ansprache, "", "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 4, 10, " ", "", model.Russisch_Ansprache, "", "", "", ""));
 
-                        _db.I18n.Add(eintragEnglischHinweis);
-                        _db.I18n.Add(eintragItalienischHinweis);
-                        _db.I18n.Add(eintragSpanischHinweis);
-                        _db.I18n.Add(eintragRussischHinweis);
-
-                        
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 5, 11, " ", "", model.Englisch_WichtigerHinweis, "", "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 2, 11, " ", "", model.Italienisch_WichtigerHinweis, "", "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 3, 11, " ", "", model.Spanisch_WichtigerHinweis, "", "", "", ""));
+                        _db.I18n.Add(I18nHelper.CreateInstance(9, 4, 11, " ", "", model.Russisch_WichtigerHinweis, "", "", "", ""));
 
                         _db.SaveChanges();
                     }
@@ -588,44 +233,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 4;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Beschreibung = model.Englisch_Beschreibung;
-                eintragEnglisch.AllergenId = model.MittagstischId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 4;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Beschreibung = model.Spanisch_Beschreibung;
-                eintragSpanisch.AllergenId = model.MittagstischId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 4;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Beschreibung = model.Italienisch_Beschreibung;
-                eintragItalienisch.AllergenId = model.MittagstischId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 4;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Beschreibung = model.Russisch_Beschreibung;
-                eintragRussisch.AllergenId = model.MittagstischId;
-
                 using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.MittagstischId && i18n.Typ == 4 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(4, 5, model.MittagstischId, model.Englisch_Bezeichnung, model.Englisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(4, 2, model.MittagstischId, model.Italienisch_Bezeichnung, model.Italienisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(4, 3, model.MittagstischId, model.Spanisch_Bezeichnung, model.Spanisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(4, 4, model.MittagstischId, model.Russisch_Bezeichnung, model.Russisch_Beschreibung, "", "", "", "", ""));
                     _db.SaveChanges();
                 }
 
@@ -649,44 +266,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 5;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Beschreibung = model.Englisch_Beschreibung;
-                eintragEnglisch.AllergenId = model.SpeisenId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 5;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Beschreibung = model.Spanisch_Beschreibung;
-                eintragSpanisch.AllergenId = model.SpeisenId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 5;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Beschreibung = model.Italienisch_Beschreibung;
-                eintragItalienisch.AllergenId = model.SpeisenId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 5;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Beschreibung = model.Russisch_Beschreibung;
-                eintragRussisch.AllergenId = model.SpeisenId;
-
                 using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.SpeisenId && i18n.Typ == 5 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(5, 5, model.SpeisenId, model.Englisch_Bezeichnung, model.Englisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(5, 2, model.SpeisenId, model.Italienisch_Bezeichnung, model.Italienisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(5, 3, model.SpeisenId, model.Spanisch_Bezeichnung, model.Spanisch_Beschreibung, "", "", "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(5, 4, model.SpeisenId, model.Russisch_Bezeichnung, model.Russisch_Beschreibung, "", "", "", "", ""));
                     _db.SaveChanges();
                 }
 
@@ -710,48 +299,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 2;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Ergänzung1 = model.Englisch_Ergänzung1;
-                eintragEnglisch.Ergänzung2 = model.Englisch_Ergänzung2;
-                eintragEnglisch.AllergenId = model.GetränkId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 2;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Ergänzung1 = model.Spanisch_Ergänzung1;
-                eintragSpanisch.Ergänzung2 = model.Spanisch_Ergänzung2;
-                eintragSpanisch.AllergenId = model.GetränkId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 2;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Ergänzung1 = model.Italienisch_Ergänzung1;
-                eintragItalienisch.Ergänzung2 = model.Italienisch_Ergänzung2;
-                eintragItalienisch.AllergenId = model.GetränkId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 2;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Ergänzung1 = model.Russisch_Ergänzung1;
-                eintragRussisch.Ergänzung2 = model.Russisch_Ergänzung2;
-                eintragRussisch.AllergenId = model.GetränkId;
-
-                using (GastroEntities _db = new GastroEntities())
+               using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.GetränkId && i18n.Typ == 2 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(2, 5, model.GetränkId, model.Englisch_Bezeichnung, "", model.Englisch_Ergänzung1, model.Englisch_Ergänzung2, "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(2, 2, model.GetränkId, model.Italienisch_Bezeichnung, "", model.Italienisch_Ergänzung1, model.Italienisch_Ergänzung2, "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(2, 3, model.GetränkId, model.Spanisch_Bezeichnung, "", model.Spanisch_Ergänzung1, model.Spanisch_Ergänzung2, "", "", ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(2, 4, model.GetränkId, model.Russisch_Bezeichnung, "", model.Russisch_Ergänzung1, model.Russisch_Ergänzung2, "", "", ""));
                     _db.SaveChanges();
                 }
 
@@ -775,48 +332,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 3;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Header = model.Englisch_Header;
-                eintragEnglisch.Footer = model.Englisch_Footer;
-                eintragEnglisch.AllergenId = model.KategorieId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 3;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Header = model.Spanisch_Header;
-                eintragSpanisch.Footer = model.Spanisch_Footer;
-                eintragSpanisch.AllergenId = model.KategorieId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 3;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Header = model.Italienisch_Header;
-                eintragItalienisch.Footer = model.Italienisch_Footer;
-                eintragItalienisch.AllergenId = model.KategorieId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 3;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Header = model.Russisch_Header;
-                eintragRussisch.Footer = model.Russisch_Footer;
-                eintragRussisch.AllergenId = model.KategorieId;
-
                 using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.KategorieId && i18n.Typ == 3 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(3, 5, model.KategorieId, model.Englisch_Bezeichnung, "", "", "", model.Englisch_Header, model.Englisch_Footer, ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(3, 2, model.KategorieId, model.Italienisch_Bezeichnung, "", "", "", model.Italienisch_Header, model.Italienisch_Footer, ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(3, 3, model.KategorieId, model.Spanisch_Bezeichnung, "", "", "", model.Spanisch_Header, model.Spanisch_Footer, ""));
+                    _db.I18n.Add(I18nHelper.CreateInstance(3, 4, model.KategorieId, model.Russisch_Bezeichnung, "", "", "", model.Russisch_Header, model.Russisch_Footer, ""));
                     _db.SaveChanges();
                 }
 
@@ -854,48 +379,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 6;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Beschreibung = model.Englisch_Beschreibung;
-                eintragEnglisch.Einheit = model.Englisch_Einheit;
-                eintragEnglisch.AllergenId = model.GetränkId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 6;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Beschreibung = model.Spanisch_Beschreibung;
-                eintragSpanisch.Einheit = model.Spanisch_Einheit;
-                eintragSpanisch.AllergenId = model.GetränkId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 6;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Beschreibung = model.Italienisch_Beschreibung;
-                eintragItalienisch.Einheit = model.Italienisch_Einheit;
-                eintragItalienisch.AllergenId = model.GetränkId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 6;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Beschreibung = model.Russisch_Beschreibung;
-                eintragRussisch.Einheit = model.Russisch_Einheit;
-                eintragRussisch.AllergenId = model.GetränkId;
-
                 using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.GetränkId && i18n.Typ == 6 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(6, 5, model.GetränkId, model.Englisch_Bezeichnung, model.Englisch_Beschreibung, "", "", "", "", model.Englisch_Einheit));
+                    _db.I18n.Add(I18nHelper.CreateInstance(6, 2, model.GetränkId, model.Italienisch_Bezeichnung, model.Italienisch_Beschreibung, "", "", "", "", model.Italienisch_Einheit));
+                    _db.I18n.Add(I18nHelper.CreateInstance(6, 3, model.GetränkId, model.Spanisch_Bezeichnung, model.Spanisch_Beschreibung, "", "", "", "", model.Spanisch_Einheit));
+                    _db.I18n.Add(I18nHelper.CreateInstance(6, 4, model.GetränkId, model.Russisch_Bezeichnung, model.Russisch_Beschreibung, "", "", "", "", model.Russisch_Einheit));
                     _db.SaveChanges();
                 }
 
@@ -920,48 +413,16 @@ namespace GastroPages.Controllers
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
             {
-                I18n eintragEnglisch = new I18n();
-                eintragEnglisch.Typ = 7;
-                eintragEnglisch.SprachId = 5;
-                eintragEnglisch.Bezeichnung = model.Englisch_Bezeichnung;
-                eintragEnglisch.Beschreibung = model.Englisch_Beschreibung;
-                eintragEnglisch.Einheit = model.Englisch_Einheit;
-                eintragEnglisch.AllergenId = model.GetränkId;
-
-                I18n eintragSpanisch = new I18n();
-                eintragSpanisch.Typ = 7;
-                eintragSpanisch.SprachId = 3;
-                eintragSpanisch.Bezeichnung = model.Spanisch_Bezeichnung;
-                eintragSpanisch.Beschreibung = model.Spanisch_Beschreibung;
-                eintragSpanisch.Einheit = model.Spanisch_Einheit;
-                eintragSpanisch.AllergenId = model.GetränkId;
-
-                I18n eintragItalienisch = new I18n();
-                eintragItalienisch.Typ = 7;
-                eintragItalienisch.SprachId = 2;
-                eintragItalienisch.Bezeichnung = model.Italienisch_Bezeichnung;
-                eintragItalienisch.Beschreibung = model.Italienisch_Beschreibung;
-                eintragItalienisch.Einheit = model.Italienisch_Einheit;
-                eintragItalienisch.AllergenId = model.GetränkId;
-
-                I18n eintragRussisch = new I18n();
-                eintragRussisch.Typ = 7;
-                eintragRussisch.SprachId = 4;
-                eintragRussisch.Bezeichnung = model.Russisch_Bezeichnung;
-                eintragRussisch.Beschreibung = model.Russisch_Beschreibung;
-                eintragRussisch.Einheit = model.Russisch_Einheit;
-                eintragRussisch.AllergenId = model.GetränkId;
-
                 using (GastroEntities _db = new GastroEntities())
                 {
                     //erst löschen wenn vorhanden
                     List<I18n> liste = (from I18n i18n in _db.I18n where i18n.AllergenId == model.GetränkId && i18n.Typ == 6 select i18n).ToList();
                     _db.I18n.RemoveRange(liste);
 
-                    _db.I18n.Add(eintragEnglisch);
-                    _db.I18n.Add(eintragItalienisch);
-                    _db.I18n.Add(eintragSpanisch);
-                    _db.I18n.Add(eintragRussisch);
+                    _db.I18n.Add(I18nHelper.CreateInstance(7, 5, model.GetränkId, model.Englisch_Bezeichnung, model.Englisch_Beschreibung, "", "", "", "", model.Englisch_Einheit));
+                    _db.I18n.Add(I18nHelper.CreateInstance(7, 2, model.GetränkId, model.Italienisch_Bezeichnung, model.Italienisch_Beschreibung, "", "", "", "", model.Italienisch_Einheit));
+                    _db.I18n.Add(I18nHelper.CreateInstance(7, 3, model.GetränkId, model.Spanisch_Bezeichnung, model.Spanisch_Beschreibung, "", "", "", "", model.Spanisch_Einheit));
+                    _db.I18n.Add(I18nHelper.CreateInstance(7, 4, model.GetränkId, model.Russisch_Bezeichnung, model.Russisch_Beschreibung, "", "", "", "", model.Russisch_Einheit));
                     _db.SaveChanges();
                 }
 
