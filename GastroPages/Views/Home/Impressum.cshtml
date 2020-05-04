@@ -1,1 +1,20 @@
-﻿<h2>@ResourcesGastro.Shared.Navi.Impressum</h2>
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeKontakteModel
+    <h2> @ResourcesGastro.Shared.Navi.Impressum </h2>
+<p>@ResourcesGastro.Home.Logon.ImpressumEinleitung</p>
+<p>@ResourcesGastro.Home.Logon.ImpressumTextVerantwortlich</p>
+<p>@ResourcesGastro.Home.Logon.ImpressumTextMitte</p>
+
+<p>
+    @Model.Kontakt.AdresseInhaber<br />
+    @Model.Kontakt.AdresseName<br />
+    @Model.Kontakt.AdresseStrasse<br />
+    @Model.Kontakt.AdressePlz @Model.Kontakt.AdresseOrt<br /><br/>
+
+    @ResourcesGastro.Shared.Navi.Email: @Model.Kontakt.Email<br />
+    @ResourcesGastro.Shared.Navi.PlanerPdfTelefon: @Model.Kontakt.Telefon<br />
+    @ResourcesGastro.Shared.Navi.Telefax: @Model.Kontakt.Telefax<br />
+</p>
+
+
+<p>@ResourcesGastro.Home.Logon.ImpressumTextUnten</p>

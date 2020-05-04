@@ -88,6 +88,42 @@ namespace ResourcesGastro.Home {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vielen Dank für Ihr Interesse an unsrem Angebot. Im Folgenden informieren wir Sie über den Umgang mit Ihren personenbezogenen Daten bei der Nutzung unserer Website. Diese erheben wir lediglich bei einer Kontaktanfrage an uns oder wenn Sie eine Anfrage wegen einer Veranstaltung an uns übermitteln. Die Daten werden lediglich zur Beantwortung genutzt und dann gelöscht. ähnelt.
+        /// </summary>
+        public static string ImpressumEinleitung {
+            get {
+                return ResourceManager.GetString("ImpressumEinleitung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn Sie unsere Website aufrufen, erheben wir die folgenden Daten (eigentlich werden sie automatisch aus einer technischen Notwendigkeit auf dem Webserver gespeichert). Diese sind für uns technisch erforderlich, um Ihnen die Website anzuzeigen ähnelt.
+        /// </summary>
+        public static string ImpressumTextMitte {
+            get {
+                return ResourceManager.GetString("ImpressumTextMitte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Diese Server-Logfiles werden von uns nicht verarbeitet! Auch verwenden wir keine Cookies, um Informationen zu sammeln. ähnelt.
+        /// </summary>
+        public static string ImpressumTextUnten {
+            get {
+                return ResourceManager.GetString("ImpressumTextUnten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verantwortlich für die Inhalte der Webseite und die damit verbundene Datenverarbeitung im Sinne der Datenschutz-Grundverordnung (DSGVO) ist ähnelt.
+        /// </summary>
+        public static string ImpressumTextVerantwortlich {
+            get {
+                return ResourceManager.GetString("ImpressumTextVerantwortlich", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bitte melden Sie sich mit Mailadresse und Passwort an ähnelt.
         /// </summary>
         public static string Logintext {

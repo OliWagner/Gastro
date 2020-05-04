@@ -76,7 +76,6 @@ namespace GastroPages.Controllers
                 eintragItalienisch.Ergänzung2 = model.Italienisch_Nachrichtentext;
                 eintragItalienisch.AllergenId = 1;
 
-
                 I18n eintragRussisch = new I18n();
                 eintragRussisch.Bezeichnung = " ";
                 eintragRussisch.Typ = 9;

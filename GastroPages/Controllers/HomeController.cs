@@ -120,7 +120,7 @@ namespace GastroPages.Controllers
 
         public ActionResult Impressum()
         {
-            return View();
+            return View(new HomeKontakteModel());
         }
 
         public ActionResult Räume()

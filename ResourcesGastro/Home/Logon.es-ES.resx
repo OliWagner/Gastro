@@ -126,6 +126,18 @@
   <data name="ErrorUsername" xml:space="preserve">
     <value>requerida</value>
   </data>
+  <data name="ImpressumEinleitung" xml:space="preserve">
+    <value>Gracias por su interés en nuestra oferta. A continuación, le informamos sobre el manejo de sus datos personales cuando utiliza nuestro sitio web. Solo recopilamos esto cuando nos contacta o cuando nos envía una solicitud para un evento. Los datos solo se usan para responder y luego se eliminan.</value>
+  </data>
+  <data name="ImpressumTextMitte" xml:space="preserve">
+    <value>Cuando visita nuestro sitio web, recopilamos los siguientes datos (en realidad, se guardan automáticamente en el servidor web por razones técnicas). Estos son técnicamente necesarios para que podamos mostrarle el sitio web</value>
+  </data>
+  <data name="ImpressumTextUnten" xml:space="preserve">
+    <value>¡No procesamos estos archivos de registro del servidor! Tampoco usamos cookies para recopilar información.</value>
+  </data>
+  <data name="ImpressumTextVerantwortlich" xml:space="preserve">
+    <value>Es responsable del contenido del sitio web y del procesamiento de datos asociado en el sentido del Reglamento General de Protección de Datos (GDPR)</value>
+  </data>
   <data name="Logintext" xml:space="preserve">
     <value>Inicia sesion con tu correo electronico y contrasena</value>
   </data>
