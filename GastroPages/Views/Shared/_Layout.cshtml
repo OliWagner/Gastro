@@ -39,104 +39,115 @@
                     <li>@Html.ActionLink(Resources.Reservierung, "Reservierung", "Home")</li>
                     <li>@Html.ActionLink(Resources.Veranstaltungsplaner, "Planer", "Home")</li>
                     <li>@Html.ActionLink(Resources.Öffnungszeiten, "Öffnungszeiten", "Home")</li>
-
-                    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
                     <li>
                         @{
-                            if (Session["Rolle"] != null)
+                            var cucu = "/Images/flagge_de.png"; ;
+                            if (HttpContext.Current.Request.Cookies["_culture"] != null)
                             {
-                                <text><b style="color: #ffffff">Angemeldet als: @Session["Nachname"], @Session["Vorname"]  @Html.ActionLink("[X]", "Logout", "Admin")</b></text>
+                                cucu = "/Images/flagge_" + HttpContext.Current.Request.Cookies["_culture"].Value.Substring(0, 2) + ".png";
                             }
                         }
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><image src="@cucu" width="27" height="18" /><b class="caret"></b></a>
+                        
+                        <ul class="dropdown-menu">
+                            @*<li>@Html.ActionLink("Deutsch", "SetCulture", new { controller = "Home", culture = "de-DE" })</li>*@
+                            <li>
+                                <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "de-DE" })'>
+                                    <img src='@Url.Content("~/Images/flagge_de.png")' width="45" height="29" />
+                                </a>
+                            </li>
+                            @*<li>@Html.ActionLink("English", "SetCulture", new { controller = "Home", culture = "en-US" })</li>*@
+                            <li>
+                                <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "en-US" })'>
+                                    <img src='@Url.Content("~/Images/flagge_en.png")' width="45" height="29" />
+                                </a>
+                            </li>
+                            @*<li>@Html.ActionLink("Espanol", "SetCulture", new { controller = "Home", culture = "es-ES" })</li>*@
+                            <li>
+                                <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "es-ES" })'>
+                                    <img src='@Url.Content("~/Images/flagge_es.png")' width="45" height="29" />
+                                </a>
+                            </li>
+
+                            @*<li>@Html.ActionLink("Italiano", "SetCulture", new { controller = "Home", culture = "it-IT" })</li>*@
+                            <li>
+                                <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "it-IT" })'>
+                                    <img src='@Url.Content("~/Images/flagge_it.png")' width="45" height="29" />
+                                </a>
+                            </li>
+                            @*<li>@Html.ActionLink("Russki", "SetCulture", new { controller = "Home", culture = "ru-RU" })</li>*@
+                            <li>
+                                <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "ru-RU" })'>
+                                    <img src='@Url.Content("~/Images/flagge_ru.png")' width="45" height="29" />
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                </ul>
-            </div>
+                        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                        <li>
+                            @{
+                                if (Session["Rolle"] != null)
+                                {
+                                    <text><b style="color: #ffffff">Angemeldet als: @Session["Nachname"], @Session["Vorname"]  @Html.ActionLink("[X]", "Logout", "Admin")</b></text>
+                                }
+                            }
+                        </li>
+                    </ul>
+</div>
         </div>
     </div>
     <div class="container body-content">
 
         @RenderBody()
-        <hr />
-        <footer style="background-color: #dddddd">
-            <div class="navbar-collapse collapse">
+        
+            
+        <div class="navbar navbar-inverse navbar-fixed-bottom">
+            <div class="container">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(Resources.UeberUns, "About", "Home")</li>
-                    <li>@Html.ActionLink(Resources.Kontakt, "Contact", "Home")</li>
-                    <li>@Html.ActionLink(Resources.Impressum, "Impressum", "Home")</li>
-                    @*<li>@Html.ActionLink("Deutsch", "SetCulture", new { controller = "Home", culture = "de-DE" })</li>*@
-                    <li>
-                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "de-DE" })'>
-                            <img src='@Url.Content("~/Images/flagge_de.png")' width="45" height="29" />
-                        </a>
-                    </li>
-                    @*<li>@Html.ActionLink("English", "SetCulture", new { controller = "Home", culture = "en-US" })</li>*@
-                    <li>
-                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "en-US" })'>
-                            <img src='@Url.Content("~/Images/flagge_en.png")' width="45" height="29" />
-                        </a>
-                    </li>
-                    @*<li>@Html.ActionLink("Espanol", "SetCulture", new { controller = "Home", culture = "es-ES" })</li>*@
-                    <li>
-                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "es-ES" })'>
-                            <img src='@Url.Content("~/Images/flagge_es.png")' width="45" height="29" />
-                        </a>
-                    </li>
+                    <li class="footerNoLink">&nbsp;&nbsp;&nbsp; &copy; @DateTime.Now.Year - @ResourcesGastro.Shared.Navi.Restaurant Zur Glocke</li>
+                    <li class="footerLink">@Html.ActionLink(Resources.Kontakt, "Contact", "Home")</li>
+                    <li class="footerLink">@Html.ActionLink(Resources.Impressum, "Impressum", "Home")</li>
 
-                    @*<li>@Html.ActionLink("Italiano", "SetCulture", new { controller = "Home", culture = "it-IT" })</li>*@
-                    <li>
-                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "it-IT" })'>
-                            <img src='@Url.Content("~/Images/flagge_it.png")' width="45" height="29" />
-                        </a>
-                    </li>
-                    @*<li>@Html.ActionLink("Russki", "SetCulture", new { controller = "Home", culture = "ru-RU" })</li>*@
-                    <li>
-                        <a href='@Url.Action("SetCulture", "Home", new { controller = "Home", culture = "ru-RU" })'>
-                            <img src='@Url.Content("~/Images/flagge_ru.png")' width="45" height="29" />
-                        </a>
-                    </li>
 
                     @if (viewModel.Youtube != null && !viewModel.Youtube.Equals(""))
                     {
-                    <li>
-                        <a href="@viewModel.Youtube"><img src="~/Images/social-youtube.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-                    </li>}
+                        <li class="footerLink">
+                            <a href="@viewModel.Youtube"><img src="~/Images/social-youtube.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                        </li>}
 
                     @if (viewModel.Facebook != null && !viewModel.Youtube.Equals(""))
                     {
-                    <li>
-                        <a href="@viewModel.Youtube"><img src="~/Images/social-facebook.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-                    </li>}
+                        <li class="footerLink">
+                            <a href="@viewModel.Youtube"><img src="~/Images/social-facebook.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                        </li>}
 
                     @if (viewModel.Pinterest != null && !viewModel.Pinterest.Equals(""))
                     {
-                    <li>
-                        <a href="@viewModel.Pinterest"><img src="~/Images/social-pinterest.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-                    </li>}
+                        <li class="footerLink">
+                            <a href="@viewModel.Pinterest"><img src="~/Images/social-pinterest.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                        </li>}
 
                     @if (viewModel.Snapchat != null && !viewModel.Snapchat.Equals(""))
                     {
-                    <li>
-                        <a href="@viewModel.Snapchat"><img src="~/Images/social-snapchat.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-                    </li>}
+                        <li class="footerLink">
+                            <a href="@viewModel.Snapchat"><img src="~/Images/social-snapchat.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                        </li>}
 
                     @if (viewModel.Instagramm != null && !viewModel.Instagramm.Equals(""))
                     {
-                    <li>
-                        <a href="@viewModel.Instagramm"><img src="~/Images/social-instagram_2.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-                    </li>}
+                        <li class="footerLink">
+                            <a href="@viewModel.Instagramm"><img src="~/Images/social-instagram_2.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                        </li>}
 
                     @if (viewModel.GooglePlus != null && !viewModel.GooglePlus.Equals(""))
                     {
-                    <li>
-                        <a href="@viewModel.GooglePlus"><img src="~/Images/social-google.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-                    </li>}
+                        <li class="footerLink">
+                            <a href="@viewModel.GooglePlus"><img src="~/Images/social-google.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
+                        </li>}
                 </ul>
             </div>
-
-            <p>&copy; @DateTime.Now.Year - @ResourcesGastro.Shared.Navi.Restaurant Zur Glocke</p>
-        </footer>
-    </div>
-
+        </div>
+</div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

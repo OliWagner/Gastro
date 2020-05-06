@@ -138,6 +138,9 @@
   <data name="ImpressumTextVerantwortlich" xml:space="preserve">
     <value>Отвечает за содержание сайта и связанную с ним обработку данных в значении Общего регламента защиты данных (GDPR).</value>
   </data>
+  <data name="KontaktBestätigung" xml:space="preserve">
+    <value>Спасибо за ваш интерес! Мы всегда благодарны за критику, позитивную или негативную. Если вы предоставили контактную информацию, мы, конечно, будем рады ответить на ваши вопросы.</value>
+  </data>
   <data name="Logintext" xml:space="preserve">
     <value>Пожалуйста, войдите, используя свой адрес электронной почты и пароль.</value>
   </data>

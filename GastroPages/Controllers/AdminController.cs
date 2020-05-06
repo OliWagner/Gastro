@@ -2,6 +2,7 @@
 using GastroPages.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +15,8 @@ namespace GastroPages.Controllers
         public ActionResult Index()
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin")) {
-                return View();
+                AdminIndexModel model = new AdminIndexModel();
+                return View(model);
             }
             return RedirectToAction("Index", "Home");
         }
@@ -25,6 +27,71 @@ namespace GastroPages.Controllers
             {
                 AdminBenutzerModel model = new AdminBenutzerModel();
                 return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ViewPdf(string guid)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer_" + guid + ".pdf", FileMode.Open);
+                var mimeType = "application/pdf";
+                var fileDownloadName = "_Planer_" + guid + ".pdf";
+                return File(fileStream, mimeType, fileDownloadName);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeletePdf(string guid)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                if (System.IO.File.Exists(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer_" + guid + ".pdf"))
+                {
+                    System.IO.File.Delete(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer_" + guid + ".pdf");
+                }
+                using (GastroEntities db = new GastroEntities()) {
+                    Veranstaltungen ver = (from Veranstaltungen v in db.Veranstaltungen where v.Guid.Equals(guid) select v).FirstOrDefault();
+                    db.Veranstaltungen.Remove(ver);
+                    db.SaveChanges();
+                }
+                
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeleteKontakt(string id)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                int _id = Int32.Parse(id);
+                using (GastroEntities db = new GastroEntities())
+                {
+                    Kontakte kon = (from Kontakte v in db.Kontakte where v.id == _id select v).FirstOrDefault();
+                    db.Kontakte.Remove(kon);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeleteReservierung(string id)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                int _id = Int32.Parse(id);
+                using (GastroEntities db = new GastroEntities())
+                {
+                    Reservierungen res = (from Reservierungen v in db.Reservierungen where v.id == _id select v).FirstOrDefault();
+                    db.Reservierungen.Remove(res);
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("Index", "Admin");
             }
             return RedirectToAction("Index", "Home");
         }

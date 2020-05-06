@@ -28,38 +28,34 @@ namespace GastroPages.Controllers
         public ActionResult Planer()
         {
             PdfHelper.MakePdfPlaner(Request);
-            return View();
+            return null;
         }
 
         public ActionResult PdfSpeisen()
         {
-            PdfHelper.MakePdfPlaner(Request);
-            //FileResult fr = DownloadPdfPlaner();
-            System.Diagnostics.Process.Start("C:\\copy\\_Speisen.pdf");
+            PdfHelper.MakePdfSpeisen(new Models.HomeSpeisenModel());
+            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Speisen.pdf");
             return RedirectToAction("Index", "Pdf");
         }
 
         public ActionResult PdfGetränke()
         {
-            PdfHelper.MakePdfPlaner(Request);
-            //FileResult fr = DownloadPdfPlaner();
-            System.Diagnostics.Process.Start("C:\\copy\\_Getränke.pdf");
+            PdfHelper.MakePdfGetränke(new Models.HomeGetränkeModel());
+            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Getränke.pdf");
             return RedirectToAction("Index", "Pdf");
         }
 
         public ActionResult PdfMittagstisch()
         {
-            PdfHelper.MakePdfPlaner(Request);
-            //FileResult fr = DownloadPdfPlaner();
-            System.Diagnostics.Process.Start("C:\\copy\\_Mittagtisch.pdf");
+            PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
+            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Mittagtisch.pdf");
             return RedirectToAction("Index", "Pdf");
         }
 
         public ActionResult PdfAllergene()
         {
-            PdfHelper.MakePdfPlaner(Request);
-            //FileResult fr = DownloadPdfPlaner();
-            System.Diagnostics.Process.Start("C:\\copy\\_Allergene.pdf");
+            PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
+            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Allergene.pdf");
             return RedirectToAction("Index", "Pdf");
         }
     }

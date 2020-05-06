@@ -178,6 +178,9 @@
     <Compile Include="Kategorien.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Kontakte.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="LogInLog.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin\AdminIndexModel.cs" />
     <Compile Include="Models\Admin\AdminReservierungModel.cs" />
     <Compile Include="Models\Admin\AdminÖffnungszeitenModel.cs" />
     <Compile Include="Models\Admin\AdminKategorienModel.cs" />
@@ -372,6 +376,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Pdfs\" />
     <Folder Include="NewFolder1\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Culture\" />

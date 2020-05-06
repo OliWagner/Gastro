@@ -124,6 +124,15 @@ namespace ResourcesGastro.Home {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vielen Dank für Ihr Interesse! Wir sind immer dankbar für Kritik, ob positiv oder negativ. Haben Sie Kontaktdaten hinterlegt beantworten wir natürlich auch gerne Ihre Fragen. ähnelt.
+        /// </summary>
+        public static string KontaktBestätigung {
+            get {
+                return ResourceManager.GetString("KontaktBestätigung", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bitte melden Sie sich mit Mailadresse und Passwort an ähnelt.
         /// </summary>
         public static string Logintext {

@@ -6,6 +6,13 @@
 {
 <table border="0">
 
+    @if (Session["kontakt"] != null && !Session["kontakt"].Equals(""))
+    {
+        <tr>
+            <td class="Kontaktbestätigung">@ResourcesGastro.Home.Logon.KontaktBestätigung</td>
+        </tr>
+    }
+
     @if (Model.Kontakt.Einleitungstext != null && !Model.Kontakt.Einleitungstext.Equals(""))
     {
         <tr>
@@ -15,41 +22,6 @@
 
     <tr>
         <td><h3>@Model.Kontakt.AdresseName - @ResourcesGastro.Shared.Navi.Inhaber: @Model.Kontakt.AdresseInhaber</h3></td>
-    </tr>
-
-    <tr>
-        <td>
-            @if (Model.Kontakt.Youtube != null && !Model.Kontakt.Youtube.Equals(""))
-            {
-                <a href="@Model.Kontakt.Youtube"><img src="~/Images/social-youtube.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-            }
-
-            @if (Model.Kontakt.Facebook != null && !Model.Kontakt.Youtube.Equals(""))
-            {
-                <a href="@Model.Kontakt.Youtube"><img src="~/Images/social-facebook.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-            }
-
-            @if (Model.Kontakt.Pinterest != null && !Model.Kontakt.Pinterest.Equals(""))
-            {
-                <a href="@Model.Kontakt.Pinterest"><img src="~/Images/social-pinterest.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-            }
-
-            @if (Model.Kontakt.Snapchat != null && !Model.Kontakt.Snapchat.Equals(""))
-            {
-                <a href="@Model.Kontakt.Snapchat"><img src="~/Images/social-snapchat.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-            }
-
-            @if (Model.Kontakt.Instagramm != null && !Model.Kontakt.Instagramm.Equals(""))
-            {
-                <a href="@Model.Kontakt.Instagramm"><img src="~/Images/social-instagram_2.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-            }
-
-            @if (Model.Kontakt.GooglePlus != null && !Model.Kontakt.GooglePlus.Equals(""))
-            {
-                <a href="@Model.Kontakt.GooglePlus"><img src="~/Images/social-google.png" border="0" /></a><text>&nbsp;&nbsp;&nbsp;</text>
-            }
-            <br /><br />
-        </td>
     </tr>
 
     <tr>
@@ -75,6 +47,15 @@
     </tr>
     <tr>
         <td>@Model.Kontakt.TextFuerNachricht</td>
+    </tr>
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.PlanerPdfName: <input type="text" name="name" id="name" size="20" /></td>
+    </tr>
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.Email: <input type="text" name="email" id="email" size="20" /></td>
+    </tr>
+    <tr>
+        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTelefon: <input type="text" name="telefon" id="telefon" size="20" /></td>
     </tr>
     <tr>
         <td><textarea name="txtNachricht" id="txtNachricht" cols="20" rows="3"></textarea></td>

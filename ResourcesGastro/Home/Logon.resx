@@ -138,6 +138,9 @@
   <data name="ImpressumTextVerantwortlich" xml:space="preserve">
     <value>Verantwortlich für die Inhalte der Webseite und die damit verbundene Datenverarbeitung im Sinne der Datenschutz-Grundverordnung (DSGVO) ist</value>
   </data>
+  <data name="KontaktBestätigung" xml:space="preserve">
+    <value>Vielen Dank für Ihr Interesse! Wir sind immer dankbar für Kritik, ob positiv oder negativ. Haben Sie Kontaktdaten hinterlegt beantworten wir natürlich auch gerne Ihre Fragen.</value>
+  </data>
   <data name="Logintext" xml:space="preserve">
     <value>Bitte melden Sie sich mit Mailadresse und Passwort an</value>
   </data>

@@ -138,6 +138,9 @@
   <data name="ImpressumTextVerantwortlich" xml:space="preserve">
     <value>Responsible for the content of the website and the associated data processing within the meaning of the General Data Protection Regulation (GDPR) is</value>
   </data>
+  <data name="KontaktBestätigung" xml:space="preserve">
+    <value>Thanks for your interest! We are always grateful for criticism, whether positive or negative. If you have provided contact details, we will of course be happy to answer your questions.</value>
+  </data>
   <data name="Logintext" xml:space="preserve">
     <value>Please login with your mail and password.</value>
   </data>

@@ -15,12 +15,13 @@ namespace GastroPages
     public partial class Veranstaltungen
     {
         public int id { get; set; }
-        public string Beschreibung { get; set; }
-        public Nullable<int> RaumId { get; set; }
-        public Nullable<decimal> Fahrtkosten { get; set; }
-        public int Personenzahl { get; set; }
-        public Nullable<decimal> Dekokosten { get; set; }
-        public System.DateTime Von { get; set; }
-        public System.DateTime Bis { get; set; }
+        public string Name { get; set; }
+        public string Guid { get; set; }
+        public string VeranstaltungsDatum { get; set; }
+        public System.DateTime EingabeDatum { get; set; }
+        public string Personenzahl { get; set; }
+        public string SummeSpeisen { get; set; }
+        public string SummeGetränke { get; set; }
+        public string SUmmeGesamt { get; set; }
     }
 }

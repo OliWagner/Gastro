@@ -3,6 +3,7 @@ using GastroPages.Models;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -49,6 +50,31 @@ namespace GastroPages.Controllers
                 return View(new HomeKontakteModel());
         }
 
+        public ActionResult KontaktEintragen()
+        {
+            Session["kontakt"] = "";
+            string nachricht = Request["txtNachricht"];
+            string name = Request["name"];
+            string telefon = Request["telefon"];
+            string email = Request["email"];
+            if (nachricht != null && !nachricht.Equals("") && name != null && !name.Equals("")) {
+                using (GastroEntities db = new GastroEntities()) {
+                    Kontakte kon = new Kontakte();
+                    kon.Nachricht = nachricht;
+                    kon.Name = name;
+                    kon.Telefon = telefon;
+                    kon.Email = email;
+                    kon.Datum = DateTime.Now;
+                    db.Kontakte.Add(kon);
+                    db.SaveChanges();
+                    Session["kontakt"] = ResourcesGastro.Home.Logon.KontaktBestätigung;
+                }
+            }
+            return RedirectToAction("Contact", "Home");
+        }
+
+        
+
         public ActionResult Planer()
         {
             HomeVeranstaltungsModel model = new HomeVeranstaltungsModel();
@@ -59,18 +85,45 @@ namespace GastroPages.Controllers
         public ActionResult VeranstaltungSpeichern()
         {
             PdfHelper.MakePdfPlaner(Request);
-            //FileResult fr = DownloadPdfPlaner();
-            System.Diagnostics.Process.Start("C:\\copy\\_Planer.pdf");
-            return View();
-        }
+            if (Session["pdfguid"] != null && !Session["pdfguid"].Equals(""))
+            {
+                using (GastroEntities db = new GastroEntities()) {
+                    var dsvgoName = Request["dsgvoName"];
+                    var dsvgoDatum = Request["dsgvoDatum"];
+                    string anzahlPersonenInsgesamt = Request["anzahlPersonenInsgesamt"];
+                    var SummarySummeSpeisen = Request["summarySummeSpeisenValue"];
+                    var SummarySummeGetränke = Request["summarySummeGetränkeValue"];
+                    var SummarySummeGesamt = Request["summarySummeGesamtValue"];
 
-        public FileResult DownloadPdfPlaner()
-        {
-            var filePath = "C:\\copy\\_Planer.pdf";
-            var pdfFileBytes = FileHelper.GetBytesFromFile(filePath);
-            return File(pdfFileBytes, "application/pdf", "IhreAnfrage.pdf");
+                    Veranstaltungen ver = new Veranstaltungen();
+                    ver.Name = dsvgoName;
+                    ver.VeranstaltungsDatum = dsvgoDatum;
+                    ver.Guid = Session["pdfguid"].ToString();
+                    ver.Personenzahl = anzahlPersonenInsgesamt;
+                    ver.EingabeDatum = DateTime.Now;
+                    ver.SummeSpeisen = SummarySummeSpeisen;
+                    ver.SummeGetränke = SummarySummeGetränke;
+                    ver.SUmmeGesamt = SummarySummeGesamt;
+                    db.Veranstaltungen.Add(ver);
+                    db.SaveChanges();
+                }
+                var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer_" + Session["pdfguid"] + ".pdf", FileMode.Open);
+                var mimeType = "application/pdf";
+                var fileDownloadName = "_Planer_" + Session["pdfguid"] + ".pdf";
+                Session["pdfguid"] = "";
+                return File(fileStream, mimeType, fileDownloadName);
+            }
+            else
+            {
+                //System.Diagnostics.Process.Start("C:\\copy\\_Planer.pdf"); 
+                var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer.pdf", FileMode.Open);
+                var mimeType = "application/pdf";
+                var fileDownloadName = "_Planer.pdf";
+                return File(fileStream, mimeType, fileDownloadName);
+            }
+            
+            return RedirectToAction("Planer", "Home", new HomeVeranstaltungsModel());
         }
-
 
         public ActionResult Karte()
         {
@@ -99,6 +152,7 @@ namespace GastroPages.Controllers
         {
             using (GastroEntities _db = new GastroEntities()) {
                 Reservierungen reservierung = new Reservierungen();
+                reservierung.Name = model.Name;
                 reservierung.Eingabedatum = DateTime.Now;
                 reservierung.Nachricht = model.Mitteilung;
                 reservierung.Personenzahl = int.Parse(model.Personenzahl.ToString());

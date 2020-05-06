@@ -19,7 +19,7 @@ namespace GastroPages.Helpers
 
             try
             {
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("C:\\copy\\_Speisen.pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Speisen.pdf", FileMode.Create));
 
                 document.Open();
 
@@ -199,7 +199,7 @@ catch (IOException ioe)
 
             try
             {
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("C:\\copy\\_Getränke.pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Getränke.pdf", FileMode.Create));
 
                 document.Open();
 
@@ -370,7 +370,7 @@ catch (IOException ioe)
 
             try
             {
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("C:\\copy\\_Allergene.pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Allergene.pdf", FileMode.Create));
 
                 document.Open();
 
@@ -450,7 +450,7 @@ catch (IOException ioe)
 
             try
             {
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("C:\\copy\\_Mittagtisch.pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Mittagtisch.pdf", FileMode.Create));
 
                 document.Open();
 
@@ -627,6 +627,7 @@ catch (IOException ioe)
         
         public static void MakePdfPlaner(HttpRequestBase Request)
         {
+            string txt = Guid.NewGuid().ToString().Replace("-", "");
             PdfPlanerModel model = MakePdfPlanerData(Request);
             MakePdfPlanerDocument(model);
         }
@@ -781,7 +782,17 @@ catch (IOException ioe)
 
             try
             {
-                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("C:\\copy\\_Planer.pdf", FileMode.Create));
+                string txt = Guid.NewGuid().ToString().Replace("-", "");
+                
+                PdfWriter writer;
+                if (model.DsvgoOk != null) {
+                    writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer_" + txt + ".pdf", FileMode.Create));
+                    HttpContext.Current.Session["pdfguid"] = txt;
+                } else {
+                    writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer.pdf", FileMode.Create));
+                }
+                
+                
 
                 document.Open();
 

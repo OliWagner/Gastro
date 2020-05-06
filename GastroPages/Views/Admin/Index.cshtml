@@ -1,2 +1,59 @@
-﻿<h2>Administration</h2>
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminIndexModel
+<h2>Administration</h2>
 
+<h3>Reservierungen</h3>
+<table border="0">
+
+    @foreach (Reservierungen res in Model.Reservierungen)
+    {
+        <tr>
+            <td valign="top" width="250"><b>@res.Name</b> (am: @res.Eingabedatum.ToShortDateString())</td>
+            <td valign="top" width="250"><b>@res.Datum (@res.Uhrzeit/@res.Personenzahl Personen)</b></td>
+            <td valign="top" width="150" align="right"><b>@res.Telefonnummer</b></td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="2">@res.Nachricht</td>
+            <td valign="top" align="right">@Html.ActionLink("löschen", "DeleteReservierung", new { id = res.id })</td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="3">&nbsp;</td>
+        </tr>
+    }
+</table>
+    
+<h3>Anfragen Veranstaltungen</h3>
+<table border="0">
+
+    @foreach (Veranstaltungen vaf in Model.Veranstaltungsanfragen)
+    {
+    <tr>
+        <td valign="top" width="250"><b>@vaf.Name</b><br />Eingabe am @vaf.EingabeDatum.ToShortDateString()<br />um @vaf.EingabeDatum.ToShortTimeString()</td>
+        <td valign="top" width="250"><b>Veranstaltung am</b> @vaf.VeranstaltungsDatum<br />für @vaf.Personenzahl Personen</td>
+        <td valign="top" width="150" align="right"><b>Speisen:</b> @vaf.SummeSpeisen<br /><b>Getränke:</b> @vaf.SummeGetränke<br /><b>Gesamt: @vaf.SUmmeGesamt</b><br /></td>
+        <td valign="top" width="80" align="right">@Html.ActionLink("pdf", "ViewPdf", new { guid = vaf.Guid })</td>
+        <td valign="top" width="80" align="right">@Html.ActionLink("löschen", "DeletePdf", new { guid = vaf.Guid })</td>
+    </tr>
+     <tr><td colspan="5">&nbsp;</td></tr>   
+    }
+</table>
+    
+<h3>Kontaktformular</h3>
+<table border="0">
+    @foreach (Kontakte kon in Model.Kontakte)
+    {
+        <tr>
+            <td valign="top"><b>@kon.Name</b></td>
+            <td valign="top"><b>@kon.Datum</b></td>
+            <td valign="top"><b>@kon.Telefon</b></td>
+            <td valign="top"><b>@kon.Email</b></td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="3">@kon.Nachricht</td>
+            <td valign="top">@Html.ActionLink("löschen", "DeleteKontakt", new { id = kon.id })</td>
+        </tr>
+        <tr>
+            <td valign="top" colspan="4">&nbsp;</td>
+        </tr>
+    }
+</table>

@@ -1,7 +1,10 @@
 ﻿<h2>Pdf</h2>
 <table border="0" width="800">
     @{ 
-        var cucu = "/Images/flagge_" + HttpContext.Current.Request.Cookies["_culture"].Value.Substring(0, 2) + ".png";
+        var cucu = "/Images/flagge_de.png"; ;
+        if (HttpContext.Current.Request.Cookies["_culture"] != null) {
+            cucu = "/Images/flagge_" + HttpContext.Current.Request.Cookies["_culture"].Value.Substring(0, 2) + ".png";
+        }
     }
     <tr>
         <td colspan="5">Derzeit eingestellte Sprache: <image src="@cucu" width="40" height="27" /></td>

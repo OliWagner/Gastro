@@ -1,14 +1,67 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #cccccc;
 }
 
+input[type=text] {
+    background-color: #eeeeff;
+    border-radius: 5px;
+}
+
+textarea {
+    background-color: #eeeeff;
+    border-radius: 5px;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
+/*Layout*/
+/*footer {
+    position: fixed;
+    bottom: -40px;
+    width: 1150px;
+    max-height: 40px;
+    margin-top: 0px;
+    
+}*/
+.navbar-inverse .navbar-nav > li > a {
+    color: #000000;
+}
+.navbar-inverse {
+    background-color: #ccccff;
+    border-color: #080808;
+}
+
+.navbar-wrapper {
+    width:1150px;
+}
+
+.navbar-fixed-bottom {
+    height: 40px;
+}
+
+.container {
+    background-color: #cccccc;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+
+.jumbotron {
+    background-color: #ccccff;
+    padding-top: 0px;
+}
+.footerLink {
+    top:-10px;
+}
+
+.footerNoLink {
+    top: 5px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -527,6 +580,7 @@ textarea {
 
 .PlanerZusammenfassung {
     background-color: #ffffff;
+    max-height:20px;
 }
 
 
@@ -674,6 +728,12 @@ textarea {
 }
 
 .ReservierungWichtigerHinweis {
+    color: #ff0000;
+    border: 5px solid red;
+    padding: 5px;
+}
+
+.Kontaktbestätigung {
     color: #ff0000;
     border: 5px solid red;
     padding: 5px;
