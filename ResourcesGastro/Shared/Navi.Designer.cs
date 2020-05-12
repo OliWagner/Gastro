@@ -214,6 +214,105 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zu den News ähnelt.
+        /// </summary>
+        public static string IndexNewsBtnText {
+            get {
+                return ResourceManager.GetString("IndexNewsBtnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte haben Sie Verständnis, dass wir unsere News nicht in andere Sprachen übersetzen. ähnelt.
+        /// </summary>
+        public static string IndexNewsNoT {
+            get {
+                return ResourceManager.GetString("IndexNewsNoT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Jetzt nur ein ich, bald ein Team! ähnelt.
+        /// </summary>
+        public static string IndexTeamHeader {
+            get {
+                return ResourceManager.GetString("IndexTeamHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Informationen zur kulinarischen Vita und zum Werdegang des neuen Inhabers Alexander Hert finden Sie auf unserer Teams-Seite. ähnelt.
+        /// </summary>
+        public static string IndexTeamText {
+            get {
+                return ResourceManager.GetString("IndexTeamText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wann immer Sie einen schönen Abend in gemütlicher Atmosphäre bei einem                      ausgezeichneten Essen und Getränken verbringen möchten: ähnelt.
+        /// </summary>
+        public static string IndexText1 {
+            get {
+                return ResourceManager.GetString("IndexText1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wir sind für Sie da! ähnelt.
+        /// </summary>
+        public static string IndexText2 {
+            get {
+                return ResourceManager.GetString("IndexText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Seit dem Ende des 19. Jahrhunderts wird dieses Ende des 18. Jahrhunderts erbaute Haus für gastronomische Zwecke genutzt.                        &quot;Der größte Saal am Platze&quot; entwickelte sich laut dem Einwohneradressbuch von Bergheim aus dem Jahre 1898 schnell zur &quot;bekanntesten Erholungsstation für Radfahrer&quot;. Schon damals wurde der Gasthof Zur Glocke von zahlreichen Vereinen für Veranstaltungen und Karnevalsbälle genutzt. Diese lange Tradition wird ab dem 01.06.2020 von Alexander Hert fortgesetzt. ähnelt.
+        /// </summary>
+        public static string IndexText3 {
+            get {
+                return ResourceManager.GetString("IndexText3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zur aktuellen Umfrage ähnelt.
+        /// </summary>
+        public static string IndexUmfrageBtnText {
+            get {
+                return ResourceManager.GetString("IndexUmfrageBtnText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Aktuelle Umfrage ähnelt.
+        /// </summary>
+        public static string IndexUmfrageHeader {
+            get {
+                return ResourceManager.GetString("IndexUmfrageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Auch unsere Umfragen werden nicht in andere Sprachen übersetzt. ähnelt.
+        /// </summary>
+        public static string IndexUmfrageNoT {
+            get {
+                return ResourceManager.GetString("IndexUmfrageNoT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wir haben wieder eine aktuelle Umfrage zu uns und unserem Angebot. Wir bitten Sie um Ihre Hilfe und/oder Ihre Meinung. ähnelt.
+        /// </summary>
+        public static string IndexUmfrageText {
+            get {
+                return ResourceManager.GetString("IndexUmfrageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Inhaber ähnelt.
         /// </summary>
         public static string Inhaber {
@@ -228,6 +327,15 @@ namespace ResourcesGastro.Shared {
         public static string Insgesamt {
             get {
                 return ResourceManager.GetString("Insgesamt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Im Moment haben wir nichts Neues. Schauen Sie bald wieder rein. ähnelt.
+        /// </summary>
+        public static string KeineAktuellenNews {
+            get {
+                return ResourceManager.GetString("KeineAktuellenNews", resourceCulture);
             }
         }
         
@@ -286,6 +394,15 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die News ähnelt.
+        /// </summary>
+        public static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Öffnungszeiten ähnelt.
         /// </summary>
         public static string Öffnungszeiten {
@@ -331,7 +448,7 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten. ähnelt.
         /// </summary>
         public static string PlanerIntro {
             get {
@@ -525,6 +642,15 @@ namespace ResourcesGastro.Shared {
         public static string von {
             get {
                 return ResourceManager.GetString("von", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Willkommen!!! ähnelt.
+        /// </summary>
+        public static string Willkommen {
+            get {
+                return ResourceManager.GetString("Willkommen", resourceCulture);
             }
         }
         

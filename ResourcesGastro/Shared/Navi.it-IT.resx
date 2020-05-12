@@ -196,7 +196,7 @@
     <value>Con questo servizio è possibile calcolare i costi previsti per un evento e stampare il risultato. Se lo desideri, puoi anche inviare i tuoi calcoli all'host. Quindi chiediamo alcuni dettagli per poterti contattare.</value>
   </data>
   <data name="PlanerIntro" xml:space="preserve">
-    <value>Inserisci il numero di persone per le quali stai pianificando un evento con noi. Inserisci prima il numero di persone per le quali desideri pianificare un evento con noi.</value>
+    <value>Inserisci innanzitutto il numero di persone per le quali desideri pianificare un evento con noi.</value>
   </data>
   <data name="PlanerPdfName" xml:space="preserve">
     <value>nome</value>
@@ -275,5 +275,47 @@
   </data>
   <data name="Telefax" xml:space="preserve">
     <value>Fax</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Notizie</value>
+  </data>
+  <data name="IndexText1" xml:space="preserve">
+    <value>Ogni volta che vuoi trascorrere una bella serata in un'atmosfera accogliente con cibo e bevande eccellenti:</value>
+  </data>
+  <data name="IndexText2" xml:space="preserve">
+    <value>Siamo lì per te!</value>
+  </data>
+  <data name="IndexText3" xml:space="preserve">
+    <value>Questa casa, costruita alla fine del 18 ° secolo, è stata utilizzata per scopi gastronomici dalla fine del 19 ° secolo. "La sala più grande della piazza" è rapidamente diventata la "stazione ricreativa più famosa per i ciclisti" secondo la rubrica degli abitanti di Bergheim dal 1898. Anche allora, il Gasthof Zur Glocke veniva utilizzato da numerosi club per eventi e balli di carnevale. Questa lunga tradizione sarà proseguita da Alexander Hert dal 1 ° giugno 2020.</value>
+  </data>
+  <data name="Willkommen" xml:space="preserve">
+    <value>Benvenuto !!!</value>
+  </data>
+  <data name="IndexNewsBtnText" xml:space="preserve">
+    <value>Alla notizia</value>
+  </data>
+  <data name="IndexNewsNoT" xml:space="preserve">
+    <value>Ti preghiamo di comprendere che non traduciamo le nostre notizie in altre lingue.</value>
+  </data>
+  <data name="IndexUmfrageBtnText" xml:space="preserve">
+    <value>Al sondaggio attuale</value>
+  </data>
+  <data name="IndexUmfrageHeader" xml:space="preserve">
+    <value>Sondaggio attuale</value>
+  </data>
+  <data name="IndexUmfrageNoT" xml:space="preserve">
+    <value>Anche i nostri sondaggi non sono tradotti in altre lingue.</value>
+  </data>
+  <data name="IndexUmfrageText" xml:space="preserve">
+    <value>Abbiamo un altro sondaggio in corso su di noi e sulla nostra offerta. Chiediamo il tuo aiuto e / o la tua opinione.</value>
+  </data>
+  <data name="IndexTeamHeader" xml:space="preserve">
+    <value>Ora solo io, presto una squadra!</value>
+  </data>
+  <data name="IndexTeamText" xml:space="preserve">
+    <value>Puoi trovare informazioni sulla vita culinaria e sulla carriera del nuovo proprietario Alexander Hert sulla nostra pagina del team.</value>
+  </data>
+  <data name="KeineAktuellenNews" xml:space="preserve">
+    <value>Non abbiamo nulla di nuovo al momento. Torna presto.</value>
   </data>
 </root>

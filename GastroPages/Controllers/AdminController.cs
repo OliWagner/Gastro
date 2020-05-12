@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,6 +21,8 @@ namespace GastroPages.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+
 
         public ActionResult Benutzer()
         {
@@ -165,6 +168,101 @@ namespace GastroPages.Controllers
                     db.SaveChanges();
                 }
                 return RedirectToAction("Kontakt", "Admin");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult News(int? id)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                AdminNewsModel model = new AdminNewsModel();
+                if (id != null && id != 0) {
+                    model = new AdminNewsModel((int)id);
+                }
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        
+        [HttpPost]
+        public ActionResult NewsEintragen(AdminNewsModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                using (GastroEntities db = new GastroEntities())
+                {
+                    //if(!model.News.Überschrift.Equals("") && !model.News.NewsText.Equals(""))
+                    if (ModelState.IsValid)
+                    {
+                        if (model.News.id == 0)
+                        {
+                            db.News.Add(model.News);
+                        }
+                        else
+                        {
+                            News n = (from News news in db.News where news.id == model.News.id select news).FirstOrDefault();
+                            n.Datum = model.News.Datum;
+                            n.Header = model.News.Header;
+                            n.NewsText = model.News.NewsText;
+                            n.Überschrift = model.News.Überschrift;
+                        }
+                        db.SaveChanges();
+                    }
+                    else {
+                        return RedirectToAction("News", "Admin", model.News.id);
+                    }
+                    return RedirectToAction("News", "Admin");
+                }
+                
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult UploadImage(IEnumerable<HttpPostedFileBase> files, string newsId, string bildText)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                if (files != null)
+                {
+                    foreach (var file in files)
+                    {
+                        if (file != null)
+                        {
+                            try
+                            {
+                                //Save original to all folders
+                                file.SaveAs(Server.MapPath("~/Content/Images/"+file.FileName));
+                                BilderHelper.AddBildNews(file.FileName, bildText, newsId);
+                            }
+                            catch (Exception ex)
+                            {
+                                
+                                return RedirectToAction("News", "Admin");
+                            }
+                        }
+                        Thread.Sleep(500);
+                    }
+                }
+                return RedirectToAction("News", "Admin", new { id = newsId });
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult NewsLöschen(int id)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                using (GastroEntities db = new GastroEntities())
+                {
+                   
+                    News n = (from News news in db.News where news.id == id select news).FirstOrDefault();
+                    db.News.Remove(n);
+                    db.SaveChanges();
+                }
+                return RedirectToAction("News", "Admin");
             }
             return RedirectToAction("Index", "Home");
         }

@@ -1,10 +1,15 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #cccccc;
+    /*background-color: #cfcfcf;*/
 }
 
 input[type=text] {
+    background-color: #eeeeff;
+    border-radius: 5px;
+}
+
+input[type=password] {
     background-color: #eeeeff;
     border-radius: 5px;
 }
@@ -32,7 +37,7 @@ textarea {
     color: #000000;
 }
 .navbar-inverse {
-    background-color: #ccccff;
+    background-color: #efefff;
     border-color: #080808;
 }
 
@@ -45,14 +50,24 @@ textarea {
 }
 
 .container {
-    background-color: #cccccc;
+    /*background-color: #efefef;*/
     min-height: 100%;
-    height: auto !important;
     height: 100%;
 }
 
+
+
+.col-md-4 {
+    width: 333px;
+    float: left;
+    background-color: #fcfcfc;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
 .jumbotron {
-    background-color: #ccccff;
+    background-color: #fafafa;
     padding-top: 0px;
 }
 .footerLink {
@@ -737,4 +752,15 @@ textarea {
     color: #ff0000;
     border: 5px solid red;
     padding: 5px;
+}
+
+.AdminNewsRechts {
+    float: left;
+    width: 600px;
+    margin-left: 15px;
+}
+
+.AdminNewsLinks {
+    float: left;
+    width: 350px;
 }

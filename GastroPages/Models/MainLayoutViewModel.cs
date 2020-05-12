@@ -16,6 +16,7 @@ namespace GastroPages.Models
         public string Facebook { get; set; }
         public string GooglePlus { get; set; }
         public string Youtube { get; set; }
+        public List<News> News { get; set; }
 
         public MainLayoutViewModel() { 
             using(GastroEntities db = new GastroEntities()){
@@ -26,6 +27,8 @@ namespace GastroPages.Models
                 Snapchat = k.Snapchat;
                 Facebook = k.Facebook;
                 GooglePlus = k.GooglePlus;
+
+                News = (from News news in db.News orderby news.Datum descending select news).ToList();
             }
         }
     }

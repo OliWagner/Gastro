@@ -1,31 +1,77 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using GastroPages.Models
+@{
+    var viewModel = (MainLayoutViewModel)ViewBag.MainLayoutViewModel;
 }
+@using Resources = ResourcesGastro.Shared.Navi
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <table border="0" width="100%">
+        <tr>
+            <td valign="top" width="600">
+                <h1>@Resources.Willkommen</h1>
+                <big>
+                    <big>
+                        @Resources.IndexText1<br />
+                        @Resources.IndexText2<br /><br />
+
+                        @Resources.IndexText3<br />
+                    </big>
+                </big>
+            </td>
+            <td width="20">&nbsp;</td>
+            <td valign="top" class="tdIndexLogo">
+                <img src="~/Images/logo.gif" width="500" /><br />
+                <big>
+                    <big>
+                        <b>Restaurant zur Glocke - @Resources.Inhaber Alexander Hert</b>
+                        Stiftstraße 39<br />
+                        50171 Kerpen<br />
+                        @Resources.PlanerPdfTelefon: <a href="tel:+492237591634">02237/591634 </a><br />
+                    </big>
+                </big><br />
+            </td>
+        </tr>
+    </table>
+
+
 </div>
 
-<div class="row">
+<div>
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>@Resources.News</h2>
+        <p><small><small>@Resources.IndexNewsNoT</small></small></p>
+        @if (viewModel.News.Any())
+        {
+            <p>
+                <b>@viewModel.News.First().Datum.ToShortDateString() - <big>@viewModel.News.First().Überschrift</big></b>
+            </p>
+            <p>
+                <b>@viewModel.News.First().Header</b>
+            </p>
+            <p>
+                @viewModel.News.First().NewsText
+            </p>
+        }
+        else
+        {
+            <p>
+                <b>@Resources.KeineAktuellenNews</b>
+            </p>
+        }
+
+        <p><a class="btn btn-default" href="/Home/News">@Resources.IndexNewsBtnText &raquo;</a></p>
     </div>
+
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>@Resources.IndexUmfrageHeader</h2>
+        <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
+        <p>@Resources.IndexUmfrageText</p>
+        <p><a class="btn btn-default" href="/Home/Umfrage">@Resources.IndexUmfrageBtnText &raquo;</a></p>
     </div>
+
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>@Resources.IndexTeamHeader</h2>
+        <p>@Resources.IndexTeamText</p>
+        <p><a class="btn btn-default" href="/Home/About">@Resources.UnserTeam &raquo;</a></p>
     </div>
 </div>

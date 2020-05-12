@@ -196,7 +196,7 @@
     <value>Mit diesem Service können Sie die zu erwartenden Kosten für eine Veranstaltung berechnen und sich das Ergebnis ausdrucken. Wenn Sie möchten, können Sie Ihre Berechnung auch an den Wirt senden. Dann bitten wir Sie um ein paar Angaben, um Sie kontaktieren zu können.</value>
   </data>
   <data name="PlanerIntro" xml:space="preserve">
-    <value>Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten.</value>
+    <value>Bitte geben Sie zunächst die Anzahl der Personen ein, für die Sie eine Veranstaltung bei uns planen möchten.</value>
   </data>
   <data name="PlanerPdfName" xml:space="preserve">
     <value>Name</value>
@@ -275,5 +275,47 @@
   </data>
   <data name="Telefax" xml:space="preserve">
     <value>Telefax</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="IndexText1" xml:space="preserve">
+    <value>Wann immer Sie einen schönen Abend in gemütlicher Atmosphäre bei einem                      ausgezeichneten Essen und Getränken verbringen möchten:</value>
+  </data>
+  <data name="IndexText2" xml:space="preserve">
+    <value>Wir sind für Sie da!</value>
+  </data>
+  <data name="IndexText3" xml:space="preserve">
+    <value>Seit dem Ende des 19. Jahrhunderts wird dieses Ende des 18. Jahrhunderts erbaute Haus für gastronomische Zwecke genutzt.                        "Der größte Saal am Platze" entwickelte sich laut dem Einwohneradressbuch von Bergheim aus dem Jahre 1898 schnell zur "bekanntesten Erholungsstation für Radfahrer". Schon damals wurde der Gasthof Zur Glocke von zahlreichen Vereinen für Veranstaltungen und Karnevalsbälle genutzt. Diese lange Tradition wird ab dem 01.06.2020 von Alexander Hert fortgesetzt.</value>
+  </data>
+  <data name="Willkommen" xml:space="preserve">
+    <value>Willkommen!!!</value>
+  </data>
+  <data name="IndexNewsBtnText" xml:space="preserve">
+    <value>Zu den News</value>
+  </data>
+  <data name="IndexNewsNoT" xml:space="preserve">
+    <value>Bitte haben Sie Verständnis, dass wir unsere News nicht in andere Sprachen übersetzen.</value>
+  </data>
+  <data name="IndexUmfrageBtnText" xml:space="preserve">
+    <value>Zur aktuellen Umfrage</value>
+  </data>
+  <data name="IndexUmfrageHeader" xml:space="preserve">
+    <value>Aktuelle Umfrage</value>
+  </data>
+  <data name="IndexUmfrageNoT" xml:space="preserve">
+    <value>Auch unsere Umfragen werden nicht in andere Sprachen übersetzt.</value>
+  </data>
+  <data name="IndexUmfrageText" xml:space="preserve">
+    <value>Wir haben wieder eine aktuelle Umfrage zu uns und unserem Angebot. Wir bitten Sie um Ihre Hilfe und/oder Ihre Meinung.</value>
+  </data>
+  <data name="IndexTeamHeader" xml:space="preserve">
+    <value>Jetzt nur ein ich, bald ein Team!</value>
+  </data>
+  <data name="IndexTeamText" xml:space="preserve">
+    <value>Informationen zur kulinarischen Vita und zum Werdegang des neuen Inhabers Alexander Hert finden Sie auf unserer Teams-Seite.</value>
+  </data>
+  <data name="KeineAktuellenNews" xml:space="preserve">
+    <value>Im Moment haben wir nichts Neues. Schauen Sie bald wieder rein.</value>
   </data>
 </root>

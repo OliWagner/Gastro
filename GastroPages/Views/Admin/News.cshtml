@@ -1,0 +1,78 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminNewsModel
+<h2> Administration News </h2>
+@using (Html.BeginForm("NewsEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
+{
+    @Html.HiddenFor(model => model.News.id);
+    <div class="AdminNewsLinks">
+        <table border="0">
+            <tr>
+                <td valign="top" width="80">Datum</td>
+                <td valign="top" width="200">@Html.TextBoxFor(model => model.News.Datum)</td>
+
+            </tr>
+            <tr>
+                <td valign="top">Überschrift</td>
+                <td valign="top">@Html.TextBoxFor(model => model.News.Überschrift)</td>
+            </tr>
+            <tr>
+                <td valign="top">Header</td>
+                <td valign="top">@Html.TextAreaFor(model => model.News.Header)</td>
+            </tr>
+            <tr>
+                <td valign="top">Text</td>
+                <td valign="top">@Html.TextAreaFor(model => model.News.NewsText)</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Eintragen" /></td>
+            </tr>
+        </table>
+    </div>
+}
+<div class="AdminNewsRechts">
+    @if (Model.News.id != 0)
+    {
+
+        <text>Möchten Sie den News Bilder hinzufügen?</text>
+        using (Html.BeginForm("UploadImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="hidden" name="newsId" value="@Model.News.id" />
+            <text>Text: <input type="text" name="bildText" /><br /></text>
+            <input type="file" name="files" />
+            <input type="submit" />
+            <div class="clear">
+            </div>
+
+            foreach (var item in Model.Bilder)
+            {
+                <img src="~/Content/Images/@item.BildUrl" width="150" />
+                <text>&nbsp;</text>
+
+            }
+        }
+    }
+</div>
+<div style="clear:both" />
+
+<hr />
+<table border="0">
+    <tr>
+        <th valign="top" width="100">Datum</th>
+        <th valign="top" width="200">Überschrift</th>
+        <th valign="top" width="300">Header</th>
+        <th valign="top" width="300">Text</th>
+        <th valign="top" width="100">&nbsp;</th>
+        <th valign="top">&nbsp;</th>
+    </tr>
+    @foreach (News news in Model.AlleNews)
+    {
+        <tr>
+            <td valign="top">@news.Datum.ToShortDateString(), @news.Datum.ToShortTimeString()</td>
+            <td valign="top">@news.Überschrift</td>
+            <td valign="top">@news.Header</td>
+            <td valign="top">@news.NewsText</td>
+            <td valign="top">@Html.ActionLink("Bearbeiten", "News", "Admin", new { id = news.id }, null)</td>
+            <td valign="top">@Html.ActionLink("Löschen", "NewsLöschen", "Admin", new { id = news.id }, null)</td>
+        </tr>
+    }
+</table>

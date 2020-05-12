@@ -196,7 +196,7 @@
     <value>С помощью этой услуги вы можете рассчитать ожидаемые затраты на событие и распечатать результат. Если вы хотите, вы также можете отправить свой расчет на хост. Затем мы просим несколько деталей, чтобы иметь возможность связаться с вами.</value>
   </data>
   <data name="PlanerIntro" xml:space="preserve">
-    <value>Пожалуйста, введите количество людей, для которых вы планируете мероприятие с нами. Сначала введите число людей, для которых вы хотите запланировать мероприятие у нас.</value>
+    <value>Пожалуйста, сначала введите количество людей, для которых вы хотите запланировать мероприятие с нами.</value>
   </data>
   <data name="PlanerPdfName" xml:space="preserve">
     <value>имя</value>
@@ -275,5 +275,47 @@
   </data>
   <data name="Telefax" xml:space="preserve">
     <value>факс</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>новости</value>
+  </data>
+  <data name="IndexText1" xml:space="preserve">
+    <value>Всякий раз, когда вы хотите провести приятный вечер в уютной атмосфере с отличной едой и напитками:</value>
+  </data>
+  <data name="IndexText2" xml:space="preserve">
+    <value>Мы там для вас!</value>
+  </data>
+  <data name="IndexText3" xml:space="preserve">
+    <value>Этот дом, построенный в конце 18-го века, использовался в гастрономических целях с конца 19-го века. «Самый большой зал на площади» быстро превратился в «самую известную зону отдыха для велосипедистов» согласно адресной книге жителей Бергхайма с 1898 года. Уже тогда Gasthof Zur Glocke использовался многочисленными клубами для проведения мероприятий и карнавальных балов. Эта давняя традиция будет продолжена Александром Хертом с 1 июня 2020 года.</value>
+  </data>
+  <data name="Willkommen" xml:space="preserve">
+    <value>Добро пожаловать !!!</value>
+  </data>
+  <data name="IndexNewsBtnText" xml:space="preserve">
+    <value>К новостям</value>
+  </data>
+  <data name="IndexNewsNoT" xml:space="preserve">
+    <value>Пожалуйста, поймите, что мы не переводим наши новости на другие языки.</value>
+  </data>
+  <data name="IndexUmfrageBtnText" xml:space="preserve">
+    <value>К текущему опросу</value>
+  </data>
+  <data name="IndexUmfrageHeader" xml:space="preserve">
+    <value>Текущий опрос</value>
+  </data>
+  <data name="IndexUmfrageNoT" xml:space="preserve">
+    <value>Наши опросы также не переведены на другие языки.</value>
+  </data>
+  <data name="IndexUmfrageText" xml:space="preserve">
+    <value>У нас есть еще один текущий опрос о нас и нашем предложении. Мы просим вашей помощи и / или вашего мнения.</value>
+  </data>
+  <data name="IndexTeamHeader" xml:space="preserve">
+    <value>Теперь только я, скоро команда!</value>
+  </data>
+  <data name="IndexTeamText" xml:space="preserve">
+    <value>Вы можете найти информацию о кулинарной жизни и карьере нового владельца Александра Херта на странице нашей команды.</value>
+  </data>
+  <data name="KeineAktuellenNews" xml:space="preserve">
+    <value>На данный момент у нас нет ничего нового. Возвращайтесь в ближайшее время.</value>
   </data>
 </root>
