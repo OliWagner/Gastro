@@ -46,10 +46,10 @@
                 <b>@viewModel.News.First().Datum.ToShortDateString() - <big>@viewModel.News.First().Überschrift</big></b>
             </p>
             <p>
-                <b>@viewModel.News.First().Header</b>
+                <b>@viewModel.News.First().Header.Substring(0,50)...</b>
             </p>
             <p>
-                @viewModel.News.First().NewsText
+                @viewModel.News.First().NewsText.Substring(0, 100)...
             </p>
         }
         else

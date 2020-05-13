@@ -50,6 +50,14 @@ namespace GastroPages.Controllers
                 return View(new HomeKontakteModel());
         }
 
+        public ActionResult News(int? id)
+        {
+            if (id == null) {
+                return View(new HomeNewsModel());
+            }
+            return View(new HomeNewsModel((int)id));
+        }
+
         public ActionResult KontaktEintragen()
         {
             Session["kontakt"] = "";

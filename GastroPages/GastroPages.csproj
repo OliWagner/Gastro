@@ -208,6 +208,7 @@
     <Compile Include="Models\Admin\AdminReservierungModel.cs" />
     <Compile Include="Models\Admin\AdminÖffnungszeitenModel.cs" />
     <Compile Include="Models\Admin\AdminKategorienModel.cs" />
+    <Compile Include="Models\Home\HomeNewsModel.cs" />
     <Compile Include="Models\Home\HomeKontakteModel.cs" />
     <Compile Include="Models\Home\HomeReservierungModel.cs" />
     <Compile Include="Models\Home\HomeÖffnungszeitenModel.cs" />

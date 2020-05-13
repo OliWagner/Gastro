@@ -1,2 +1,19 @@
-﻿<h2>@ResourcesGastro.Shared.Navi.News</h2>
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeNewsModel
+<h2>@ResourcesGastro.Shared.Navi.News </h2>
+<h3>@Model.News.Datum.ToShortDateString() -  @Model.News.Überschrift</h3>
+<p><b>@Model.News.Header</b></p>
+<p>@Model.News.NewsText</p>
+@foreach (var item in Model.Bilder)
+{
+    <img src="~/Content/Images/@item.BildUrl" width="100" />
+    <text>&nbsp;</text>
 
+}
+<hr />
+@foreach (News news in Model.AlleNews)
+{
+<h4><a href="/Home/News?id=@news.id">@news.Datum.ToShortDateString() -  @news.Überschrift</a></h4>
+    <p><b>@news.Header.Substring(0, 50)...</b></p>
+    <p>@news.NewsText.Substring(0,100)...</p>
+}
