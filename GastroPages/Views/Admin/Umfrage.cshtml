@@ -24,7 +24,7 @@
                 fileData.append('username', 'Test');
 
                 $.ajax({
-                    url: '/Admin/UploadFiles',
+                    url: '/Admin/UploadFiles/',
                     type: "POST",
                     contentType: false, // Not to set any content header
                     processData: false, // Not to process data
@@ -37,7 +37,9 @@
                         }
 
                         var cartItemsList = document.getElementById("cartItemsList");
-                        cartItemsList.innerHTML = "";
+                        
+
+                        //cartItemsList.innerHTML = "";
                         for (var i = 0; i < json.length; i++) {
                             var obj = json[i];
  
@@ -61,7 +63,7 @@
     feld = 0;
     var myArray = [];
 
-    function feld_plus() {
+    function feld_plus(eingabewert) {
 
         if (feld <= 9) {
             feld++;
@@ -76,7 +78,11 @@
             document.getElementById('dynamic_input').innerHTML = "";
             for (var zaehler = 1; zaehler <= feld; zaehler++) {
                 var label = "Antwort " + zaehler;
-                var test = myArray[zaehler - 1];
+
+                test = myArray[zaehler - 1];
+                if (test == null) {
+                    var test = eingabewert;
+                }
                 if (test != null) {
                     document.getElementById('dynamic_input').innerHTML +=
                         "<label>" + label + ": <input type='text' name='antwort[]' id='antwort" + zaehler + "' value='" + test + "'></label><br>";
@@ -85,10 +91,7 @@
                     document.getElementById('dynamic_input').innerHTML +=
                         "<label>" + label + ": <input type='text' name='antwort[]' id='antwort" + zaehler + "' value=''></label><br>";
                 }
-
-
             }
-
         }
     }
 
@@ -171,7 +174,7 @@
     @foreach (UmfrageAntworten ua in Model.Antworten)
     {
         <script>
-            feld_plus();
+            feld_plus('@ua.AntwortText');
             zeigeTrAntworten();
         </script>
     }

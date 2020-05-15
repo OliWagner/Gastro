@@ -25,7 +25,13 @@ namespace GastroPages.Controllers
                     //  Get all files from Request object  
                     HttpFileCollectionBase files = Request.Files;
                     string json = "";
-                    using (GastroEntities db = new GastroEntities()) { 
+                    using (GastroEntities db = new GastroEntities()) {
+                        int myId = 0;
+                        if (Session["UmfrageId"] != null) {
+                            myId = (int)Session["UmfrageId"];
+                        }
+                        List<UmfrageBilder> toDelete = (from UmfrageBilder ub in db.UmfrageBilder where ub.UmfrageId == myId select ub).ToList();
+                        db.UmfrageBilder.RemoveRange(toDelete);
                         for (int i = 0; i < files.Count; i++)
                         {
                             //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
@@ -89,6 +95,7 @@ namespace GastroPages.Controllers
             {
                 AdminUmfrageModel model = new AdminUmfrageModel();
                 if (id != null) {
+                    Session["UmfrageId"] = id;
                     model = new AdminUmfrageModel((int)id);
                 }
                 return View(model);
@@ -135,8 +142,10 @@ namespace GastroPages.Controllers
                         db.SaveChanges();
                         umfrageId = (from Umfragen u in db.Umfragen orderby u.id descending select u.id).FirstOrDefault();
                     }
-                    
-                //Jetzt mit der Id die Antworten speichern
+
+                    //Jetzt mit der Id die Antworten speichern
+                    List<UmfrageAntworten> toDelete = (from UmfrageAntworten ua in db.UmfrageAntworten where ua.UmfrageId == umfrageId select ua).ToList();
+                    db.UmfrageAntworten.RemoveRange(toDelete);
                     foreach (string answer in antworten) { 
                         UmfrageAntworten ua = new UmfrageAntworten();
                         ua.AntwortText = answer;
