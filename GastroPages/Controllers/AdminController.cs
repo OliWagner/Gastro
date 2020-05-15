@@ -1,5 +1,6 @@
 ﻿using GastroPages.Helpers;
 using GastroPages.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,12 +13,156 @@ namespace GastroPages.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
+        
+        [HttpPost]
+        public ActionResult UploadFiles()
+        {
+            // Checking no of files injected in Request object  
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+                    string json = "";
+                    using (GastroEntities db = new GastroEntities()) { 
+                        for (int i = 0; i < files.Count; i++)
+                        {
+                            //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+                            //string filename = Path.GetFileName(Request.Files[i].FileName);  
+
+                            HttpPostedFileBase file = files[i];
+                            string fname;
+
+                            // Checking for Internet Explorer  
+                            if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                            {
+                                string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                                fname = testfiles[testfiles.Length - 1];
+                            }
+                            else
+                            {
+                                fname = file.FileName;
+                            }
+
+                            // Get the complete folder path and store the file inside it.  
+                            fname = Path.Combine(Server.MapPath("~/Content/ImagesUmfragen/"), fname);
+                            file.SaveAs(fname);
+                            UmfrageBilder bild = new UmfrageBilder();
+                            bild.UmfrageId = 1000000000;
+                            bild.BildUrl = file.FileName;
+                            db.UmfrageBilder.Add(bild);
+                        }
+                        db.SaveChanges();
+                        List<UmfrageBilder> emp = db.UmfrageBilder.Where(e => e.UmfrageId == 1000000000).ToList();
+
+                        json = JsonConvert.SerializeObject(emp);
+                    }
+                    
+                    // Returns message that successfully uploaded  
+                    return Json(json);
+                }
+                catch (Exception ex)
+                {
+                    return Json("Error occurred. Error details: " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("No files selected.");
+            }
+        }
+
+
         public ActionResult Index()
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin")) {
                 AdminIndexModel model = new AdminIndexModel();
                 return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Umfrage(int? id)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                AdminUmfrageModel model = new AdminUmfrageModel();
+                if (id != null) {
+                    model = new AdminUmfrageModel((int)id);
+                }
+                return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult UmfrageEintragen(AdminUmfrageModel model)
+        {
+            if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
+            {
+                int umfrageId = 0;
+                
+                using (GastroEntities db = new GastroEntities()) {
+                
+                List<string> antworten = new List<string>();
+                if (Request["antwort[]"] != null) { 
+                    antworten = Request["antwort[]"].Split(',').ToList();
+                }
+                string typ = Request["hidTyp"];
+                string pics = Request["pics"];
+
+                    if (model.Umfrage.id != 0)
+                    {
+                        umfrageId = model.Umfrage.id;
+                        Umfragen uf = (from Umfragen u in db.Umfragen where u.id == model.Umfrage.id select u).FirstOrDefault();
+                        uf.Titel = model.Umfrage.Titel;
+                        uf.DatumEnde = model.Umfrage.DatumEnde;
+                        uf.DatumStart = model.Umfrage.DatumStart;
+                        uf.Einleitung = model.Umfrage.Einleitung;
+                        uf.Frage = model.Umfrage.Frage;
+                        uf.Typ = typ;
+                        db.SaveChanges();
+                    }
+                    else {
+                        Umfragen umfrage = new Umfragen();
+                        umfrage.Titel = model.Umfrage.Titel;
+                        umfrage.DatumEnde = model.Umfrage.DatumEnde;
+                        umfrage.DatumStart = model.Umfrage.DatumStart;
+                        umfrage.Einleitung = model.Umfrage.Einleitung;
+                        umfrage.Frage = model.Umfrage.Frage;
+                        umfrage.Typ = typ;
+                        db.Umfragen.Add(umfrage);
+                        db.SaveChanges();
+                        umfrageId = (from Umfragen u in db.Umfragen orderby u.id descending select u.id).FirstOrDefault();
+                    }
+                    
+                //Jetzt mit der Id die Antworten speichern
+                    foreach (string answer in antworten) { 
+                        UmfrageAntworten ua = new UmfrageAntworten();
+                        ua.AntwortText = answer;
+                        ua.UmfrageId = umfrageId;
+                        db.UmfrageAntworten.Add(ua);
+                        db.SaveChanges();
+                    }
+                    //Jetzt mit der Id die Bilder speichern
+                    //Erst alle Einträge löschen
+                    List<UmfrageBilder> liste = (from UmfrageBilder ub in db.UmfrageBilder where ub.UmfrageId == 1000000000 || ub.UmfrageId == umfrageId select ub).ToList();
+                    db.UmfrageBilder.RemoveRange(liste);
+                    foreach (string pic in pics.Split(';'))
+                    {
+                        if (!pic.Equals("")) {
+                            var arr = pic.Split('(');
+                            string filename = arr[0];
+                            int uId = Int32.Parse(arr[1]);
+                            UmfrageBilder neu = new UmfrageBilder();
+                            neu.UmfrageId = umfrageId;
+                            neu.BildUrl = filename;
+                            db.UmfrageBilder.Add(neu);
+                        }
+                    }
+                    db.SaveChanges();
+                }
+                    return RedirectToAction("Umfrage", "Admin", new { id = umfrageId  });
             }
             return RedirectToAction("Index", "Home");
         }

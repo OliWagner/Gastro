@@ -239,7 +239,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UmfrageId" Type="int" Nullable="false" />
-          <Property Name="Prefix" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="AntwortText" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="UmfrageBilder">
@@ -261,21 +260,17 @@
           <Property Name="Antwort" Type="nvarchar(max)" />
           <Property Name="IP" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="Umfragen">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="DatumStart" />
-            <PropertyRef Name="DatumEnden" />
-            <PropertyRef Name="Typ" />
-            <PropertyRef Name="Frage" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DatumStart" Type="datetime" Nullable="false" />
-          <Property Name="DatumEnden" Type="datetime" Nullable="false" />
+          <Property Name="DatumEnde" Type="datetime" Nullable="false" />
           <Property Name="Typ" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Frage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Titel" Type="nvarchar" MaxLength="200" />
+          <Property Name="Einleitung" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Veranstaltungen">
           <Key>
@@ -360,20 +355,12 @@ Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüsse
           <EntitySet Name="UmfrageAntworten" EntityType="Self.UmfrageAntworten" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UmfrageBilder" EntityType="Self.UmfrageBilder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UmfrageErgebnisse" EntityType="Self.UmfrageErgebnisse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Umfragen" EntityType="Self.Umfragen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Veranstaltungen" EntityType="Self.Veranstaltungen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VeranstaltungenGetränke" EntityType="Self.VeranstaltungenGetränke" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VeranstaltungenSpeisen" EntityType="Self.VeranstaltungenSpeisen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VeranstaltungsGetränke" EntityType="Self.VeranstaltungsGetränke" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VeranstaltungsSpeisen" EntityType="Self.VeranstaltungsSpeisen" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Umfragen" EntityType="Self.Umfragen" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Umfragen].[id] AS [id], 
-    [Umfragen].[DatumStart] AS [DatumStart], 
-    [Umfragen].[DatumEnden] AS [DatumEnden], 
-    [Umfragen].[Typ] AS [Typ], 
-    [Umfragen].[Frage] AS [Frage]
-    FROM [dbo].[Umfragen] AS [Umfragen]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -445,9 +432,9 @@ Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüsse
           <EntitySet Name="Veranstaltungen" EntityType="GastroModel.Veranstaltungen" />
           <EntitySet Name="News" EntityType="GastroModel.News" />
           <EntitySet Name="NewsBilder" EntityType="GastroModel.NewsBilder" />
-          <EntitySet Name="UmfrageAntworten" EntityType="GastroModel.UmfrageAntworten" />
           <EntitySet Name="UmfrageBilder" EntityType="GastroModel.UmfrageBilder" />
           <EntitySet Name="UmfrageErgebnisse" EntityType="GastroModel.UmfrageErgebnisse" />
+          <EntitySet Name="UmfrageAntworten" EntityType="GastroModel.UmfrageAntworten" />
           <EntitySet Name="Umfragen" EntityType="GastroModel.Umfragen" />
         </EntityContainer>
         <EntityType Name="VeranstaltungenGetränke">
@@ -697,15 +684,6 @@ Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüsse
           <Property Name="BildUrl" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BildText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="UmfrageAntworten">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UmfrageId" Type="Int32" Nullable="false" />
-          <Property Name="Prefix" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="AntwortText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="UmfrageBilder">
           <Key>
             <PropertyRef Name="id" />
@@ -725,19 +703,25 @@ Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüsse
           <Property Name="Antwort" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="UmfrageAntworten">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UmfrageId" Type="Int32" Nullable="false" />
+          <Property Name="AntwortText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Umfragen">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="DatumStart" />
-            <PropertyRef Name="DatumEnden" />
-            <PropertyRef Name="Typ" />
-            <PropertyRef Name="Frage" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DatumStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DatumEnden" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DatumEnde" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Typ" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Frage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Titel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Einleitung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1057,16 +1041,6 @@ Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüsse
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UmfrageAntworten">
-            <EntityTypeMapping TypeName="GastroModel.UmfrageAntworten">
-              <MappingFragment StoreEntitySet="UmfrageAntworten">
-                <ScalarProperty Name="AntwortText" ColumnName="AntwortText" />
-                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
-                <ScalarProperty Name="UmfrageId" ColumnName="UmfrageId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UmfrageBilder">
             <EntityTypeMapping TypeName="GastroModel.UmfrageBilder">
               <MappingFragment StoreEntitySet="UmfrageBilder">
@@ -1088,12 +1062,23 @@ Warnung 6002: Für Tabelle/Sicht 'Gastro.dbo.Umfragen' ist kein Primärschlüsse
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UmfrageAntworten">
+            <EntityTypeMapping TypeName="GastroModel.UmfrageAntworten">
+              <MappingFragment StoreEntitySet="UmfrageAntworten">
+                <ScalarProperty Name="AntwortText" ColumnName="AntwortText" />
+                <ScalarProperty Name="UmfrageId" ColumnName="UmfrageId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Umfragen">
             <EntityTypeMapping TypeName="GastroModel.Umfragen">
               <MappingFragment StoreEntitySet="Umfragen">
+                <ScalarProperty Name="Einleitung" ColumnName="Einleitung" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
                 <ScalarProperty Name="Frage" ColumnName="Frage" />
                 <ScalarProperty Name="Typ" ColumnName="Typ" />
-                <ScalarProperty Name="DatumEnden" ColumnName="DatumEnden" />
+                <ScalarProperty Name="DatumEnde" ColumnName="DatumEnde" />
                 <ScalarProperty Name="DatumStart" ColumnName="DatumStart" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

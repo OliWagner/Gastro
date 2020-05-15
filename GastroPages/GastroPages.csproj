@@ -203,6 +203,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin\AdminUmfrageModel.cs" />
     <Compile Include="Models\Admin\AdminNewsModel.cs" />
     <Compile Include="Models\Admin\AdminIndexModel.cs" />
     <Compile Include="Models\Admin\AdminReservierungModel.cs" />
@@ -398,12 +399,14 @@
     <Content Include="Views\I18n\Kontakt.cshtml" />
     <Content Include="Views\Home\News.cshtml" />
     <Content Include="Views\Admin\News.cshtml" />
+    <Content Include="Views\Home\Umfrage.cshtml" />
+    <Content Include="Views\Admin\Umfrage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ImagesUmfragen\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Content\Pdfs\" />
-    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Culture\" />
   </ItemGroup>

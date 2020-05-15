@@ -1,0 +1,191 @@
+﻿@using GastroPages.Models
+@model GastroPages.Models.AdminUmfrageModel
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#btnUpload').click(function () {
+
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#FileUpload1").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object
+                fileData.append('username', 'Test');
+
+                $.ajax({
+                    url: '/Admin/UploadFiles',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        try {
+                            var json = JSON.parse(result);
+                        } catch (err) {
+                            return;
+                        }
+
+                        var cartItemsList = document.getElementById("cartItemsList");
+                        cartItemsList.innerHTML = "";
+                        for (var i = 0; i < json.length; i++) {
+                            var obj = json[i];
+ 
+                            cartItemsList.insertAdjacentHTML('beforeend', "<img src='/Content/ImagesUmfragen/" + obj.BildUrl + "' width='80' />&nbsp;");
+                            document.getElementById('pics').value += obj.BildUrl +"("+ obj.UmfrageId + ";";
+                        }
+                        document.getElementById("FileUpload1").value = "";
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+    });
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    feld = 0;
+    var myArray = [];
+
+    function feld_plus() {
+
+        if (feld <= 9) {
+            feld++;
+            for (var zaehler = 1; zaehler <= feld; zaehler++) {
+                var test = document.getElementById('antwort' + zaehler);
+                if (test != null) {
+                    if (!myArray.includes(test.value)) {
+                        myArray.push(test.value);
+                    }
+                }
+            }
+            document.getElementById('dynamic_input').innerHTML = "";
+            for (var zaehler = 1; zaehler <= feld; zaehler++) {
+                var label = "Antwort " + zaehler;
+                var test = myArray[zaehler - 1];
+                if (test != null) {
+                    document.getElementById('dynamic_input').innerHTML +=
+                        "<label>" + label + ": <input type='text' name='antwort[]' id='antwort" + zaehler + "' value='" + test + "'></label><br>";
+                }
+                else {
+                    document.getElementById('dynamic_input').innerHTML +=
+                        "<label>" + label + ": <input type='text' name='antwort[]' id='antwort" + zaehler + "' value=''></label><br>";
+                }
+
+
+            }
+
+        }
+    }
+
+
+    function zeigeTrAntworten() {
+        document.getElementById("hidTyp").value = document.getElementById("Umfragetyp").value;
+        if (document.getElementById("Umfragetyp").value == "Einfachauswahl" || document.getElementById("Umfragetyp").value == "Mehrfachauswahl") {
+            document.getElementById("trAntworten").style.visibility = "visible";
+        } else {
+            document.getElementById("trAntworten").style.visibility = "hidden";
+        }
+    }
+</script>
+
+<h2>Administration Umfragen</h2>
+@using (Html.BeginForm("UmfrageEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm2" }))
+{
+    <input type="hidden" name="hidTyp" id="hidTyp" />
+    @Html.HiddenFor(model => model.Umfrage.id);
+    <table border="0" width="1000" style="background-color: powderblue">
+        <tr>
+            <td valign="top" colspan="3" width="700">
+                Zuerst mindestens die Frage eingeben und einen Titel, um den Datensatz wieder aufrufen zu können, Einleitung ist kein Pflichtfeld.<br />
+                Typauswahl: Bei Einfachauswahl oder Mehrfachauswahl die Antwortmöglichkeiten eingeben und den Datensatz speichern.<br />
+                Aus technischen Gründen
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="top" width="100">Titel:</td>
+            <td valign="top" width="300">@Html.TextBoxFor(model => model.Umfrage.Titel)</td>
+            <td valign="top" width="300">@*@Html.DropDownListFor(model => model.Umfragetyp, new SelectList(Model.DropdownWerte), "Typ auswählen", new { @onchange = "zeigeTrAntworten()" })*@
+                <select size="1" id="Umfragetyp" name="Umfragetyp" onchange="zeigeTrAntworten()" title="Typ auswählen">
+                    <option @if (Model.Umfragetyp.Equals("Freie Antwort kurz")) { <text> selected</text> }>Freie Antwort kurz</option>
+                    <option @if (Model.Umfragetyp.Equals("Freie Antwort lang")) { <text> selected</text> }>Freie Antwort lang</option>
+                    <option @if (Model.Umfragetyp.Equals("Einfachauswahl")) { <text> selected</text> }>Einfachauswahl</option>
+                    <option @if (Model.Umfragetyp.Equals("Mehrfachauswahl")) { <text> selected</text> }>Mehrfachauswahl</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="top">Einleitung:</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Umfrage.Einleitung)</td>
+            <td valign="top">Startdatum:<br />@Html.TextBoxFor(model => model.Umfrage.DatumStart)</td>
+        </tr>
+
+        <tr>
+            <td valign="top">Frage:</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Umfrage.Frage)</td>
+            <td valign="top">Enddatum:<br />@Html.TextBoxFor(model => model.Umfrage.DatumEnde)</td>
+        </tr>
+
+        <tr id="trAntworten" style="visibility:hidden">
+            <td valign="top"></td>
+            <td valign="top"></td>
+            <td valign="top">
+                Antwort hinzufügen <a href="#" onclick="feld_plus()">(+)</a><br />
+                <div id="dynamic_input"></div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><input type="submit"/></td>
+        </tr>
+    </table>
+    <input type="hidden" name="pics" id="pics" />
+}
+<br />
+
+<br />
+<div id="cartItemsList">
+    @foreach (UmfrageBilder bild in Model.Bilder)
+    {
+        <img src="~/Content/ImagesUmfragen/@bild.BildUrl" width="80" /><text>&nbsp;</text>
+        <script>
+            document.getElementById('pics').value += "@bild.BildUrl"+"("+ @bild.UmfrageId + ";";
+        </script>
+    }
+    
+    @foreach (UmfrageAntworten ua in Model.Antworten)
+    {
+        <script>
+            feld_plus();
+            zeigeTrAntworten();
+        </script>
+    }
+</div>
+<form>
+    <input type="file" id="FileUpload1" multiple />
+    <input type="button" id="btnUpload" value="Bilder hochladen" />
+</form>
+<br/>
+<hr/>
+@foreach (Umfragen u in Model.AlleUmfragen)
+{
+    <a href="/Admin/Umfrage?id=@u.id">@u.Titel</a><br/>
+}
+
+
+

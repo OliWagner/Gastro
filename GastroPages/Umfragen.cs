@@ -16,8 +16,10 @@ namespace GastroPages
     {
         public int id { get; set; }
         public System.DateTime DatumStart { get; set; }
-        public System.DateTime DatumEnden { get; set; }
+        public System.DateTime DatumEnde { get; set; }
         public string Typ { get; set; }
         public string Frage { get; set; }
+        public string Titel { get; set; }
+        public string Einleitung { get; set; }
     }
 }

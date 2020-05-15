@@ -16,7 +16,6 @@ namespace GastroPages
     {
         public int id { get; set; }
         public int UmfrageId { get; set; }
-        public string Prefix { get; set; }
         public string AntwortText { get; set; }
     }
 }

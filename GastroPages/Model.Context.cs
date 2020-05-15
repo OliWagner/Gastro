@@ -50,9 +50,9 @@ namespace GastroPages
         public virtual DbSet<Veranstaltungen> Veranstaltungen { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsBilder> NewsBilder { get; set; }
-        public virtual DbSet<UmfrageAntworten> UmfrageAntworten { get; set; }
         public virtual DbSet<UmfrageBilder> UmfrageBilder { get; set; }
         public virtual DbSet<UmfrageErgebnisse> UmfrageErgebnisse { get; set; }
+        public virtual DbSet<UmfrageAntworten> UmfrageAntworten { get; set; }
         public virtual DbSet<Umfragen> Umfragen { get; set; }
     }
 }

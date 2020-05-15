@@ -45,6 +45,11 @@ namespace GastroPages.Controllers
             return View();
         }
 
+        public ActionResult Umfrage()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
                 return View(new HomeKontakteModel());
