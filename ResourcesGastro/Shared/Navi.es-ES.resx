@@ -318,4 +318,35 @@
   <data name="KeineAktuellenNews" xml:space="preserve">
     <value>No tenemos nada nuevo en este momento. Vuelve pronto.</value>
   </data>
+  <data name="IndexUmfrageBtnText2" xml:space="preserve">
+    <value>A la página de la encuesta</value>
+  </data>
+  <data name="IndexUmfrageTextKeineUmfrage" xml:space="preserve">
+    <value>En este punto, presentamos encuestas sobre nuestra oferta a intervalos irregulares. Por favor visite nuestra página nuevamente pronto.</value>
+  </data>
+  <data name="IndexUmfrageHeader2" xml:space="preserve">
+    <value>Encuestas</value>
+  </data>
+  <data name="Teams1" xml:space="preserve">
+    <value>Hola, mi nombre es Alexander Hert, me gustaría presentarme brevemente aquí.</value>
+  </data>
+  <data name="Teams2" xml:space="preserve">
+    <value>Nací en Novosibirsk en 1983 y me mudé a Erftstadt en 1989. Después de dejar la escuela y graduarme de la secundaria, comencé a estudiar ingeniería mecánica en la Universidad RWTH Aachen, pero con el tiempo me di cuenta de que preferiría cocinar. Entonces, después de 6 semestres, decidí dejar la universidad y aprender a cocinar adecuadamente.</value>
+  </data>
+  <data name="Teams3" xml:space="preserve">
+    <value>Hice mi aprendizaje como cocinero en el 'Seehotel Überfahrt' en Rottach-Egern y estoy un poco orgulloso de haber completado el aprendizaje con el mejor examen del año en Baviera. Allí también desarrollé mi amor por la cocina bávara.</value>
+  </data>
+  <data name="Teams4" xml:space="preserve">
+    <value>Después de mi aprendizaje, trabajé en el barrio de húsar, ahora desafortunadamente cerrado (1 * Michelin) para 'Herbert Brockel' y más tarde en el hotel 'Elisenhof' en Mönchengladbach como Guardian Manger (Commis de Cuisine).</value>
+  </data>
+  <data name="Teams5" xml:space="preserve">
+    <value>Pero volví a Baviera, donde pude trabajar con 'Thilo Bischoff' en el 'Alpenhof' de Murnau. Durante este tiempo, el 'Alpenhof' recuperó la estrella Michelin que había perdido el año anterior, una experiencia maravillosa.</value>
+  </data>
+  <data name="Teams6" xml:space="preserve">
+    <value>Luego pasé un año en Suiza, donde pude conocer las complejidades de las operaciones hoteleras suizas en el hotel 'Frutt' en Melchsee durante una temporada de verano e invierno.
+La culminación de mi "aprendizaje" la pasé como chef nocturno en el "MS Europa". Allí tomé la decisión de comenzar mi propio negocio, que luego me permitieron cumplir en el club de tenis Königsdorf -TCK-. Allí pasé dos años maravillosos, lo que confirmó mi decisión de tratar directamente con el huésped, de hacer mi "propia cosa".</value>
+  </data>
+  <data name="Teams7" xml:space="preserve">
+    <value>Ahora tienes el resultado de este viaje en la campana. ¡Buen apetito!</value>
+  </data>
 </root>

@@ -61,14 +61,23 @@
 
         <p><a class="btn btn-default" href="/Home/News">@Resources.IndexNewsBtnText &raquo;</a></p>
     </div>
-
-    <div class="col-md-4">
+    @if (viewModel.Umfragen.Count > 0)
+    {
+    <div class="col-md-4 umfrageDivIndex">
         <h2>@Resources.IndexUmfrageHeader</h2>
         <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
         <p>@Resources.IndexUmfrageText</p>
         <p><a class="btn btn-default" href="/Home/Umfrage">@Resources.IndexUmfrageBtnText &raquo;</a></p>
     </div>
-
+    }
+    else {
+    <div class="col-md-4">
+        <h2>@Resources.IndexUmfrageHeader2</h2>
+        <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
+        <p>@Resources.IndexUmfrageTextKeineUmfrage</p>
+        <p><a class="btn btn-default" href="/Home/Umfragen">@Resources.IndexUmfrageBtnText2 &raquo;</a></p>
+    </div>
+    }
     <div class="col-md-4">
         <h2>@Resources.IndexTeamHeader</h2>
         <p>@Resources.IndexTeamText</p>

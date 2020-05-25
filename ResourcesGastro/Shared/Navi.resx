@@ -318,4 +318,35 @@
   <data name="KeineAktuellenNews" xml:space="preserve">
     <value>Im Moment haben wir nichts Neues. Schauen Sie bald wieder rein.</value>
   </data>
+  <data name="IndexUmfrageBtnText2" xml:space="preserve">
+    <value>Zur Umfrageseite</value>
+  </data>
+  <data name="IndexUmfrageTextKeineUmfrage" xml:space="preserve">
+    <value>An dieser Stelle präsentieren wir Ihnen in unregelmässigen Abständen Umfragen zu unserem Angebot. Bitte besuchen Sie unsere Seite bald wieder.</value>
+  </data>
+  <data name="IndexUmfrageHeader2" xml:space="preserve">
+    <value>Umfragen</value>
+  </data>
+  <data name="Teams1" xml:space="preserve">
+    <value>Hallo, mein Name ist Alexander Hert, ich möchte mich hier kurz vorstellen.</value>
+  </data>
+  <data name="Teams2" xml:space="preserve">
+    <value>Ich wurde 1983 in Nowosibirsk geboren und zog 1989 nach Erftstadt. Nach Schule und Abitur begann ich ein Studium zum Ingenieur Maschinenbau an der RWTH Aachen, stellte jedoch im Laufe der Zeit fest, dass ich lieber kochen will. Also entschloss ich mich nach 6 Semestern die Uni Uni sein zu lassen und das Kochen richtig zu erlernen.</value>
+  </data>
+  <data name="Teams3" xml:space="preserve">
+    <value>Meine Ausbildung zum Koch absolvierte ich im 'Seehotel Überfahrt' in Rottach-Egern und bin ein wenig stolz darauf, die Ausbildung mit der besten Prüfung des Jahrgangs in Bayern abgeschlossen zu haben. Dort entwickelte ich auch meine Liebe zur bayrischen Küche.</value>
+  </data>
+  <data name="Teams4" xml:space="preserve">
+    <value>Nach meiner Ausbildung arbeitete ich im mittlerweile leider geschlossenen Husarenquartier (1* Michelin) bei 'Herbert Brockel' und später im Hotel 'Elisenhof ' in Mönchengladbach jeweils als Garde Manger (Commis de Cuisine).</value>
+  </data>
+  <data name="Teams5" xml:space="preserve">
+    <value>Es zog mich aber wieder nach Bayern, wo ich im 'Alpenhof' in Murnau mit 'Thilo Bischoff' zusammen arbeiten durfte. In dieser Zeit erlangte der 'Alpenhof' seinen im Vorjahr verlorenen Michelinstern zurück, ein schönes Erlebnis.</value>
+  </data>
+  <data name="Teams6" xml:space="preserve">
+    <value>Im Anschluss verbrachte ich ein Jahr in der Schweiz, wo ich eine Sommer- und Wintersaison die Feinheiten des Schweizer Hotelbetriebs im Hotel 'Frutt' in Melchsee kennen lernen durfte.
+Den krönenden Abschluss meiner 'Lehrjahre' verbrachte ich als Nachtkoch auf der 'MS Europa'. Dort reifte der Entschluss, mich selbständig zu machen, den ich mir dann im Tennisclub Königsdorf -TCK- erfüllen durfte. Dort hatte ich zwei wunderschöne Jahre, die meinen Entschluss bestätigt haben, mich direkt mit dem Gast zu befassen, mein 'eigenes Ding' zu machen.</value>
+  </data>
+  <data name="Teams7" xml:space="preserve">
+    <value>Sie haben nun in der Glocke das Resultat dieser Reise zur Verfügung. Guten Appetit!</value>
+  </data>
 </root>

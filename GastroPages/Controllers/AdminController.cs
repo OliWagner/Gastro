@@ -341,6 +341,7 @@ namespace GastroPages.Controllers
 
         
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult NewsEintragen(AdminNewsModel model)
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))

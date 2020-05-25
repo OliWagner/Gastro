@@ -17,6 +17,7 @@ namespace GastroPages.Models
         public string GooglePlus { get; set; }
         public string Youtube { get; set; }
         public List<News> News { get; set; }
+        public List<Umfragen> Umfragen { get; set; }
 
         public MainLayoutViewModel() { 
             using(GastroEntities db = new GastroEntities()){
@@ -29,6 +30,7 @@ namespace GastroPages.Models
                 GooglePlus = k.GooglePlus;
 
                 News = (from News news in db.News orderby news.Datum descending select news).ToList();
+                Umfragen = (from Umfragen u in db.Umfragen where u.DatumStart < DateTime.Now && u.DatumEnde > DateTime.Now select u).ToList();
             }
         }
     }

@@ -47,6 +47,35 @@ namespace GastroPages.Controllers
 
         public ActionResult Umfrage()
         {
+            HomeUmfrageModel model = new HomeUmfrageModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UmfrageEintragen()
+        {
+            string[] antworten = Request["antwort"].Split(',');
+            int UmfrageId = Int32.Parse(Request["UmfrageId"]);
+            string awText = "antwort" + UmfrageId;
+            Session[awText] = "True";
+            using (GastroEntities db = new GastroEntities()) {
+                int counter = 0;
+                foreach (string antwort in antworten) {
+                    UmfrageErgebnisse ua = new UmfrageErgebnisse();
+                    ua.Antwort = antwort;
+                    ua.DatumEintrag = DateTime.Now;
+                    ua.UmfrageId = UmfrageId;
+                    ua.IP = "0.0.0.0";
+                    db.UmfrageErgebnisse.Add(ua);
+                    counter++;
+                }
+                db.SaveChanges();
+            }
+            return RedirectToAction("Umfrage", "Home");
+        }
+
+        public ActionResult Umfragen()
+        {
             return View();
         }
 
@@ -134,8 +163,6 @@ namespace GastroPages.Controllers
                 var fileDownloadName = "_Planer.pdf";
                 return File(fileStream, mimeType, fileDownloadName);
             }
-            
-            return RedirectToAction("Planer", "Home", new HomeVeranstaltungsModel());
         }
 
         public ActionResult Karte()

@@ -318,4 +318,35 @@
   <data name="KeineAktuellenNews" xml:space="preserve">
     <value>We have nothing new at the moment. Check back soon.</value>
   </data>
+  <data name="IndexUmfrageBtnText2" xml:space="preserve">
+    <value>To the survey page</value>
+  </data>
+  <data name="IndexUmfrageTextKeineUmfrage" xml:space="preserve">
+    <value>At this point we present surveys on our offer at irregular intervals. Please visit our page again soon.</value>
+  </data>
+  <data name="IndexUmfrageHeader2" xml:space="preserve">
+    <value>Surveys</value>
+  </data>
+  <data name="Teams1" xml:space="preserve">
+    <value>Hello, my name is Alexander Hert, I would like to introduce myself briefly here.</value>
+  </data>
+  <data name="Teams2" xml:space="preserve">
+    <value>I was born in Novosibirsk in 1983 and moved to Erftstadt in 1989. After leaving school and graduating from high school, I began studying mechanical engineering at RWTH Aachen University, but over time I realized that I would rather cook. So after 6 semesters I decided to leave university and learn how to cook properly.</value>
+  </data>
+  <data name="Teams3" xml:space="preserve">
+    <value>I did my apprenticeship as a cook at the 'Seehotel Überfahrt' in Rottach-Egern and am a little proud that I completed the apprenticeship with the best exam of the year in Bavaria. There I also developed my love for Bavarian cuisine.</value>
+  </data>
+  <data name="Teams4" xml:space="preserve">
+    <value>After my apprenticeship I worked in the now unfortunately closed hussar quarter (1 * Michelin) for 'Herbert Brockel' and later in the hotel 'Elisenhof' in Mönchengladbach as a Guardian Manger (Commis de Cuisine).</value>
+  </data>
+  <data name="Teams5" xml:space="preserve">
+    <value>But I was drawn back to Bavaria, where I was able to work with 'Thilo Bischoff' in the 'Alpenhof' in Murnau. During this time, the 'Alpenhof' regained the Michelin star it had lost in the previous year, a wonderful experience.</value>
+  </data>
+  <data name="Teams6" xml:space="preserve">
+    <value>I then spent a year in Switzerland, where I was able to get to know the intricacies of Swiss hotel operations at the Hotel 'Frutt' in Melchsee during a summer and winter season.
+The culmination of my 'apprenticeship' was spent as a night chef on the 'MS Europa'. There I made the decision to start my own business, which I was then allowed to fulfill in the Königsdorf tennis club -TCK-. There I had two wonderful years that confirmed my decision to deal directly with the guest, to do my 'own thing'.</value>
+  </data>
+  <data name="Teams7" xml:space="preserve">
+    <value>You now have the result of this trip in the bell. Good Appetite!</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.AdminNewsModel
+<script src="~/Content/ckeditor/ckeditor.js"></script>
 <h2> Administration News </h2>
 @using (Html.BeginForm("NewsEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
 {
@@ -8,7 +9,7 @@
         <table border="0">
             <tr>
                 <td valign="top" width="80">Datum</td>
-                <td valign="top" width="200">@Html.TextBoxFor(model => model.News.Datum)</td>
+                <td valign="top" width="600">@Html.TextBoxFor(model => model.News.Datum)</td>
 
             </tr>
             <tr>
@@ -20,14 +21,16 @@
                 <td valign="top">@Html.TextAreaFor(model => model.News.Header)</td>
             </tr>
             <tr>
-                <td valign="top">Text</td>
-                <td valign="top">@Html.TextAreaFor(model => model.News.NewsText)</td>
+                <td valign="top" colspan="2">@Html.TextAreaFor(model => model.News.NewsText, new { id = "HtmlQuelltext" })</td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Eintragen" /></td>
             </tr>
         </table>
     </div>
+    <script type="text/javascript">
+        CKEDITOR.replace('HtmlQuelltext');
+    </script>
 }
 <div class="AdminNewsRechts">
     @if (Model.News.id != 0)
@@ -70,7 +73,7 @@
             <td valign="top">@news.Datum.ToShortDateString(), @news.Datum.ToShortTimeString()</td>
             <td valign="top">@news.Überschrift</td>
             <td valign="top">@news.Header</td>
-            <td valign="top">@news.NewsText</td>
+            <td valign="top">@Html.Raw(news.NewsText)</td>
             <td valign="top">@Html.ActionLink("Bearbeiten", "News", "Admin", new { id = news.id }, null)</td>
             <td valign="top">@Html.ActionLink("Löschen", "NewsLöschen", "Admin", new { id = news.id }, null)</td>
         </tr>

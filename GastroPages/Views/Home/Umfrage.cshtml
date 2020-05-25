@@ -1,2 +1,79 @@
-﻿<h2>@ResourcesGastro.Shared.Navi.IndexUmfrageHeader</h2>
+﻿@using GastroPages.Models
+@model GastroPages.Models.HomeUmfrageModel
+<h2>@ResourcesGastro.Shared.Navi.IndexUmfrageHeader</h2>
+@foreach (UmfrageModelHelper umfrage in Model.AlleDaten)
+{
+    string awText = "antwort" + umfrage.Umfrage.id;
+    
+        using (Html.BeginForm("UmfrageEintragen", "Home", FormMethod.Post))
+        {
+            <input type="hidden" name="UmfrageId" value="@umfrage.Umfrage.id" />
+            <table border="0" width="750" class="TabelleUmfrage">
+                <tr>
+                    <td width="200" valign="top">
+                        <b><big>@umfrage.Umfrage.Titel</big></b><br />
+                        <small>Vom @umfrage.Umfrage.DatumStart.ToShortDateString() bis @umfrage.Umfrage.DatumEnde.ToShortDateString()</small>
+                    </td>
+                    <td width="50" valign="top"><small>Teilnahmen: @umfrage.UmfrageTeilnahmen</small></td>
+                    <td valign="top" width="500"><b>@umfrage.Umfrage.Frage</b></td>
+                </tr>
+                <tr>
+                    <td width="250" valign="top" colspan="2">@umfrage.Umfrage.Einleitung</td>
+                    <td valign="top" width="500">
+                        <h3>Ihre Antwort:</h3><br />
+                        @if (umfrage.Umfrage.Typ.Equals("Freie Antwort kurz"))
+                        {
+                            <input type="text" name="antwort" width="200" />
+                        }
 
+                        @if (umfrage.Umfrage.Typ.Equals("Freie Antwort lang"))
+                        {
+                            <textarea name="antwort" cols="30" rows="10"></textarea>
+                        }
+
+                        @if (umfrage.Umfrage.Typ.Equals("Einfachauswahl"))
+                        {
+                            int counter = 0;
+                            foreach (UmfrageAntworten ua in umfrage.Antworten)
+                            {
+                                string txt = counter.ToString();
+                                <input type="radio" id="@txt" name="antwort" value="@ua.AntwortText">
+                                <label for="@txt">@ua.AntwortText</label><br>
+                            }
+                        }
+
+                        @if (umfrage.Umfrage.Typ.Equals("Mehrfachauswahl"))
+                        {
+                            int counter = 0;
+                            foreach (UmfrageAntworten ua in @umfrage.Antworten)
+                            {
+                                string txt = counter.ToString();
+                                <input type="checkbox" id="@txt" name="antwort" value="@ua.AntwortText">
+                                <label for="@txt">@ua.AntwortText</label><br>
+                            }
+                        }
+                        <br />
+                        @if (Session[awText] == null)
+                        {
+                            <input class="btn btn-default" type="submit" value="@ResourcesGastro.Shared.Navi.BtnSendenText" />
+                        }
+                        else
+                        {
+                            <text><b>Vielen Dank für Ihre Teilnahme!!!</b></text>
+                                }
+
+                            </td>
+                </tr>
+                <tr>
+                    <td colspan="3" valign="top">
+                        @foreach (UmfrageBilder bild in umfrage.Bilder)
+                        {
+                            <text>&nbsp;</text><img src="~/Content/ImagesUmfragen/@bild.BildUrl" width="80" /><text>&nbsp;</text>
+                        }
+                    </td>
+                </tr>
+            </table>
+        }
+        <br />
+    
+}

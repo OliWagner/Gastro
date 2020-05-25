@@ -286,11 +286,29 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zur Umfrageseite ähnelt.
+        /// </summary>
+        public static string IndexUmfrageBtnText2 {
+            get {
+                return ResourceManager.GetString("IndexUmfrageBtnText2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Aktuelle Umfrage ähnelt.
         /// </summary>
         public static string IndexUmfrageHeader {
             get {
                 return ResourceManager.GetString("IndexUmfrageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Umfragen ähnelt.
+        /// </summary>
+        public static string IndexUmfrageHeader2 {
+            get {
+                return ResourceManager.GetString("IndexUmfrageHeader2", resourceCulture);
             }
         }
         
@@ -309,6 +327,15 @@ namespace ResourcesGastro.Shared {
         public static string IndexUmfrageText {
             get {
                 return ResourceManager.GetString("IndexUmfrageText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An dieser Stelle präsentieren wir Ihnen in unregelmässigen Abständen Umfragen zu unserem Angebot. Bitte besuchen Sie unsere Seite bald wieder. ähnelt.
+        /// </summary>
+        public static string IndexUmfrageTextKeineUmfrage {
+            get {
+                return ResourceManager.GetString("IndexUmfrageTextKeineUmfrage", resourceCulture);
             }
         }
         
@@ -570,6 +597,70 @@ namespace ResourcesGastro.Shared {
         public static string Speisen {
             get {
                 return ResourceManager.GetString("Speisen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hallo, mein Name ist Alexander Hert, ich möchte mich hier kurz vorstellen. ähnelt.
+        /// </summary>
+        public static string Teams1 {
+            get {
+                return ResourceManager.GetString("Teams1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ich wurde 1983 in Nowosibirsk geboren und zog 1989 nach Erftstadt. Nach Schule und Abitur begann ich ein Studium zum Ingenieur Maschinenbau an der RWTH Aachen, stellte jedoch im Laufe der Zeit fest, dass ich lieber kochen will. Also entschloss ich mich nach 6 Semestern die Uni Uni sein zu lassen und das Kochen richtig zu erlernen. ähnelt.
+        /// </summary>
+        public static string Teams2 {
+            get {
+                return ResourceManager.GetString("Teams2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Meine Ausbildung zum Koch absolvierte ich im &apos;Seehotel Überfahrt&apos; in Rottach-Egern und bin ein wenig stolz darauf, die Ausbildung mit der besten Prüfung des Jahrgangs in Bayern abgeschlossen zu haben. Dort entwickelte ich auch meine Liebe zur bayrischen Küche. ähnelt.
+        /// </summary>
+        public static string Teams3 {
+            get {
+                return ResourceManager.GetString("Teams3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nach meiner Ausbildung arbeitete ich im mittlerweile leider geschlossenen Husarenquartier (1* Michelin) bei &apos;Herbert Brockel&apos; und später im Hotel &apos;Elisenhof &apos; in Mönchengladbach jeweils als Garde Manger (Commis de Cuisine). ähnelt.
+        /// </summary>
+        public static string Teams4 {
+            get {
+                return ResourceManager.GetString("Teams4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Es zog mich aber wieder nach Bayern, wo ich im &apos;Alpenhof&apos; in Murnau mit &apos;Thilo Bischoff&apos; zusammen arbeiten durfte. In dieser Zeit erlangte der &apos;Alpenhof&apos; seinen im Vorjahr verlorenen Michelinstern zurück, ein schönes Erlebnis. ähnelt.
+        /// </summary>
+        public static string Teams5 {
+            get {
+                return ResourceManager.GetString("Teams5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Im Anschluss verbrachte ich ein Jahr in der Schweiz, wo ich eine Sommer- und Wintersaison die Feinheiten des Schweizer Hotelbetriebs im Hotel &apos;Frutt&apos; in Melchsee kennen lernen durfte.
+        ///Den krönenden Abschluss meiner &apos;Lehrjahre&apos; verbrachte ich als Nachtkoch auf der &apos;MS Europa&apos;. Dort reifte der Entschluss, mich selbständig zu machen, den ich mir dann im Tennisclub Königsdorf -TCK- erfüllen durfte. Dort hatte ich zwei wunderschöne Jahre, die meinen Entschluss bestätigt haben, mich direkt mit dem Gast zu befass [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        /// </summary>
+        public static string Teams6 {
+            get {
+                return ResourceManager.GetString("Teams6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sie haben nun in der Glocke das Resultat dieser Reise zur Verfügung. Guten Appetit! ähnelt.
+        /// </summary>
+        public static string Teams7 {
+            get {
+                return ResourceManager.GetString("Teams7", resourceCulture);
             }
         }
         

@@ -761,11 +761,28 @@ textarea {
 
 .AdminNewsRechts {
     float: left;
-    width: 600px;
+    width: 300px;
     margin-left: 15px;
 }
 
 .AdminNewsLinks {
     float: left;
-    width: 350px;
+    width: 650px;
+}
+
+.umfrageDivIndex {
+    background-color: #f28686;
+    font-weight: bold;
+}
+
+.TabelleUmfrage {
+    background-color: #ececec;
+    border-radius: 25px;
+    border-color: #000000;
+    border-width: 3px;
+}
+
+.TabelleUmfrage td {
+    margin: 10px;
+    padding:10px;
 }
