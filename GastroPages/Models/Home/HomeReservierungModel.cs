@@ -22,7 +22,7 @@ namespace GastroPages.Models
             {
                 int typId = 9;
                 int sprachId = CultureHelper.GetCurrentCultureId();
-
+                
                 List<Öffnungszeiten> liste = _db.Öffnungszeiten.ToList();
                 Ansprache = liste.Where(x => x.Wochentag == 10).FirstOrDefault().Ergänzung1;
                 WichtigerHinweis = liste.Where(x => x.Wochentag == 11).FirstOrDefault().Ergänzung1;

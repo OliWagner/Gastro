@@ -15,10 +15,10 @@
                         <small>Vom @umfrage.Umfrage.DatumStart.ToShortDateString() bis @umfrage.Umfrage.DatumEnde.ToShortDateString()</small>
                     </td>
                     <td width="50" valign="top"><small>Teilnahmen: @umfrage.UmfrageTeilnahmen</small></td>
-                    <td valign="top" width="500"><b>@umfrage.Umfrage.Frage</b></td>
+                    <td valign="top" width="500"><b>@Html.Raw(umfrage.Umfrage.Frage)</b></td>
                 </tr>
                 <tr>
-                    <td width="250" valign="top" colspan="2">@umfrage.Umfrage.Einleitung</td>
+                    <td width="250" valign="top" colspan="2">@Html.Raw(umfrage.Umfrage.Einleitung)</td>
                     <td valign="top" width="500">
                         <h3>Ihre Antwort:</h3><br />
                         @if (umfrage.Umfrage.Typ.Equals("Freie Antwort kurz"))

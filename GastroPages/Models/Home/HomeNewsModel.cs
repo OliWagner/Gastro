@@ -19,8 +19,16 @@ namespace GastroPages.Models
             {
                 News = (from News news in _db.News orderby news.id descending select news).FirstOrDefault();
                 AlleNews = (from News b in _db.News select b).ToList();
-                AlleNews.Remove(News);
-                Bilder = (from NewsBilder nb in _db.NewsBilder where nb.NewsId == News.id select nb).ToList();
+                if (News != null)
+                {
+                    AlleNews.Remove(News);
+                    Bilder = (from NewsBilder nb in _db.NewsBilder where nb.NewsId == News.id select nb).ToList();
+                }
+                else
+                {
+                    Bilder = new List<NewsBilder>();
+                    News = new News();
+                }
             }
         }
 

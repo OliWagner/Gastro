@@ -49,6 +49,7 @@ namespace GastroPages.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult KontaktEintragen(AdminI18nKontaktModel model)
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))

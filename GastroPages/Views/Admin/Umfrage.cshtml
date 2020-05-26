@@ -1,7 +1,7 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.AdminUmfrageModel
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<script src="~/Content/ckeditor/ckeditor.js"></script>
 <script>
     $(document).ready(function () {
         $('#btnUpload').click(function () {
@@ -37,14 +37,14 @@
                         }
 
                         var cartItemsList = document.getElementById("cartItemsList");
-                        
+
 
                         cartItemsList.innerHTML = "";
                         for (var i = 0; i < json.length; i++) {
                             var obj = json[i];
- 
+
                             cartItemsList.insertAdjacentHTML('beforeend', "<img src='/Content/ImagesUmfragen/" + obj.BildUrl + "' width='80' />&nbsp;");
-                            document.getElementById('pics').value += obj.BildUrl +"("+ obj.UmfrageId + ";";
+                            document.getElementById('pics').value += obj.BildUrl + "(" + obj.UmfrageId + ";";
                         }
                         document.getElementById("FileUpload1").value = "";
 
@@ -123,8 +123,10 @@
         <tr>
             <td valign="top" width="100">Titel:</td>
             <td valign="top" width="300">@Html.TextBoxFor(model => model.Umfrage.Titel)</td>
-            <td valign="top" width="300">@*@Html.DropDownListFor(model => model.Umfragetyp, new SelectList(Model.DropdownWerte), "Typ auswählen", new { @onchange = "zeigeTrAntworten()" })*@
-                <select size="1" id="Umfragetyp" name="Umfragetyp" onchange="zeigeTrAntworten()" title="Typ auswählen">
+            <td valign="top" width="300">
+                @*@Html.DropDownListFor(model => model.Umfragetyp, new SelectList(Model.DropdownWerte), "Typ auswählen", new { @onchange = "zeigeTrAntworten()" })*@
+                Typ auswählen: <select size="1" id="Umfragetyp" name="Umfragetyp" onchange="zeigeTrAntworten()">
+                    <option></option>
                     <option @if (Model.Umfragetyp.Equals("Freie Antwort kurz")) { <text> selected</text> }>Freie Antwort kurz</option>
                     <option @if (Model.Umfragetyp.Equals("Freie Antwort lang")) { <text> selected</text> }>Freie Antwort lang</option>
                     <option @if (Model.Umfragetyp.Equals("Einfachauswahl")) { <text> selected</text> }>Einfachauswahl</option>
@@ -135,13 +137,13 @@
 
         <tr>
             <td valign="top">Einleitung:</td>
-            <td valign="top">@Html.TextAreaFor(model => model.Umfrage.Einleitung)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Umfrage.Einleitung, new { id = "HtmlQuelltext" })</td>
             <td valign="top">Startdatum:<br />@Html.TextBoxFor(model => model.Umfrage.DatumStart)</td>
         </tr>
 
         <tr>
             <td valign="top">Frage:</td>
-            <td valign="top">@Html.TextAreaFor(model => model.Umfrage.Frage)</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Umfrage.Frage, new { id = "HtmlQuelltext2" })</td>
             <td valign="top">Enddatum:<br />@Html.TextBoxFor(model => model.Umfrage.DatumEnde)</td>
         </tr>
 
@@ -154,9 +156,13 @@
             </td>
         </tr>
         <tr>
-            <td colspan="3"><input type="submit"/></td>
+            <td colspan="3"><input type="submit" /></td>
         </tr>
     </table>
+    <script type="text/javascript">
+        CKEDITOR.replace('HtmlQuelltext');
+        CKEDITOR.replace('HtmlQuelltext2');
+    </script>
     <input type="hidden" name="pics" id="pics" />
 }
 <br />
@@ -170,7 +176,7 @@
             document.getElementById('pics').value += "@bild.BildUrl"+"("+ @bild.UmfrageId + ";";
         </script>
     }
-    
+
     @foreach (UmfrageAntworten ua in Model.Antworten)
     {
         <script>
@@ -183,11 +189,11 @@
     <input type="file" id="FileUpload1" multiple />
     <input type="button" id="btnUpload" value="Bilder hochladen" />
 </form>
-<br/>
-<hr/>
+<br />
+<hr />
 @foreach (Umfragen u in Model.AlleUmfragen)
 {
-    <a href="/Admin/Umfrage?id=@u.id">@u.Titel</a><br/>
+    <a href="/Admin/Umfrage?id=@u.id">@u.Titel</a><text>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text><a href="/Admin/UmfrageLoeschen?id=@u.id">löschen</a><br />
 }
 
 

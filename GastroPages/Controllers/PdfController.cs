@@ -1,6 +1,7 @@
 ﻿using GastroPages.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,29 +35,37 @@ namespace GastroPages.Controllers
         public ActionResult PdfSpeisen()
         {
             PdfHelper.MakePdfSpeisen(new Models.HomeSpeisenModel());
-            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Speisen.pdf");
-            return RedirectToAction("Index", "Pdf");
+            var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Speisen.pdf", FileMode.Open);
+            var mimeType = "application/pdf";
+            var fileDownloadName = "Speisen.pdf";
+            return File(fileStream, mimeType, fileDownloadName);
         }
 
         public ActionResult PdfGetränke()
         {
             PdfHelper.MakePdfGetränke(new Models.HomeGetränkeModel());
-            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Getränke.pdf");
-            return RedirectToAction("Index", "Pdf");
+            var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Getränke.pdf", FileMode.Open);
+            var mimeType = "application/pdf";
+            var fileDownloadName = "Getränke.pdf";
+            return File(fileStream, mimeType, fileDownloadName);
         }
 
         public ActionResult PdfMittagstisch()
         {
             PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
-            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Mittagtisch.pdf");
-            return RedirectToAction("Index", "Pdf");
+            var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Mittagtisch.pdf", FileMode.Open);
+            var mimeType = "application/pdf";
+            var fileDownloadName = "Mittagtisch.pdf";
+            return File(fileStream, mimeType, fileDownloadName);
         }
 
         public ActionResult PdfAllergene()
         {
             PdfHelper.MakePdfAllergene(new Models.HomeAllergeneModel());
-            System.Diagnostics.Process.Start(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Allergene.pdf");
-            return RedirectToAction("Index", "Pdf");
+            var fileStream = new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Allergene.pdf", FileMode.Open);
+            var mimeType = "application/pdf";
+            var fileDownloadName = "Allergene.pdf";
+            return File(fileStream, mimeType, fileDownloadName);
         }
     }
 }

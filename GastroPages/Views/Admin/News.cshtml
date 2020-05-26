@@ -9,7 +9,7 @@
         <table border="0">
             <tr>
                 <td valign="top" width="80">Datum</td>
-                <td valign="top" width="600">@Html.TextBoxFor(model => model.News.Datum)</td>
+                <td valign="top" width="600">@Html.TextBoxFor(model => model.News.Datum, new { @type = "date" })</td>
 
             </tr>
             <tr>

@@ -130,7 +130,7 @@
     <value>Thank you for your interest in our offer. Below we inform you about the handling of your personal data when using our website. We only collect this when you contact us or when you send us a request for an event. The data is only used to answer and then deleted.</value>
   </data>
   <data name="ImpressumTextMitte" xml:space="preserve">
-    <value>When you visit our website, we collect the following data (actually, it is automatically saved on the web server for technical reasons). These are technically necessary for us to show you the website</value>
+    <value>When you visit our website, we only collect the connection data of your request (they are actually automatically saved on the web server for technical reasons). These are technically necessary to display the website to you.</value>
   </data>
   <data name="ImpressumTextUnten" xml:space="preserve">
     <value>We do not process these server log files! We also do not use cookies to collect information.</value>

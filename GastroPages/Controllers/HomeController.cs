@@ -54,22 +54,24 @@ namespace GastroPages.Controllers
         [HttpPost]
         public ActionResult UmfrageEintragen()
         {
-            string[] antworten = Request["antwort"].Split(',');
-            int UmfrageId = Int32.Parse(Request["UmfrageId"]);
-            string awText = "antwort" + UmfrageId;
-            Session[awText] = "True";
-            using (GastroEntities db = new GastroEntities()) {
-                int counter = 0;
-                foreach (string antwort in antworten) {
-                    UmfrageErgebnisse ua = new UmfrageErgebnisse();
-                    ua.Antwort = antwort;
-                    ua.DatumEintrag = DateTime.Now;
-                    ua.UmfrageId = UmfrageId;
-                    ua.IP = "0.0.0.0";
-                    db.UmfrageErgebnisse.Add(ua);
-                    counter++;
+            if (Request["antwort"] != null && Request["antwort"].Length > 0) { 
+                string[] antworten = Request["antwort"].Split(',');
+                int UmfrageId = Int32.Parse(Request["UmfrageId"]);
+                string awText = "antwort" + UmfrageId;
+                Session[awText] = "True";
+                using (GastroEntities db = new GastroEntities()) {
+                    int counter = 0;
+                    foreach (string antwort in antworten) {
+                        UmfrageErgebnisse ua = new UmfrageErgebnisse();
+                        ua.Antwort = antwort;
+                        ua.DatumEintrag = DateTime.Now;
+                        ua.UmfrageId = UmfrageId;
+                        ua.IP = "0.0.0.0";
+                        db.UmfrageErgebnisse.Add(ua);
+                        counter++;
+                    }
+                    db.SaveChanges();
                 }
-                db.SaveChanges();
             }
             return RedirectToAction("Umfrage", "Home");
         }

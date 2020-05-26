@@ -97,7 +97,7 @@ namespace ResourcesGastro.Home {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn Sie unsere Website aufrufen, erheben wir die folgenden Daten (eigentlich werden sie automatisch aus einer technischen Notwendigkeit auf dem Webserver gespeichert). Diese sind für uns technisch erforderlich, um Ihnen die Website anzuzeigen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn Sie unsere Website aufrufen, erheben wir lediglich die Verbindungsdaten Ihrer Anfrage (eigentlich werden sie automatisch aus einer technischen Notwendigkeit auf dem Webserver gespeichert). Diese sind technisch erforderlich, um Ihnen die Website anzuzeigen. ähnelt.
         /// </summary>
         public static string ImpressumTextMitte {
             get {

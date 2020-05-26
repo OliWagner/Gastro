@@ -1,98 +1,103 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.HomeKontakteModel
+<script src="~/Content/ckeditor/ckeditor.js"></script>
 <h2>Kontaktseite <a href="/I18n/Kontakt">I18n</a></h2>
 @using (Html.BeginForm("KontaktEintragen", "Admin", FormMethod.Post, new { id = "EingabeForm" }))
 {
-<table border="0">
-    <tr>
-        <td valign="top">Inhaber</td>
-        <td valign="top" width="600">@Html.TextBoxFor(model => model.Kontakt.AdresseInhaber)</td>
-    </tr>
+    <table border="0">
+        <tr>
+            <td valign="top">Inhaber</td>
+            <td valign="top" width="600">@Html.TextBoxFor(model => model.Kontakt.AdresseInhaber)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Adresse Bezeichnung</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdresseName)</td>
-    </tr>
+        <tr>
+            <td valign="top">Adresse Bezeichnung</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdresseName)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Adresse Zusatz</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdresseZusatz)</td>
-    </tr>
+        <tr>
+            <td valign="top">Adresse Zusatz</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdresseZusatz)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Adresse Strasse</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdresseStrasse)</td>
-    </tr>
+        <tr>
+            <td valign="top">Adresse Strasse</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdresseStrasse)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Adresse PLZ/Ort</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdressePlz, new { size = 5 }) @Html.TextBoxFor(model => model.Kontakt.AdresseOrt)</td>
-    </tr>
+        <tr>
+            <td valign="top">Adresse PLZ/Ort</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.AdressePlz, new { size = 5 }) @Html.TextBoxFor(model => model.Kontakt.AdresseOrt)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Telefon</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Telefon)</td>
-    </tr>
+        <tr>
+            <td valign="top">Telefon</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Telefon)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Telefax</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Telefax)</td>
-    </tr>
+        <tr>
+            <td valign="top">Telefax</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Telefax)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">E-Mail</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Email)</td>
-    </tr>
+        <tr>
+            <td valign="top">E-Mail</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Email)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">GPS-Daten</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.GpsKartenDaten)</td>
-    </tr>
+        <tr>
+            <td valign="top">GPS-Daten</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.GpsKartenDaten)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Ansprache</td>
-        <td valign="top">@Html.TextAreaFor(model => model.Kontakt.Einleitungstext)</td>
-    </tr>
+        <tr>
+            <td valign="top">Ansprache</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Kontakt.Einleitungstext, new { id = "HtmlQuelltext" })</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Nachrichtenfelderläuterung</td>
-        <td valign="top">@Html.TextAreaFor(model => model.Kontakt.TextFuerNachricht)</td>
-    </tr>
+        <tr>
+            <td valign="top">Nachrichtenfelderläuterung</td>
+            <td valign="top">@Html.TextAreaFor(model => model.Kontakt.TextFuerNachricht, new { id = "HtmlQuelltext2" })</td>
+        </tr>
 
-    <tr>
-        <td colspan="2"><input type="submit" value="@ResourcesGastro.Shared.Navi.BtnSendenText" /></td>
-    </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="@ResourcesGastro.Shared.Navi.BtnSendenText" /></td>
+        </tr>
 
-    <tr>
-        <td valign="top">Facebook</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Facebook)</td>
-    </tr>
+        <tr>
+            <td valign="top">Facebook</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Facebook)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Youtube</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Youtube)</td>
-    </tr>
+        <tr>
+            <td valign="top">Youtube</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Youtube)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Google+</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.GooglePlus)</td>
-    </tr>
+        <tr>
+            <td valign="top">Google+</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.GooglePlus)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Istagramm</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Instagramm)</td>
-    </tr>
+        <tr>
+            <td valign="top">Istagramm</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Instagramm)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Snapchat</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Snapchat)</td>
-    </tr>
+        <tr>
+            <td valign="top">Snapchat</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Snapchat)</td>
+        </tr>
 
-    <tr>
-        <td valign="top">Pinterest</td>
-        <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Pinterest)</td>
-    </tr>
-</table>
+        <tr>
+            <td valign="top">Pinterest</td>
+            <td valign="top">@Html.TextBoxFor(model => model.Kontakt.Pinterest)</td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        CKEDITOR.replace('HtmlQuelltext');
+        CKEDITOR.replace('HtmlQuelltext2');
+    </script>
 }
 
 

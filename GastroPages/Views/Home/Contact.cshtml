@@ -4,64 +4,68 @@
 
 @using (Html.BeginForm("KontaktEintragen", "Home", FormMethod.Post, new { id = "EingabeForm" }))
 {
-<table border="0">
+<table border="0" width="800">
 
     @if (Session["kontakt"] != null && !Session["kontakt"].Equals(""))
     {
         <tr>
-            <td class="Kontaktbestätigung">@ResourcesGastro.Home.Logon.KontaktBestätigung</td>
+            <td class="Kontaktbestätigung" colspan="2">@ResourcesGastro.Home.Logon.KontaktBestätigung</td>
         </tr>
     }
 
     @if (Model.Kontakt.Einleitungstext != null && !Model.Kontakt.Einleitungstext.Equals(""))
     {
         <tr>
-            <td>@Model.Kontakt.Einleitungstext</td>
+            <td colspan="2">@Html.Raw(Model.Kontakt.Einleitungstext)</td>
         </tr>
     }
 
     <tr>
-        <td><h3>@Model.Kontakt.AdresseName - @ResourcesGastro.Shared.Navi.Inhaber: @Model.Kontakt.AdresseInhaber</h3></td>
+        <td colspan="2"><h3>@Model.Kontakt.AdresseName - @ResourcesGastro.Shared.Navi.Inhaber: @Model.Kontakt.AdresseInhaber</h3></td>
     </tr>
 
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.Adresse:</td>
+        <td><b>@ResourcesGastro.Shared.Navi.Adresse:</b></td>
     </tr>
     <tr>
-        <td>@Model.Kontakt.AdresseStrasse</td>
+        <td colspan="2">@Model.Kontakt.AdresseStrasse</td>
     </tr>
     <tr>
-        <td>@Model.Kontakt.AdresseZusatz</td>
+        <td colspan="2">@Model.Kontakt.AdresseZusatz</td>
     </tr>
     <tr>
-        <td>@Model.Kontakt.AdressePlz @Model.Kontakt.AdresseOrt</td>
+        <td colspan="2">@Model.Kontakt.AdressePlz @Model.Kontakt.AdresseOrt</td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.Email: @Model.Kontakt.Email</td>
+        <td colspan="2">@ResourcesGastro.Shared.Navi.Email: @Model.Kontakt.Email</td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTelefon: @Model.Kontakt.Telefon</td>
+        <td colspan="2">@ResourcesGastro.Shared.Navi.PlanerPdfTelefon: @Model.Kontakt.Telefon</td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.Telefax: @Model.Kontakt.Telefax</td>
+        <td colspan="2">@ResourcesGastro.Shared.Navi.Telefax: @Model.Kontakt.Telefax</td>
     </tr>
     <tr>
-        <td>@Model.Kontakt.TextFuerNachricht</td>
+        <td>@Html.Raw(Model.Kontakt.TextFuerNachricht)</td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.PlanerPdfName: <input type="text" name="name" id="name" size="20" /></td>
+        <td width="150">@ResourcesGastro.Shared.Navi.PlanerPdfName:</td>
+        <td width="650"><input type="text" name="name" id="name" size="20" /></td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.Email: <input type="text" name="email" id="email" size="20" /></td>
+        <td>@ResourcesGastro.Shared.Navi.Email:</td>
+        <td><input type="text" name="email" id="email" size="20" /></td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTelefon: <input type="text" name="telefon" id="telefon" size="20" /></td>
+        <td>@ResourcesGastro.Shared.Navi.PlanerPdfTelefon:</td>
+        <td><input type="text" name="telefon" id="telefon" size="20" /></td>
     </tr>
     <tr>
-        <td>@ResourcesGastro.Shared.Navi.MitteilungAnWirt:<br/><textarea name="txtNachricht" id="txtNachricht" cols="20" rows="3"></textarea></td>
+        <td>@ResourcesGastro.Shared.Navi.MitteilungAnWirt:</td>
+        <td><textarea name="txtNachricht" id="txtNachricht" cols="20" rows="3"></textarea></td>
     </tr>
     <tr>
-        <td><input type="submit" name="" id="" value="@ResourcesGastro.Shared.Navi.BtnSendenText" /></td>
+        <td colspan="2"><input type="submit" class="btn btn-default" name="" id="" value="@ResourcesGastro.Shared.Navi.BtnSendenText" /></td>
     </tr>
 </table>
 }

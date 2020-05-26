@@ -1,5 +1,6 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.AdminI18nKontaktModel
+<script src="~/Content/ckeditor/ckeditor.js"></script>
 <h2>Kontakt - Internationalisierung</h2>
 <script>
     function openTab(index) {
@@ -34,90 +35,99 @@
 </script>
 @using (Html.BeginForm("KontaktEintragen", "I18n", FormMethod.Post, new { id = "EingabeForm" }))
 {
-<div id='tabmenu' class='tabmenu'>
-    <!-- Tab-Reiter -->
-    <div id='tab_top_0' class='tab_top_active' onclick='javascript:openTab(0)' ;>Info</div>
-    <div id='tab_top_1' class='tab_top_active' onclick='javascript:openTab(1)' ;>Ansprache</div>
-    <div id='tab_top_2' class='tab_top_active' onclick='javascript:openTab(2)' ;>Nachrichtentext</div>
+    <div id='tabmenu' class='tabmenu'>
+        <!-- Tab-Reiter -->
+        <div id='tab_top_0' class='tab_top_active' onclick='javascript:openTab(0)' ;>Info</div>
+        <div id='tab_top_1' class='tab_top_active' onclick='javascript:openTab(1)' ;>Ansprache</div>
+        <div id='tab_top_2' class='tab_top_active' onclick='javascript:openTab(2)' ;>Nachrichtentext</div>
 
 
+        <div style='clear: both;'></div>
+
+        <div id='tab_box_0' class='tab_box'>
+            <table border="0" class="AllergeneMehrsprachigkeit">
+                <tr>
+                    <td valign="top" colspan="2"><b>Informationen</b></td>
+                </tr>
+                <tr>
+                    <td valign="top" colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td valign="top">&nbsp;</td>
+                    <td valign="top"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id='tab_box_1' class='tab_box'>
+            <table border="0" class="AllergeneMehrsprachigkeit">
+                <tr>
+                    <td valign="top" colspan="3"><b>Ansprache</b></td>
+                </tr>
+                <tr>
+                    <td valign="top">Englisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Englisch_Einleitung, new { id = "HtmlQuelltext1" })</td>
+                </tr>
+                <tr>
+                    <td valign="top">Italienisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Einleitung, new { id = "HtmlQuelltext2" })</td>
+                </tr>
+                <tr>
+                    <td valign="top">Russisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Russisch_Einleitung, new { id = "HtmlQuelltext3" })</td>
+                </tr>
+                <tr>
+                    <td valign="top">Spanisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Einleitung, new { id = "HtmlQuelltext4" })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td valign="top"><input type="submit" value="eintragen" /></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id='tab_box_2' class='tab_box'>
+            <table border="0" class="AllergeneMehrsprachigkeit">
+                <tr>
+                    <td valign="top" colspan="3"><b>Nachrichtentext</b></td>
+                </tr>
+                <tr>
+                    <td valign="top">Englisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Englisch_Nachrichtentext, new { id = "HtmlQuelltext5" })</td>
+                </tr>
+                <tr>
+                    <td valign="top">Italienisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Nachrichtentext, new { id = "HtmlQuelltext6" })</td>
+                </tr>
+                <tr>
+                    <td valign="top">Russisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Russisch_Nachrichtentext, new { id = "HtmlQuelltext7" })</td>
+                </tr>
+                <tr>
+                    <td valign="top">Spanisch</td>
+                    <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Nachrichtentext, new { id = "HtmlQuelltext8" })</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td valign="top"><input type="submit" value="eintragen" /></td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
     <div style='clear: both;'></div>
-
-    <div id='tab_box_0' class='tab_box'>
-        <table border="0" class="AllergeneMehrsprachigkeit">
-            <tr>
-                <td valign="top" colspan="2"><b>Informationen</b></td>
-            </tr>
-            <tr>
-                <td valign="top" colspan="2">&nbsp;</td>  
-            </tr>
-            <tr>
-                <td valign="top">&nbsp;</td>
-                <td valign="top"></td>
-            </tr>
-        </table>
-    </div>
-
-    <div id='tab_box_1' class='tab_box'>
-        <table border="0" class="AllergeneMehrsprachigkeit">
-            <tr>
-                <td valign="top" colspan="3"><b>Ansprache</b></td>
-            </tr>
-            <tr>
-                <td valign="top">Englisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Einleitung)</td>
-            </tr>
-            <tr>
-                <td valign="top">Italienisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Einleitung)</td>
-            </tr>
-            <tr>
-                <td valign="top">Russisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Einleitung)</td>
-            </tr>
-            <tr>
-                <td valign="top">Spanisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Einleitung)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td valign="top"><input type="submit" value="eintragen" /></td>
-            </tr>
-        </table>
-    </div>
-
-    <div id='tab_box_2' class='tab_box'>
-        <table border="0" class="AllergeneMehrsprachigkeit">
-            <tr>
-                <td valign="top" colspan="3"><b>Nachrichtentext</b></td>
-            </tr>
-            <tr>
-                <td valign="top">Englisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Englisch_Nachrichtentext)</td>
-            </tr>
-            <tr>
-                <td valign="top">Italienisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Italienisch_Nachrichtentext)</td>
-            </tr>
-            <tr>
-                <td valign="top">Russisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Russisch_Nachrichtentext)</td>
-            </tr>
-            <tr>
-                <td valign="top">Spanisch</td>
-                <td valign="top">@Html.TextAreaFor(model => model.Spanisch_Nachrichtentext)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td valign="top"><input type="submit" value="eintragen" /></td>
-            </tr>
-        </table>
-    </div>
-
-
-</div>
-    <div style='clear: both;'></div>
-
+    <script type="text/javascript">
+        CKEDITOR.replace('HtmlQuelltext1');
+        CKEDITOR.replace('HtmlQuelltext2');
+        CKEDITOR.replace('HtmlQuelltext3');
+        CKEDITOR.replace('HtmlQuelltext4');
+        CKEDITOR.replace('HtmlQuelltext5');
+        CKEDITOR.replace('HtmlQuelltext6');
+        CKEDITOR.replace('HtmlQuelltext7');
+        CKEDITOR.replace('HtmlQuelltext8');
+    </script>
 }

@@ -130,7 +130,7 @@
     <value>Vielen Dank für Ihr Interesse an unsrem Angebot. Im Folgenden informieren wir Sie über den Umgang mit Ihren personenbezogenen Daten bei der Nutzung unserer Website. Diese erheben wir lediglich bei einer Kontaktanfrage an uns oder wenn Sie eine Anfrage wegen einer Veranstaltung an uns übermitteln. Die Daten werden lediglich zur Beantwortung genutzt und dann gelöscht.</value>
   </data>
   <data name="ImpressumTextMitte" xml:space="preserve">
-    <value>Wenn Sie unsere Website aufrufen, erheben wir die folgenden Daten (eigentlich werden sie automatisch aus einer technischen Notwendigkeit auf dem Webserver gespeichert). Diese sind für uns technisch erforderlich, um Ihnen die Website anzuzeigen</value>
+    <value>Wenn Sie unsere Website aufrufen, erheben wir lediglich die Verbindungsdaten Ihrer Anfrage (eigentlich werden sie automatisch aus einer technischen Notwendigkeit auf dem Webserver gespeichert). Diese sind technisch erforderlich, um Ihnen die Website anzuzeigen.</value>
   </data>
   <data name="ImpressumTextUnten" xml:space="preserve">
     <value>Diese Server-Logfiles werden von uns nicht verarbeitet! Auch verwenden wir keine Cookies, um Informationen zu sammeln.</value>
