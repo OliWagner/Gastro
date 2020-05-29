@@ -89,7 +89,7 @@ namespace GastroPages.Controllers
                     if (Request["antwort[]"] != null) { 
                         antworten = Request["antwort[]"].Split(',').ToList();
                     }
-                    string typ = Request["hidTyp"];
+                    string typ = Request["Umfragetyp"];
                     string pics = Request["pics"];
 
                         if (model.Umfrage.id != 0)
@@ -373,11 +373,7 @@ namespace GastroPages.Controllers
                                 string guid = Guid.NewGuid().ToString().Replace("-", "");
                                 string newFileName = guid + "." + ar[1];
                                 file.SaveAs(Server.MapPath("~/Content/Images/"+ newFileName));
-                                Image img = Image.FromFile(Server.MapPath("~/Content/Images/" + newFileName));
-                                Size size = BilderHelper.GetNewSize(img, 600);
-                                Image newImage = BilderHelper.ResizeImage(img, size);
-                                img.Dispose();
-                                newImage.Save(Server.MapPath("~/Content/Images/" + newFileName));
+
                                 BilderHelper.AddBildNews(newFileName, bildText, newsId);
                             }
                             catch (Exception ex)
@@ -410,15 +406,13 @@ namespace GastroPages.Controllers
                         int myId = 0;
                         if (Session["UmfrageId"] != null)
                         {
-                            myId = (int)Session["UmfrageId"];
+                            Int32.TryParse(Session["UmfrageId"].ToString(), out myId);
+                            
                         }
                         List<UmfrageBilder> toDelete = (from UmfrageBilder ub in db.UmfrageBilder where ub.UmfrageId == myId select ub).ToList();
                         db.UmfrageBilder.RemoveRange(toDelete);
                         for (int i = 0; i < files.Count; i++)
                         {
-                            //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
-                            //string filename = Path.GetFileName(Request.Files[i].FileName);  
-
                             HttpPostedFileBase file = files[i];
                             string fname;
 
@@ -440,13 +434,7 @@ namespace GastroPages.Controllers
                             string newFileName = guid + "." + ar[1];
                             string newFilePath = Path.Combine(Server.MapPath("~/Content/ImagesUmfragen/"), newFileName);
                             file.SaveAs(newFilePath);
-                            Image img = Image.FromFile(Server.MapPath("~/Content/ImagesUmfragen/" + newFileName));
-                            Size size = BilderHelper.GetNewSize(img, 600);
-                            Image newImage = BilderHelper.ResizeImage(img, size);
-                            img.Dispose();
-                            newImage.Save(Server.MapPath("~/Content/ImagesUmfragen/" + newFileName));
-
-
+                            
                             UmfrageBilder bild = new UmfrageBilder();
                             bild.UmfrageId = 1000000000;
                             bild.BildUrl = newFileName;

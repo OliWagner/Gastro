@@ -12,8 +12,8 @@
 <p>@Html.Raw(Model.News.NewsText)</p>
 @foreach (var item in Model.Bilder)
 {
-    <div id="@item.BildUrl">
-        <img src="~/Content/Images/@item.BildUrl" width="100" id="myBtn" value="@item.BildUrl"/>
+    <div id="@item.BildUrl" style="float:left;">
+        <img src="~/Content/Images/@item.BildUrl" width="100"  onclick="imageClick('@item.BildUrl')"/>
         <text>&nbsp;</text>
     </div>
 }
@@ -46,8 +46,8 @@
         var span = document.getElementsByClassName("close")[0];
 
         // When the user clicks on the button, open the modal
-        btn.onclick = function () {
-            var bildUrl = btn.parentNode.id;
+        function imageClick(bildUrl) {
+
             document.getElementById("divBild").innerHTML = "<img src='/Content/Images/" + bildUrl + "' />";
             modal.style.display = "block";
         }

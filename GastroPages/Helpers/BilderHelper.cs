@@ -51,23 +51,5 @@ namespace GastroPages.Helpers
             }
             return newImage;
         }
-
-        public static Size GetNewSize(Image img, int width) {
-            var _w = img.Width;
-            var _h = img.Height;
-            var faktor = _w / _h;
-            if (faktor >= 1) {
-                _w = width;
-                _h = _h / faktor;
-            }
-            else
-            {
-                _h = width;
-                _w = _w / faktor;
-            }
-
-
-            return new Size(_w, _h);
-        }
     }
 }

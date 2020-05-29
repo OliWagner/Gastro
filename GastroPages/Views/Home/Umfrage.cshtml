@@ -72,8 +72,8 @@
                 <td colspan="3" valign="top">
                     @foreach (UmfrageBilder bild in umfrage.Bilder)
                     {
-                        <div id="@bild.BildUrl">
-                            <text>&nbsp;</text><img src="~/Content/ImagesUmfragen/@bild.BildUrl" width="80" id="myBtn" value="@bild.BildUrl" /><text>&nbsp;</text>
+                        <div id="@bild.BildUrl" style="float:left;">
+                            <text>&nbsp;</text><img src="~/Content/ImagesUmfragen/@bild.BildUrl" width="80" onclick="imageClick('@bild.BildUrl')" /><text>&nbsp;</text>
                         </div>
                     }
                 </td>
@@ -103,8 +103,8 @@
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks on the button, open the modal
-    btn.onclick = function () {
-        var bildUrl = btn.parentNode.id;
+    function imageClick(bildUrl) {
+       
         document.getElementById("divBild").innerHTML = "<img src='/Content/ImagesUmfragen/" + bildUrl + "' />";
         modal.style.display = "block";
     }
