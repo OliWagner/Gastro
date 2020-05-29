@@ -3,6 +3,7 @@ using GastroPages.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -14,70 +15,7 @@ namespace GastroPages.Controllers
     public class AdminController : Controller
     {
         
-        [HttpPost]
-        public ActionResult UploadFiles()
-        {
-            // Checking no of files injected in Request object  
-            if (Request.Files.Count > 0)
-            {
-                try
-                {
-                    //  Get all files from Request object  
-                    HttpFileCollectionBase files = Request.Files;
-                    string json = "";
-                    using (GastroEntities db = new GastroEntities()) {
-                        int myId = 0;
-                        if (Session["UmfrageId"] != null) {
-                            myId = (int)Session["UmfrageId"];
-                        }
-                        List<UmfrageBilder> toDelete = (from UmfrageBilder ub in db.UmfrageBilder where ub.UmfrageId == myId select ub).ToList();
-                        db.UmfrageBilder.RemoveRange(toDelete);
-                        for (int i = 0; i < files.Count; i++)
-                        {
-                            //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
-                            //string filename = Path.GetFileName(Request.Files[i].FileName);  
-
-                            HttpPostedFileBase file = files[i];
-                            string fname;
-
-                            // Checking for Internet Explorer  
-                            if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
-                            {
-                                string[] testfiles = file.FileName.Split(new char[] { '\\' });
-                                fname = testfiles[testfiles.Length - 1];
-                            }
-                            else
-                            {
-                                fname = file.FileName;
-                            }
-
-                            // Get the complete folder path and store the file inside it.  
-                            fname = Path.Combine(Server.MapPath("~/Content/ImagesUmfragen/"), fname);
-                            file.SaveAs(fname);
-                            UmfrageBilder bild = new UmfrageBilder();
-                            bild.UmfrageId = 1000000000;
-                            bild.BildUrl = file.FileName;
-                            db.UmfrageBilder.Add(bild);
-                        }
-                        db.SaveChanges();
-                        List<UmfrageBilder> emp = db.UmfrageBilder.Where(e => e.UmfrageId == 1000000000).ToList();
-
-                        json = JsonConvert.SerializeObject(emp);
-                    }
-                    
-                    // Returns message that successfully uploaded  
-                    return Json(json);
-                }
-                catch (Exception ex)
-                {
-                    return Json("Error occurred. Error details: " + ex.Message);
-                }
-            }
-            else
-            {
-                return Json("No files selected.");
-            }
-        }
+        
 
 
         public ActionResult Index()
@@ -430,9 +368,17 @@ namespace GastroPages.Controllers
                         {
                             try
                             {
-                                //Save original to all folders
-                                file.SaveAs(Server.MapPath("~/Content/Images/"+file.FileName));
-                                BilderHelper.AddBildNews(file.FileName, bildText, newsId);
+                                //Rename and save
+                                string[] ar = file.FileName.Split('.');
+                                string guid = Guid.NewGuid().ToString().Replace("-", "");
+                                string newFileName = guid + "." + ar[1];
+                                file.SaveAs(Server.MapPath("~/Content/Images/"+ newFileName));
+                                Image img = Image.FromFile(Server.MapPath("~/Content/Images/" + newFileName));
+                                Size size = BilderHelper.GetNewSize(img, 600);
+                                Image newImage = BilderHelper.ResizeImage(img, size);
+                                img.Dispose();
+                                newImage.Save(Server.MapPath("~/Content/Images/" + newFileName));
+                                BilderHelper.AddBildNews(newFileName, bildText, newsId);
                             }
                             catch (Exception ex)
                             {
@@ -448,6 +394,84 @@ namespace GastroPages.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public ActionResult UploadFiles()
+        {
+            // Checking no of files injected in Request object  
+            if (Request.Files.Count > 0)
+            {
+                try
+                {
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+                    string json = "";
+                    using (GastroEntities db = new GastroEntities())
+                    {
+                        int myId = 0;
+                        if (Session["UmfrageId"] != null)
+                        {
+                            myId = (int)Session["UmfrageId"];
+                        }
+                        List<UmfrageBilder> toDelete = (from UmfrageBilder ub in db.UmfrageBilder where ub.UmfrageId == myId select ub).ToList();
+                        db.UmfrageBilder.RemoveRange(toDelete);
+                        for (int i = 0; i < files.Count; i++)
+                        {
+                            //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+                            //string filename = Path.GetFileName(Request.Files[i].FileName);  
+
+                            HttpPostedFileBase file = files[i];
+                            string fname;
+
+                            // Checking for Internet Explorer  
+                            if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                            {
+                                string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                                fname = testfiles[testfiles.Length - 1];
+                            }
+                            else
+                            {
+                                fname = file.FileName;
+                            }
+
+                            // Get the complete folder path and store the file inside it.  
+                            fname = Path.Combine(Server.MapPath("~/Content/ImagesUmfragen/"), fname);
+                            string[] ar = file.FileName.Split('.');
+                            string guid = Guid.NewGuid().ToString().Replace("-", "");
+                            string newFileName = guid + "." + ar[1];
+                            string newFilePath = Path.Combine(Server.MapPath("~/Content/ImagesUmfragen/"), newFileName);
+                            file.SaveAs(newFilePath);
+                            Image img = Image.FromFile(Server.MapPath("~/Content/ImagesUmfragen/" + newFileName));
+                            Size size = BilderHelper.GetNewSize(img, 600);
+                            Image newImage = BilderHelper.ResizeImage(img, size);
+                            img.Dispose();
+                            newImage.Save(Server.MapPath("~/Content/ImagesUmfragen/" + newFileName));
+
+
+                            UmfrageBilder bild = new UmfrageBilder();
+                            bild.UmfrageId = 1000000000;
+                            bild.BildUrl = newFileName;
+                            db.UmfrageBilder.Add(bild);
+                        }
+                        db.SaveChanges();
+                        List<UmfrageBilder> emp = db.UmfrageBilder.Where(e => e.UmfrageId == 1000000000).ToList();
+
+                        json = JsonConvert.SerializeObject(emp);
+                    }
+
+                    // Returns message that successfully uploaded  
+                    return Json(json);
+                }
+                catch (Exception ex)
+                {
+                    return Json("Error occurred. Error details: " + ex.Message);
+                }
+            }
+            else
+            {
+                return Json("No files selected.");
+            }
+        }
+
         public ActionResult NewsLöschen(int id)
         {
             if (Session["Rolle"] != null && Session["Rolle"].Equals("Admin"))
@@ -456,6 +480,16 @@ namespace GastroPages.Controllers
                 {
                    
                     News n = (from News news in db.News where news.id == id select news).FirstOrDefault();
+                    //Bilder löschen
+                    List<NewsBilder> lub = db.NewsBilder.Where(x => x.NewsId == (int)id).ToList();
+                    foreach (NewsBilder bild in lub)
+                    {
+                        string fname = Path.Combine(Server.MapPath("~/Content/Images/"), bild.BildUrl);
+                        if (System.IO.File.Exists(fname))
+                        {
+                            System.IO.File.Delete(fname);
+                        }
+                    }
                     db.News.Remove(n);
                     db.SaveChanges();
                 }

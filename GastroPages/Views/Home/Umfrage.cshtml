@@ -1,79 +1,123 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.HomeUmfrageModel
 <h2>@ResourcesGastro.Shared.Navi.IndexUmfrageHeader</h2>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="~/Content/Modal.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 @foreach (UmfrageModelHelper umfrage in Model.AlleDaten)
 {
     string awText = "antwort" + umfrage.Umfrage.id;
-    
-        using (Html.BeginForm("UmfrageEintragen", "Home", FormMethod.Post))
-        {
-            <input type="hidden" name="UmfrageId" value="@umfrage.Umfrage.id" />
-            <table border="0" width="750" class="TabelleUmfrage">
-                <tr>
-                    <td width="200" valign="top">
-                        <b><big>@umfrage.Umfrage.Titel</big></b><br />
-                        <small>Vom @umfrage.Umfrage.DatumStart.ToShortDateString() bis @umfrage.Umfrage.DatumEnde.ToShortDateString()</small>
-                    </td>
-                    <td width="50" valign="top"><small>Teilnahmen: @umfrage.UmfrageTeilnahmen</small></td>
-                    <td valign="top" width="500"><b>@Html.Raw(umfrage.Umfrage.Frage)</b></td>
-                </tr>
-                <tr>
-                    <td width="250" valign="top" colspan="2">@Html.Raw(umfrage.Umfrage.Einleitung)</td>
-                    <td valign="top" width="500">
-                        <h3>Ihre Antwort:</h3><br />
-                        @if (umfrage.Umfrage.Typ.Equals("Freie Antwort kurz"))
-                        {
-                            <input type="text" name="antwort" width="200" />
-                        }
 
-                        @if (umfrage.Umfrage.Typ.Equals("Freie Antwort lang"))
-                        {
-                            <textarea name="antwort" cols="30" rows="10"></textarea>
-                        }
+    using (Html.BeginForm("UmfrageEintragen", "Home", FormMethod.Post))
+    {
+        <input type="hidden" name="UmfrageId" value="@umfrage.Umfrage.id" />
+        <table border="0" width="750" class="TabelleUmfrage">
+            <tr>
+                <td width="200" valign="top">
+                    <b><big>@umfrage.Umfrage.Titel</big></b><br />
+                    <small>Vom @umfrage.Umfrage.DatumStart.ToShortDateString() bis @umfrage.Umfrage.DatumEnde.ToShortDateString()</small>
+                </td>
+                <td width="50" valign="top"><small>Teilnahmen: @umfrage.UmfrageTeilnahmen</small></td>
+                <td valign="top" width="500"><b>@Html.Raw(umfrage.Umfrage.Frage)</b></td>
+            </tr>
+            <tr>
+                <td width="250" valign="top" colspan="2">@Html.Raw(umfrage.Umfrage.Einleitung)</td>
+                <td valign="top" width="500">
+                    <h3>Ihre Antwort:</h3><br />
+                    @if (umfrage.Umfrage.Typ.Equals("Freie Antwort kurz"))
+                    {
+                        <input type="text" name="antwort" width="200" />
+                    }
 
-                        @if (umfrage.Umfrage.Typ.Equals("Einfachauswahl"))
-                        {
-                            int counter = 0;
-                            foreach (UmfrageAntworten ua in umfrage.Antworten)
-                            {
-                                string txt = counter.ToString();
-                                <input type="radio" id="@txt" name="antwort" value="@ua.AntwortText">
-                                <label for="@txt">@ua.AntwortText</label><br>
-                            }
-                        }
+                    @if (umfrage.Umfrage.Typ.Equals("Freie Antwort lang"))
+                    {
+                        <textarea name="antwort" cols="30" rows="10"></textarea>
+                    }
 
-                        @if (umfrage.Umfrage.Typ.Equals("Mehrfachauswahl"))
+                    @if (umfrage.Umfrage.Typ.Equals("Einfachauswahl"))
+                    {
+                        int counter = 0;
+                        foreach (UmfrageAntworten ua in umfrage.Antworten)
                         {
-                            int counter = 0;
-                            foreach (UmfrageAntworten ua in @umfrage.Antworten)
-                            {
-                                string txt = counter.ToString();
-                                <input type="checkbox" id="@txt" name="antwort" value="@ua.AntwortText">
-                                <label for="@txt">@ua.AntwortText</label><br>
-                            }
+                            string txt = counter.ToString();
+                            <input type="radio" id="@txt" name="antwort" value="@ua.AntwortText">
+                            <label for="@txt">@ua.AntwortText</label><br>
                         }
-                        <br />
-                        @if (Session[awText] == null)
-                        {
-                            <input class="btn btn-default" type="submit" value="@ResourcesGastro.Shared.Navi.BtnSendenText" />
-                        }
-                        else
-                        {
-                            <text><b>Vielen Dank für Ihre Teilnahme!!!</b></text>
-                                }
+                    }
 
-                            </td>
-                </tr>
-                <tr>
-                    <td colspan="3" valign="top">
-                        @foreach (UmfrageBilder bild in umfrage.Bilder)
+                    @if (umfrage.Umfrage.Typ.Equals("Mehrfachauswahl"))
+                    {
+                        int counter = 0;
+                        foreach (UmfrageAntworten ua in @umfrage.Antworten)
                         {
-                            <text>&nbsp;</text><img src="~/Content/ImagesUmfragen/@bild.BildUrl" width="80" /><text>&nbsp;</text>
+                            string txt = counter.ToString();
+                            <input type="checkbox" id="@txt" name="antwort" value="@ua.AntwortText">
+                            <label for="@txt">@ua.AntwortText</label><br>
                         }
-                    </td>
-                </tr>
-            </table>
-        }
-        <br />
-    
+                    }
+                    <br />
+                    @if (Session[awText] == null)
+                    {
+                        <input class="btn btn-default" type="submit" value="@ResourcesGastro.Shared.Navi.BtnSendenText" />
+                    }
+                    else
+                    {
+                        <text><b>Vielen Dank für Ihre Teilnahme!!!</b></text>
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" valign="top">
+                    @foreach (UmfrageBilder bild in umfrage.Bilder)
+                    {
+                        <div id="@bild.BildUrl">
+                            <text>&nbsp;</text><img src="~/Content/ImagesUmfragen/@bild.BildUrl" width="80" id="myBtn" value="@bild.BildUrl" /><text>&nbsp;</text>
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+
 }
+
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="divBild"></div>
+    </div>
+
+</div>
+<script>
+    var modal = document.getElementById("myModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+        var bildUrl = btn.parentNode.id;
+        document.getElementById("divBild").innerHTML = "<img src='/Content/ImagesUmfragen/" + bildUrl + "' />";
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>

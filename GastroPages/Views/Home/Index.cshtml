@@ -46,10 +46,19 @@
                 <b>@viewModel.News.First().Datum.ToShortDateString() - <big>@viewModel.News.First().Überschrift</big></b>
             </p>
             <p>
-                <b>@viewModel.News.First().Header.Substring(0,50)...</b>
+                <b>@{
+                    int i = viewModel.News.First().Header.Length;
+                    if (i > 50) { i = 50; }
+                    @Html.Raw(viewModel.News.First().Header.Substring(0, i));
+
+                    }...</b>
             </p>
             <p>
-                @viewModel.News.First().NewsText.Substring(0, 100)...
+                @{
+                    int i2 = viewModel.News.First().NewsText.Length;
+                    if (i2 > 100) { i2 = 100; }
+                    @Html.Raw(viewModel.News.First().NewsText.Substring(0, i2));
+                }...
             </p>
         }
         else

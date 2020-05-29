@@ -1,19 +1,66 @@
 ﻿@using GastroPages.Models
 @model GastroPages.Models.HomeNewsModel
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="~/Content/Modal.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 <h2>@ResourcesGastro.Shared.Navi.News </h2>
 <h3>@Model.News.Datum.ToShortDateString() -  @Model.News.Überschrift</h3>
 <p><b>@Model.News.Header</b></p>
-<p>@Model.News.NewsText</p>
+<p>@Html.Raw(Model.News.NewsText)</p>
 @foreach (var item in Model.Bilder)
 {
-    <img src="~/Content/Images/@item.BildUrl" width="100" />
-    <text>&nbsp;</text>
-
+    <div id="@item.BildUrl">
+        <img src="~/Content/Images/@item.BildUrl" width="100" id="myBtn" value="@item.BildUrl"/>
+        <text>&nbsp;</text>
+    </div>
 }
+    
 <hr />
 @foreach (News news in Model.AlleNews)
 {
-<h4><a href="/Home/News?id=@news.id">@news.Datum.ToShortDateString() -  @news.Überschrift</a></h4>
+    <h4><a href="/Home/News?id=@news.id">@news.Datum.ToShortDateString() -  @news.Überschrift</a></h4>
     <p><b>@news.Header.Substring(0, 50)...</b></p>
-    <p>@news.NewsText.Substring(0,100)...</p>
+    <p>@Html.Raw(news.NewsText.Substring(0, 100))...</p>
 }
+    
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="divBild"></div>
+        </div>
+
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            var bildUrl = btn.parentNode.id;
+            document.getElementById("divBild").innerHTML = "<img src='/Content/Images/" + bildUrl + "' />";
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
