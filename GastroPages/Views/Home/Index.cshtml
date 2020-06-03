@@ -46,46 +46,57 @@
                 <b>@viewModel.News.First().Datum.ToShortDateString() - <big>@viewModel.News.First().Überschrift</big></b>
             </p>
             <p>
-                <b>@{
-                    int i = viewModel.News.First().Header.Length;
-                    if (i > 50) { i = 50; }
-                    @Html.Raw(viewModel.News.First().Header.Substring(0, i));
+                <b>
+                    @{
+                        int i = viewModel.News.First().Header.Length;
+                        if (i > 50) { i = 50; }
+                        @Html.Raw(viewModel.News.First().Header.Substring(0, i));
 
-                    }...</b>
-            </p>
-            <p>
-                @{
-                    int i2 = viewModel.News.First().NewsText.Length;
-                    if (i2 > 100) { i2 = 100; }
-                    @Html.Raw(viewModel.News.First().NewsText.Substring(0, i2));
                 }...
-            </p>
-        }
-        else
-        {
-            <p>
-                <b>@Resources.KeineAktuellenNews</b>
-            </p>
-        }
+            </b>
+        </p>
+        <p>
+            @{
+                int i2 = viewModel.News.First().NewsText.Length;
+                if (i2 > 100) { i2 = 100; }
+                @Html.Raw(viewModel.News.First().NewsText.Substring(0, i2));
+            }...
+        </p>
+    }
+    else
+    {
+        <p>
+            <b>@Resources.KeineAktuellenNews</b>
+        </p>
+    }
 
         <p><a class="btn btn-default" href="/Home/News">@Resources.IndexNewsBtnText &raquo;</a></p>
     </div>
-    @if (viewModel.Umfragen.Count > 0)
+
+
+    @if (viewModel.Umfragen.Count == 0)
     {
-    <div class="col-md-4 umfrageDivIndex">
-        <h2>@Resources.IndexUmfrageHeader</h2>
-        <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
-        <p>@Resources.IndexUmfrageText</p>
-        <p><a class="btn btn-default" href="/Home/Umfrage">@Resources.IndexUmfrageBtnText &raquo;</a></p>
-    </div>
+        @*<div class="col-md-4 umfrageDivIndex">
+                <h2>@Resources.IndexUmfrageHeader</h2>
+                <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
+                <p>@Resources.IndexUmfrageText</p>
+                <p><a class="btn btn-default" href="/Home/Umfrage">@Resources.IndexUmfrageBtnText &raquo;</a></p>
+            </div>*@
+        <div class="col-md-4" style="background-color:#ffdfdf">
+            <h2>Wir sind im Aufbau</h2>
+            
+            <p>Unsere Webseite ist noch lange nicht fertig. In Kürze folgt unsere richtige Speisekarte, die Mittagskarte und ein Veranstaltungsplaner, mit dem Sie Ihre Events im Voraus berechnen und planen können...</p>
+            <p><b>Schauen Sie bald wieder rein!!!</b></p>
+        </div>
     }
-    else {
-    <div class="col-md-4">
-        <h2>@Resources.IndexUmfrageHeader2</h2>
-        <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
-        <p>@Resources.IndexUmfrageTextKeineUmfrage</p>
-        <p><a class="btn btn-default" href="/Home/Umfragen">@Resources.IndexUmfrageBtnText2 &raquo;</a></p>
-    </div>
+    else
+    {
+        <div class="col-md-4">
+            <h2>@Resources.IndexUmfrageHeader2</h2>
+            <p><small><small>@Resources.IndexUmfrageNoT</small></small></p>
+            <p>@Resources.IndexUmfrageTextKeineUmfrage</p>
+            <p><a class="btn btn-default" href="/Home/Umfragen">@Resources.IndexUmfrageBtnText2 &raquo;</a></p>
+        </div>
     }
     <div class="col-md-4">
         <h2>@Resources.IndexTeamHeader</h2>
