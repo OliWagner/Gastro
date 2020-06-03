@@ -20,8 +20,6 @@ namespace GastroPages.Helpers
                 _db.NewsBilder.Add(bild);
                 _db.SaveChanges();
             }
-                
-            
         }
 
         public static Image ResizeImage(Image image, Size size, bool preserveAspectRatio = true)

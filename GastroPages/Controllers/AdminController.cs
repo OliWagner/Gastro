@@ -373,7 +373,10 @@ namespace GastroPages.Controllers
                                 string guid = Guid.NewGuid().ToString().Replace("-", "");
                                 string newFileName = guid + "." + ar[1];
                                 file.SaveAs(Server.MapPath("~/Content/Images/"+ newFileName));
-
+                                Image original = Image.FromFile(Server.MapPath("~/Content/Images/" + newFileName));
+                                Image resized = BilderHelper.ResizeImage(original, new Size(640, 480));
+                                original.Dispose();
+                                resized.Save(Server.MapPath("~/Content/Images/" + newFileName));
                                 BilderHelper.AddBildNews(newFileName, bildText, newsId);
                             }
                             catch (Exception ex)
@@ -434,7 +437,13 @@ namespace GastroPages.Controllers
                             string newFileName = guid + "." + ar[1];
                             string newFilePath = Path.Combine(Server.MapPath("~/Content/ImagesUmfragen/"), newFileName);
                             file.SaveAs(newFilePath);
-                            
+
+                            //Resize
+                            Image original = Image.FromFile(Server.MapPath("~/Content/ImagesUmfragen/" + newFileName));
+                            Image resized = BilderHelper.ResizeImage(original, new Size(640, 480));
+                            original.Dispose();
+                            resized.Save(Server.MapPath("~/Content/ImagesUmfragen/" + newFileName));
+
                             UmfrageBilder bild = new UmfrageBilder();
                             bild.UmfrageId = 1000000000;
                             bild.BildUrl = newFileName;
