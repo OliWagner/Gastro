@@ -349,4 +349,13 @@ La culminación de mi "aprendizaje" la pasé como chef nocturno en el "MS Europa
   <data name="Teams7" xml:space="preserve">
     <value>Ahora tienes el resultado de este viaje en la campana. ¡Buen apetito!</value>
   </data>
+  <data name="IndexAufbauFooter" xml:space="preserve">
+    <value>Vuelve a consultar pronto !!!</value>
+  </data>
+  <data name="IndexAufbauHeader" xml:space="preserve">
+    <value>Estamos en construccion</value>
+  </data>
+  <data name="IndexAufbauText" xml:space="preserve">
+    <value>Nuestro sitio web está lejos de estar terminado. Nuestro menú correcto, el menú del almuerzo y un planificador de eventos, con el que puede calcular y planificar sus eventos con anticipación, seguirán en breve ...</value>
+  </data>
 </root>

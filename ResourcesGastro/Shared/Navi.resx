@@ -349,4 +349,13 @@ Den krönenden Abschluss meiner 'Lehrjahre' verbrachte ich als Nachtkoch auf der
   <data name="Teams7" xml:space="preserve">
     <value>Sie haben nun in der Glocke das Resultat dieser Reise zur Verfügung. Guten Appetit!</value>
   </data>
+  <data name="IndexAufbauFooter" xml:space="preserve">
+    <value>Schauen Sie bald wieder rein!!!</value>
+  </data>
+  <data name="IndexAufbauHeader" xml:space="preserve">
+    <value>Wir sind im Aufbau</value>
+  </data>
+  <data name="IndexAufbauText" xml:space="preserve">
+    <value>Unsere Webseite ist noch lange nicht fertig. In Kürze folgt unsere richtige Speisekarte, die Mittagskarte und ein Veranstaltungsplaner, mit dem Sie Ihre Events im Voraus berechnen und planen können...</value>
+  </data>
 </root>

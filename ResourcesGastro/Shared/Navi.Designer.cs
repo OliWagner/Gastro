@@ -214,6 +214,33 @@ namespace ResourcesGastro.Shared {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Schauen Sie bald wieder rein!!! ähnelt.
+        /// </summary>
+        public static string IndexAufbauFooter {
+            get {
+                return ResourceManager.GetString("IndexAufbauFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wir sind im Aufbau ähnelt.
+        /// </summary>
+        public static string IndexAufbauHeader {
+            get {
+                return ResourceManager.GetString("IndexAufbauHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unsere Webseite ist noch lange nicht fertig. In Kürze folgt unsere richtige Speisekarte, die Mittagskarte und ein Veranstaltungsplaner, mit dem Sie Ihre Events im Voraus berechnen und planen können... ähnelt.
+        /// </summary>
+        public static string IndexAufbauText {
+            get {
+                return ResourceManager.GetString("IndexAufbauText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Zu den News ähnelt.
         /// </summary>
         public static string IndexNewsBtnText {

@@ -349,4 +349,13 @@ Il culmine del mio "apprendistato" è stato trascorso come chef notturno nella "
   <data name="Teams7" xml:space="preserve">
     <value>Ora hai il risultato di questo viaggio nella campana. Buon appetito!</value>
   </data>
+  <data name="IndexAufbauFooter" xml:space="preserve">
+    <value>Torna presto !!!</value>
+  </data>
+  <data name="IndexAufbauHeader" xml:space="preserve">
+    <value>Siamo in costruzione</value>
+  </data>
+  <data name="IndexAufbauText" xml:space="preserve">
+    <value>Il nostro sito Web è tutt'altro che finito. Il nostro menu corretto, il menu del pranzo e un organizzatore di eventi, con i quali puoi calcolare e pianificare i tuoi eventi in anticipo, seguiranno a breve ...</value>
+  </data>
 </root>

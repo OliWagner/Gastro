@@ -26,7 +26,7 @@ namespace GastroPages.Models
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                AlleGetränke = (from Getränke mt in _db.Getränke where mt.KategorieId == id select mt).ToList();
+                AlleGetränke = (from Getränke mt in _db.Getränke where mt.KategorieId == id orderby mt.Sortierung select mt).ToList();
                 GewähltesGetränk = new Getränke();
                 GewähltesGetränk.id = 0;
                 AKModel = new AdminKategorienModel("Getränke", "GetränkeKategorieEintragen", 2, id, level);
@@ -38,7 +38,7 @@ namespace GastroPages.Models
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                AlleGetränke = (from Getränke mt in _db.Getränke where mt.KategorieId == id select mt).ToList();
+                AlleGetränke = (from Getränke mt in _db.Getränke where mt.KategorieId == id orderby mt.Sortierung select mt).ToList();
                 foreach (Getränke mt in AlleGetränke)
                 {
                     List<int> list = (from AllergeneGetränkeIdSpeiseId amsid in _db.AllergeneGetränkeIdSpeiseId where amsid.sid == mt.id select amsid.aid).ToList();

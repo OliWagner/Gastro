@@ -32,13 +32,24 @@
                     }
                 }
                 <br />
+                <script language="javascript">
+                    function btnChange() {
+                        var test = document.getElementById('BtnSend');
+                        if (test.value != null && test.value.length > 0) {
+                            test.disabled = false;
+                        } else {
+                            test.disabled = true;
+                        }
+                    }
+
+                </script>
                 using (Html.BeginForm(Model.ControllerAction, "Admin", FormMethod.Post, new { id = "EingabeForm3" }))
                 {
                     <input type="hidden" name="SelectedKategoriId" id="SelectedKategoriId" value="0" />
                     <div>Neue Hauptkategorie:</div>
-                    <input type="text" name="NeueHauptKategorieBezeichnung" id="NeueHauptKategorieBezeichnung" />
+                    <input type="text" name="NeueHauptKategorieBezeichnung" onchange="btnChange()" id="NeueHauptKategorieBezeichnung" />
                     <br />
-                    <input type="submit" name="BtnSend" id="BtnSend" value="Eintragen" />
+                    <input type="submit" class="btn" name="BtnSend" disabled="disabled" id="BtnSend" value="Eintragen" />
                 }
             }
 

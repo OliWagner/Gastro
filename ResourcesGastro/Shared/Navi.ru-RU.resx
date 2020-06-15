@@ -349,4 +349,13 @@
   <data name="Teams7" xml:space="preserve">
     <value>Теперь у вас есть результат этой поездки в колокол. Приятного аппетита!</value>
   </data>
+  <data name="IndexAufbauFooter" xml:space="preserve">
+    <value>Зайдите в ближайшее время !!!</value>
+  </data>
+  <data name="IndexAufbauHeader" xml:space="preserve">
+    <value>Мы на стадии строительства</value>
+  </data>
+  <data name="IndexAufbauText" xml:space="preserve">
+    <value>Наш сайт еще не закончен. Наше правильное меню, обеденное меню и планировщик событий, с помощью которых вы можете рассчитать и спланировать свои мероприятия заранее, вскоре появятся ...</value>
+  </data>
 </root>

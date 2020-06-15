@@ -349,4 +349,13 @@ The culmination of my 'apprenticeship' was spent as a night chef on the 'MS Euro
   <data name="Teams7" xml:space="preserve">
     <value>You now have the result of this trip in the bell. Good Appetite!</value>
   </data>
+  <data name="IndexAufbauFooter" xml:space="preserve">
+    <value>Check back soon !!!</value>
+  </data>
+  <data name="IndexAufbauHeader" xml:space="preserve">
+    <value>We are under construction</value>
+  </data>
+  <data name="IndexAufbauText" xml:space="preserve">
+    <value>Our website is far from finished. Our correct menu, the lunch menu and an event planner, with which you can calculate and plan your events in advance, will follow shortly ...</value>
+  </data>
 </root>

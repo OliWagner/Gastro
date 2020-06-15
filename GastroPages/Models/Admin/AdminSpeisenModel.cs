@@ -29,7 +29,7 @@ namespace GastroPages.Models
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                AlleSpeisen = (from Speisen mt in _db.Speisen where mt.KategorieId == id select mt).ToList();
+                AlleSpeisen = (from Speisen mt in _db.Speisen where mt.KategorieId == id orderby mt.Sortierung select mt).ToList();
 
                 GewählteSpeise = new Speisen();
                 GewählteSpeise.id = 0;
@@ -42,7 +42,7 @@ namespace GastroPages.Models
             using (GastroEntities _db = new GastroEntities())
             {
                 AlleAllergene = _db.Allergene.OrderBy(x => x.Nummer).ToList();
-                AlleSpeisen = (from Speisen mt in _db.Speisen where mt.KategorieId == id select mt).ToList();
+                AlleSpeisen = (from Speisen mt in _db.Speisen where mt.KategorieId == id orderby mt.Sortierung select mt).ToList();
                 foreach (Speisen mt in AlleSpeisen)
                 {
                     List<int> list = (from AllergeneSpeiseIdSpeiseId amsid in _db.AllergeneSpeiseIdSpeiseId where amsid.sid == mt.id select amsid.aid).ToList();
