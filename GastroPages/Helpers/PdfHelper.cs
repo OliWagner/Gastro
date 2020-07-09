@@ -376,10 +376,10 @@ catch (IOException ioe)
 
                 document.Open();
 
-                PdfPTable table = new PdfPTable(4);
+                PdfPTable table = new PdfPTable(5);
                 table.DefaultCell.Border = Rectangle.NO_BORDER;
-                float[] widths = new float[] { 20f, 120f, 340f, 100f };
-                table.TotalWidth = 580f;
+                float[] widths = new float[] { 20f, 20f, 120f, 290f, 100f };
+                table.TotalWidth = 550f;
                 table.LockedWidth = true;
                 table.SetWidths(widths);
 
@@ -392,11 +392,14 @@ catch (IOException ioe)
                 Font font10b = new Font(bf, 10, Font.BOLD);
                 Font font6 = new Font(bf, 6, Font.NORMAL);
 
+                PdfPCell cellEmptyLinks = new PdfPCell(new Phrase(" ", font10));
+                cellEmptyLinks.Border = Rectangle.NO_BORDER;
                 //PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Speisen, FontFactory.GetFont(BaseFont.HELVETICA, BaseFont.CP1250, true, 45)));
                 PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Allergene, font45));
                 cellHeader.Border = Rectangle.NO_BORDER;
                 cellHeader.Colspan = 3;
                 cellHeader.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(cellHeader);
 
 
@@ -411,7 +414,7 @@ catch (IOException ioe)
 
                 foreach (Allergene allergen in allergenModel.AlleAllergene)
                 {
-
+                    table.AddCell(cellEmptyLinks);
                     PdfPCell cell0 = new PdfPCell(new Phrase(allergen.Nummer, font10));
                     cell0.Border = Rectangle.NO_BORDER;
                     cell0.HorizontalAlignment = 0;
@@ -456,10 +459,10 @@ catch (IOException ioe)
 
                 document.Open();
 
-                PdfPTable table = new PdfPTable(4);
+                PdfPTable table = new PdfPTable(5);
                 table.DefaultCell.Border = Rectangle.NO_BORDER;
-                float[] widths = new float[] { 10f, 100f, 10f, 20f };
-                table.TotalWidth = 580f;
+                float[] widths = new float[] { 20f, 210f, 110f, 100f, 110f };
+                table.TotalWidth = 550f;
                 table.LockedWidth = true;
                 table.SetWidths(widths);
 
@@ -472,11 +475,14 @@ catch (IOException ioe)
                 Font font10 = new Font(bf, 10, Font.NORMAL);
                 Font font6 = new Font(bf, 6, Font.NORMAL);
 
+                PdfPCell cellEmptyLinks = new PdfPCell(new Phrase(" ", font10));
+                cellEmptyLinks.Border = Rectangle.NO_BORDER;
                 //PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Speisen, FontFactory.GetFont(BaseFont.HELVETICA, BaseFont.CP1250, true, 45)));
-                PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Mittagstisch, font45));
+                PdfPCell cellHeader = new PdfPCell(new Phrase("Aktuelles Angebot", font45));
                 cellHeader.Border = Rectangle.NO_BORDER;
-                cellHeader.Colspan = 2;
+                cellHeader.Colspan = 3;
                 cellHeader.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(cellHeader);
 
 
@@ -485,7 +491,7 @@ catch (IOException ioe)
                 jpg.SpacingAfter = 12f;
                 jpg.SpacingBefore = 12f;
                 PdfPCell cellImage = new PdfPCell(jpg);
-                cellImage.Colspan = 2;
+                //cellImage.Colspan = 2;
                 cellImage.Border = Rectangle.NO_BORDER;
                 table.AddCell(cellImage);
 
@@ -493,9 +499,10 @@ catch (IOException ioe)
                 {
                     PdfPTable innerTable = new PdfPTable(4);
                     innerTable.DefaultCell.Border = Rectangle.NO_BORDER;
-                    innerTable.TotalWidth = 580f;
+                    float[] widthsInner = new float[] { 300, 130f, 20f, 70f };
+                    innerTable.TotalWidth = 520f;
                     innerTable.LockedWidth = true;
-                    innerTable.SetWidths(widths);
+                    innerTable.SetWidths(widthsInner);
 
 
                     PdfPCell cell = new PdfPCell(new Phrase(kat.Kategorie.Bezeichnung, font20));
@@ -521,10 +528,10 @@ catch (IOException ioe)
                         string[] texte = kat.Kategorie.Header.Split('|');
                         foreach (var item in texte)
                         {
-                            innerTable.AddCell(" ");
+                            
                             PdfPCell icell = new PdfPCell(new Phrase(item, font10));
                             icell.Border = Rectangle.NO_BORDER;
-                            icell.Colspan = 2;
+                            icell.Colspan = 3;
                             icell.HorizontalAlignment = 0;
                             innerTable.AddCell(icell);
                             innerTable.AddCell(" ");
@@ -537,8 +544,6 @@ catch (IOException ioe)
                     {
                         foreach (Mittagstisch speise in item.Value)
                         {
-                            //Item row 1
-                            innerTable.AddCell(" ");
 
                             //Allergene beachten!!!
                             if (homeSpeisenModel.AllergeneZuSpeisen.Where(x => x.Key == speise.id).Any())
@@ -559,7 +564,7 @@ catch (IOException ioe)
                                 cellBez.Border = Rectangle.NO_BORDER;
                                 innerTable.AddCell(cellBez);
                             }
-
+                            innerTable.AddCell(" ");
 
                             innerTable.AddCell("€");
 
@@ -570,9 +575,10 @@ catch (IOException ioe)
                             innerTable.AddCell(cell2n);
 
                             //Item row 2
-                            innerTable.AddCell("");
+                            
                             Phrase phrase = new Phrase(speise.Beschreibung, font12);
                             PdfPCell cell2 = new PdfPCell(phrase);
+                            cell2.Colspan = 2;
                             cell2.Border = Rectangle.NO_BORDER;
                             innerTable.AddCell(cell2);
                             //int hoehe = (int)cell2.Height;
@@ -606,6 +612,7 @@ catch (IOException ioe)
                     tabcell.Border = Rectangle.NO_BORDER;
                     tabcell.Colspan = 4;
                     tabcell.HorizontalAlignment = 0;
+                    table.AddCell(cellEmptyLinks);
                     table.AddCell(tabcell);
                 }
 
