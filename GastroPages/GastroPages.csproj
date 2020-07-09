@@ -567,6 +567,8 @@
     <Content Include="Images\home.gif" />
     <Content Include="Images\logo.gif" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\logoah.gif" />
+    <Content Include="Images\logoneu.gif" />
     <Content Include="Images\social-facebook.png" />
     <Content Include="Images\social-google.png" />
     <Content Include="Images\social-instagram_2.png" />

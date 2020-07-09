@@ -1169,10 +1169,10 @@ namespace GastroPages.Controllers
                         {
                             foreach (string id in allergenIds.Split(','))
                             {
-                                AllergeneVeranstaltungsGetränkeIdSpeiseId eintrag = new AllergeneVeranstaltungsGetränkeIdSpeiseId();
+                                AllergeneGetränkeIdSpeiseId eintrag = new AllergeneGetränkeIdSpeiseId();
                                 eintrag.aid = int.Parse(id);
                                 eintrag.sid = number;
-                                _db.AllergeneVeranstaltungsGetränkeIdSpeiseId.Add(eintrag);
+                                _db.AllergeneGetränkeIdSpeiseId.Add(eintrag);
                             }
                             _db.SaveChanges();
                         }
@@ -1201,10 +1201,10 @@ namespace GastroPages.Controllers
                             {
                                 if (allergenIds.Split(',').Contains(alg.id.ToString()))
                                 {
-                                    AllergeneVeranstaltungsGetränkeIdSpeiseId ss = new AllergeneVeranstaltungsGetränkeIdSpeiseId();
+                                    AllergeneGetränkeIdSpeiseId ss = new AllergeneGetränkeIdSpeiseId();
                                     ss.aid = alg.id;
                                     ss.sid = mt.id;
-                                    _db.AllergeneVeranstaltungsGetränkeIdSpeiseId.Add(ss);
+                                    _db.AllergeneGetränkeIdSpeiseId.Add(ss);
                                 }
                             }
                         }

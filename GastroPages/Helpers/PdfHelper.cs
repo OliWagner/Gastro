@@ -269,11 +269,12 @@ catch (IOException ioe)
                         string[] texte = kat.Kategorie.Header.Split('|');
                         foreach (var item in texte)
                         {
-                            innerTable.AddCell(" ");
+                            innerTable.AddCell(cellemptysmall);
                             PdfPCell icell = new PdfPCell(new Phrase(item, font10));
                             icell.Border = Rectangle.NO_BORDER;
-                            icell.Colspan = 1;
+                            icell.Colspan = 3;
                             icell.HorizontalAlignment = 0;
+                            icell.PaddingLeft = 10;
                             innerTable.AddCell(icell);
                             innerTable.AddCell(" ");
                             innerTable.AddCell(cellemptysmall);
@@ -332,8 +333,9 @@ catch (IOException ioe)
 
                             PdfPCell icell = new PdfPCell(new Phrase(item, font10));
                             icell.Border = Rectangle.NO_BORDER;
-                            icell.Colspan = 1;
+                            icell.Colspan = 3;
                             icell.HorizontalAlignment = 0;
+                            icell.PaddingLeft = 10;
                             innerTable.AddCell(icell);
                             innerTable.AddCell(" ");
                             innerTable.AddCell(cellemptysmall);
@@ -783,23 +785,26 @@ catch (IOException ioe)
             try
             {
                 string txt = Guid.NewGuid().ToString().Replace("-", "");
-                
+
                 PdfWriter writer;
-                if (model.DsvgoOk != null) {
+                if (model.DsvgoOk != null)
+                {
                     writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer_" + txt + ".pdf", FileMode.Create));
                     HttpContext.Current.Session["pdfguid"] = txt;
-                } else {
+                }
+                else
+                {
                     writer = PdfWriter.GetInstance(document, new FileStream(HttpRuntime.AppDomainAppPath + "Content\\Pdfs\\_Planer.pdf", FileMode.Create));
                 }
-                
-                
+
+
 
                 document.Open();
 
-                PdfPTable table = new PdfPTable(5);
+                PdfPTable table = new PdfPTable(6);
                 table.DefaultCell.Border = Rectangle.NO_BORDER;
-                float[] widths = new float[] { 30f, 270f, 80f, 100f, 100f };
-                table.TotalWidth = 580f;
+                float[] widths = new float[] { 20f, 30f, 250f, 75f, 60f, 90f };
+                table.TotalWidth = 525f;
                 table.LockedWidth = true;
                 table.SetWidths(widths);
 
@@ -815,6 +820,10 @@ catch (IOException ioe)
                 Font font10b = new Font(bf, 10, Font.BOLD);
                 Font font6 = new Font(bf, 6, Font.NORMAL);
 
+                PdfPCell cellEmptyLinks = new PdfPCell(new Phrase(" ", font10));
+                cellEmptyLinks.Border = Rectangle.NO_BORDER;
+                //HEADER
+                table.AddCell(cellEmptyLinks);
                 PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanderPdfHeader, font45));
                 cellHeader.Border = Rectangle.NO_BORDER;
                 cellHeader.Colspan = 4;
@@ -831,41 +840,42 @@ catch (IOException ioe)
                 table.AddCell(cellImage);
 
                 //Wenn Anfrage, die Daten auf das Pdf drucken --> Innere Tabelle
-                if (model.DsvgoOk != null) {
+                if (model.DsvgoOk != null)
+                {
                     PdfPTable t = new PdfPTable(4);
                     t.DefaultCell.Border = Rectangle.NO_BORDER;
-                    float[] widths_t = new float[] { 100f, 190f, 100f, 190f };
-                    t.TotalWidth = 580f;
+                    float[] widths_t = new float[] { 90f, 180f, 90f, 165f };
+                    t.TotalWidth = 525f;
                     t.LockedWidth = true;
                     t.SetWidths(widths_t);
 
                     //Zeile 1
-                    PdfPCell cellInner1 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanerPdfName+":", font10b));
+                    PdfPCell cellInner1 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanerPdfName + ":", font10b));
                     cellInner1.Border = Rectangle.NO_BORDER;
                     cellInner1.Colspan = 1;
                     cellInner1.HorizontalAlignment = 0;
                     t.AddCell(cellInner1);
 
-                    PdfPCell cellInner2 = new PdfPCell(new Phrase(model.DsvgoName + " (" + DateTime.Now.ToLocalTime().ToShortDateString() +", " + DateTime.Now.ToLocalTime().ToShortTimeString() + ")", font10b));
+                    PdfPCell cellInner2 = new PdfPCell(new Phrase(model.DsvgoName + " (" + DateTime.Now.ToLocalTime().ToShortDateString() + ", " + DateTime.Now.ToLocalTime().ToShortTimeString() + ")", font10b));
                     cellInner2.Border = Rectangle.NO_BORDER;
                     cellInner2.Colspan = 1;
                     cellInner2.HorizontalAlignment = 0;
                     t.AddCell(cellInner2);
 
-                    PdfPCell cellInner3 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanerPdfTermin+":", font10b));
+                    PdfPCell cellInner3 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanerPdfTermin + ":", font10b));
                     cellInner3.Border = Rectangle.NO_BORDER;
                     cellInner3.Colspan = 1;
                     cellInner3.HorizontalAlignment = 0;
                     t.AddCell(cellInner3);
 
-                    PdfPCell cellInner4 = new PdfPCell(new Phrase(model.DsvgoDatum +" (" + model.AnzahlPersonenInsgesamt + " " + ResourcesGastro.Shared.Navi.Personen + ")", font10b));
+                    PdfPCell cellInner4 = new PdfPCell(new Phrase(model.DsvgoDatum + " (" + model.AnzahlPersonenInsgesamt + " " + ResourcesGastro.Shared.Navi.Personen + ")", font10b));
                     cellInner4.Border = Rectangle.NO_BORDER;
                     cellInner4.Colspan = 1;
                     cellInner4.HorizontalAlignment = 0;
                     t.AddCell(cellInner4);
 
                     //Zeile 2
-                    PdfPCell cellInner5 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanerPdfTelefon+":", font10b));
+                    PdfPCell cellInner5 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.PlanerPdfTelefon + ":", font10b));
                     cellInner5.Border = Rectangle.NO_BORDER;
                     cellInner5.Colspan = 1;
                     cellInner5.HorizontalAlignment = 0;
@@ -901,24 +911,25 @@ catch (IOException ioe)
                     cellInner10.HorizontalAlignment = 0;
                     t.AddCell(cellInner10);
 
-                    
+
 
                     //Nun neue Tabelle in eine Zelle einfügen
                     PdfPCell ctz = new PdfPCell(t);
                     ctz.Border = Rectangle.NO_BORDER;
                     ctz.Colspan = 5;
                     ctz.HorizontalAlignment = 0;
+                    table.AddCell(cellEmptyLinks);
                     table.AddCell(ctz);
                 }
 
                 PdfPCell cellEmptySmall = new PdfPCell(new Phrase(" ", font10));
                 cellEmptySmall.Border = Rectangle.NO_BORDER;
-                cellEmptySmall.Colspan = 5;
+                cellEmptySmall.Colspan = 6;
                 cellEmptySmall.HorizontalAlignment = 0;
 
                 PdfPCell cellEmpty = new PdfPCell(new Phrase(" ", font20));
                 cellEmpty.Border = Rectangle.NO_BORDER;
-                cellEmpty.Colspan = 5;
+                cellEmpty.Colspan = 6;
                 cellEmpty.HorizontalAlignment = 0;
                 table.AddCell(cellEmpty);
 
@@ -926,9 +937,10 @@ catch (IOException ioe)
                 cellHeaderSPeisen.Border = Rectangle.NO_BORDER;
                 cellHeaderSPeisen.Colspan = 5;
                 cellHeaderSPeisen.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(cellHeaderSPeisen);
                 table.AddCell(cellEmptySmall);
-                
+
                 //Ab hier die Speisen
                 int counterSpeisen = 0;
                 foreach (var item in model.KategorienSpeisen)
@@ -941,16 +953,20 @@ catch (IOException ioe)
                         //cell.HorizontalAlignment = 0;
                         //table.AddCell(cell);
                     }
-                    else {
+                    else
+                    {
                         PdfPCell cell = new PdfPCell(new Phrase(item.Item2, font20));
                         cell.Border = Rectangle.NO_BORDER;
                         cell.Colspan = 5;
                         cell.HorizontalAlignment = 0;
+                        table.AddCell(cellEmptyLinks);
                         table.AddCell(cell);
 
                         List<Tuple<string, string, string, string>> list = model.ItemsSpeisen.ElementAt(counterSpeisen);
                         foreach (Tuple<string, string, string, string> elem in list)
                         {
+                            table.AddCell(cellEmptyLinks);
+
                             PdfPCell c1 = new PdfPCell(new Phrase(elem.Item1.TrimStart(new char[] { '0' }), font10));
                             c1.Border = Rectangle.NO_BORDER;
                             c1.Colspan = 1;
@@ -994,6 +1010,7 @@ catch (IOException ioe)
                 cellHeaderGetränke.Border = Rectangle.NO_BORDER;
                 cellHeaderGetränke.Colspan = 5;
                 cellHeaderGetränke.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(cellHeaderGetränke);
                 table.AddCell(cellEmptySmall);
 
@@ -1015,11 +1032,13 @@ catch (IOException ioe)
                         cell.Border = Rectangle.NO_BORDER;
                         cell.Colspan = 5;
                         cell.HorizontalAlignment = 0;
+                        table.AddCell(cellEmptyLinks);
                         table.AddCell(cell);
 
                         List<Tuple<string, string, string, string>> list = model.ItemsGetränke.ElementAt(counterGetränke);
                         foreach (Tuple<string, string, string, string> elem in list)
                         {
+                            table.AddCell(cellEmptyLinks);
                             PdfPCell c1 = new PdfPCell(new Phrase(elem.Item1.TrimStart(new char[] { '0' }), font10));
                             c1.Border = Rectangle.NO_BORDER;
                             c1.Colspan = 1;
@@ -1063,14 +1082,15 @@ catch (IOException ioe)
                 cellHeaderZusammenfassung.Border = Rectangle.NO_BORDER;
                 cellHeaderZusammenfassung.Colspan = 5;
                 cellHeaderZusammenfassung.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(cellHeaderZusammenfassung);
                 table.AddCell(cellEmptySmall);
 
                 //Ab hier die Zusammenfassung
                 PdfPTable tz = new PdfPTable(5);
                 tz.DefaultCell.Border = Rectangle.NO_BORDER;
-                float[] widthstz = new float[] { 130f, 230f, 100f, 20f, 100f };
-                tz.TotalWidth = 580f;
+                float[] widthstz = new float[] { 100f, 230f, 80f, 20f, 75f };
+                tz.TotalWidth = 505f;
                 tz.LockedWidth = true;
                 tz.SetWidths(widthstz);
 
@@ -1090,7 +1110,7 @@ catch (IOException ioe)
                 tzcell2.Border = Rectangle.NO_BORDER;
                 tzcell2.HorizontalAlignment = 2;
                 tz.AddCell(tzcell2);
-                
+
 
                 //Zeile2
                 tz.AddCell(" ");
@@ -1104,11 +1124,11 @@ catch (IOException ioe)
                 tzcell4.Border = Rectangle.NO_BORDER;
                 tzcell4.HorizontalAlignment = 2;
                 tz.AddCell(tzcell4);
-                
+
 
                 //Zeile2
                 tz.AddCell(" ");
-                PdfPCell tzcell5 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Planersumme+ " " + ResourcesGastro.Shared.Navi.Insgesamt, font15b));
+                PdfPCell tzcell5 = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Planersumme + " " + ResourcesGastro.Shared.Navi.Insgesamt, font15b));
                 tzcell5.Border = Rectangle.NO_BORDER;
                 tzcell5.HorizontalAlignment = 0;
                 tz.AddCell(tzcell5);
@@ -1118,7 +1138,7 @@ catch (IOException ioe)
                 tzcell6.Border = Rectangle.NO_BORDER;
                 tzcell6.HorizontalAlignment = 2;
                 tz.AddCell(tzcell6);
-                
+
 
 
                 //Tabelle in die andere einfügen
@@ -1126,6 +1146,7 @@ catch (IOException ioe)
                 c.Border = Rectangle.NO_BORDER;
                 c.Colspan = 5;
                 c.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(c);
                 document.Add(table);
 

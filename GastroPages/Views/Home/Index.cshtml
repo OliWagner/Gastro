@@ -11,10 +11,10 @@
                 <h1>@Resources.Willkommen</h1>
                 <big>
                     <big>
-                        @Resources.IndexText1<br />
+                        <img src="~/Images/logoneu.gif" border="0" align="left" margin="10" />@Resources.IndexText1<br />
                         @Resources.IndexText2<br /><br />
 
-                        @Resources.IndexText3<br />
+                        @Resources.IndexText3
                     </big>
                 </big>
             </td>
@@ -23,10 +23,10 @@
                 <img src="~/Images/logo.gif" width="500" /><br />
                 <big>
                     <big>
-                        <b>Restaurant zur Glocke - @Resources.Inhaber Alexander Hert</b>
-                        Stiftstraße 39<br />
-                        50171 Kerpen<br />
-                        @Resources.PlanerPdfTelefon: <a href="tel:+492237591634">02237/591634 </a><br />
+                        <b>@viewModel.AdresseName - @Resources.Inhaber @viewModel.AdresseInhaber</b><br/>
+                        @viewModel.AdresseStrasse<br />
+                        @viewModel.AdressePlz @viewModel.AdresseOrt<br />
+                        @Resources.PlanerPdfTelefon: <a href="@viewModel.TelefonCall">@viewModel.Telefon</a><br />
                     </big>
                 </big><br />
             </td>
