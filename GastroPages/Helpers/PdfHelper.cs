@@ -23,10 +23,10 @@ namespace GastroPages.Helpers
 
                 document.Open();
 
-                PdfPTable table = new PdfPTable(4);
+                PdfPTable table = new PdfPTable(5);
                 table.DefaultCell.Border = Rectangle.NO_BORDER;
-                float[] widths = new float[] { 10f, 100f, 10f, 20f };
-                table.TotalWidth = 580f;
+                float[] widths = new float[] { 20f, 400f, 20f, 20f, 90f };
+                table.TotalWidth = 550f;
                 table.LockedWidth = true;
                 table.SetWidths(widths);
 
@@ -39,11 +39,15 @@ namespace GastroPages.Helpers
                 Font font10 = new Font(bf, 10, Font.NORMAL);
                 Font font6 = new Font(bf, 6, Font.NORMAL);
 
+                PdfPCell cellEmptyLinks = new PdfPCell(new Phrase(" ", font10));
+                cellEmptyLinks.Border = Rectangle.NO_BORDER;
+
                 //PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Speisen, FontFactory.GetFont(BaseFont.HELVETICA, BaseFont.CP1250, true, 45)));
                 PdfPCell cellHeader = new PdfPCell(new Phrase(ResourcesGastro.Shared.Navi.Speisen, font45));
                 cellHeader.Border = Rectangle.NO_BORDER;
                 cellHeader.Colspan = 2;
                 cellHeader.HorizontalAlignment = 0;
+                table.AddCell(cellEmptyLinks);
                 table.AddCell(cellHeader);
 
 
@@ -60,10 +64,10 @@ namespace GastroPages.Helpers
                 {
                     PdfPTable innerTable = new PdfPTable(4);
                     innerTable.DefaultCell.Border = Rectangle.NO_BORDER;
-                    //float[] widths = new float[] { 10f, 100f, 10f, 20f };
-                    innerTable.TotalWidth = 580f;
+                    float[] widths2 = new float[] { 20f, 400f, 20f, 60f };
+                    innerTable.TotalWidth = 500f;
                     innerTable.LockedWidth = true;
-                    innerTable.SetWidths(widths);
+                    innerTable.SetWidths(widths2);
 
 
                     PdfPCell cell = new PdfPCell(new Phrase(kat.Kategorie.Bezeichnung, font20));
@@ -173,6 +177,7 @@ namespace GastroPages.Helpers
                     tabcell.Border = Rectangle.NO_BORDER;
                     tabcell.Colspan = 4;
                     tabcell.HorizontalAlignment = 0;
+                    table.AddCell(cellEmptyLinks);
                     table.AddCell(tabcell);
                 }
     
